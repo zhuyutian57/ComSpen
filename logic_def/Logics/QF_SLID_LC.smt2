@@ -8,7 +8,7 @@
  "2018-05-25 Definition of the logic for SL-COMP'18.
  "
 
- :theories (SepLogicTyped Ints)
+ :theories (Ints QF_SLID_LC)
 
  :language
  "Closed quantifier-free formulas built over the SepLogicTyped signature,

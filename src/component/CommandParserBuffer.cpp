@@ -14,12 +14,12 @@ CommandParserBuffer::CommandParserBuffer(z3::context& z3_ctx, Z3Buffer& z3_buffe
     m_buffer["SetLogicParser"] = new SetLogicParser(z3_ctx, z3_buffer);
     m_buffer["SetInfoParser"] = new SetInfoParser(z3_ctx, z3_buffer);
     m_buffer["CommandParser"] = new CommandParser(z3_ctx, z3_buffer); 
-    m_buffer["DeclSortParser"] = new DeclSortParser(z3_ctx, z3_buffer); 
-    m_buffer["DeclDatatypesParser"] = new DeclDatatypesParser(z3_ctx, z3_buffer);
-    m_buffer["DeclHeapParser"] = new DeclHeapParser(z3_ctx, z3_buffer); 
-    m_buffer["DefineFunctionParser"] = new DefineFunctionParser(z3_ctx, z3_buffer); 
-    m_buffer["DefineFunctionRecParser"] = new DefineFunctionRecParser(z3_ctx, z3_buffer); 
-    m_buffer["DeclConstParser"] = new DeclConstParser(z3_ctx, z3_buffer); 
+    m_buffer["DeclareSortParser"] = new DeclareSortParser(z3_ctx, z3_buffer); 
+    m_buffer["DeclareDatatypesParser"] = new DeclareDatatypesParser(z3_ctx, z3_buffer);
+    m_buffer["DeclareHeapParser"] = new DeclareHeapParser(z3_ctx, z3_buffer); 
+    m_buffer["DefineFunParser"] = new DefineFunParser(z3_ctx, z3_buffer); 
+    m_buffer["DefineFunRecParser"] = new DefineFunRecParser(z3_ctx, z3_buffer); 
+    m_buffer["DeclareareConstParser"] = new DeclareConstParser(z3_ctx, z3_buffer); 
     m_buffer["AssertParser"] = new AssertParser(z3_ctx, z3_buffer); 
     m_buffer["CheckSatParser"] = new CheckSatParser(z3_ctx, z3_buffer); 
 
@@ -29,32 +29,32 @@ CheckSatParser* CommandParserBuffer::getCheckSatParser() {
     return dynamic_cast<CheckSatParser*>(m_buffer["CheckSatParser"]);
 }
 
-DeclConstParser* CommandParserBuffer::getDeclConstParser() {
-    return dynamic_cast<DeclConstParser*>(m_buffer["DeclConstParser"]);
+DeclareConstParser* CommandParserBuffer::getDeclareConstParser() {
+    return dynamic_cast<DeclareConstParser*>(m_buffer["DeclareareConstParser"]);
 }
 
 AssertParser* CommandParserBuffer::getAssertParser() {
     return dynamic_cast<AssertParser*>(m_buffer["AssertParser"]);
 }
 
-DefineFunctionParser* CommandParserBuffer::getDefineFunctionParser() {
-    return dynamic_cast<DefineFunctionParser*>(m_buffer["DefineFunctionParser"]);
+DefineFunParser* CommandParserBuffer::getDefineFunParser() {
+    return dynamic_cast<DefineFunParser*>(m_buffer["DefineFunParser"]);
 }
 
-DefineFunctionRecParser* CommandParserBuffer::getDefineFunctionRecParser() {
-    return dynamic_cast<DefineFunctionRecParser*>(m_buffer["DefineFunctionRecParser"]);
+DefineFunRecParser* CommandParserBuffer::getDefineFunRecParser() {
+    return dynamic_cast<DefineFunRecParser*>(m_buffer["DefineFunRecParser"]);
 }
 
-DeclHeapParser* CommandParserBuffer::getDeclHeapParser() {
-    return dynamic_cast<DeclHeapParser*>(m_buffer["DeclHeapParser"]);
+DeclareHeapParser* CommandParserBuffer::getDeclareHeapParser() {
+    return dynamic_cast<DeclareHeapParser*>(m_buffer["DeclareHeapParser"]);
 }
 
-DeclDatatypesParser* CommandParserBuffer::getDeclDatatypesParser() {
-    return dynamic_cast<DeclDatatypesParser*>(m_buffer["DeclDatatypesParser"]);
+DeclareDatatypesParser* CommandParserBuffer::getDeclareDatatypesParser() {
+    return dynamic_cast<DeclareDatatypesParser*>(m_buffer["DeclareDatatypesParser"]);
 }
 
-DeclSortParser* CommandParserBuffer::getDeclSortParser() {
-    return dynamic_cast<DeclSortParser*>(m_buffer["DeclSortParser"]);
+DeclareSortParser* CommandParserBuffer::getDeclareSortParser() {
+    return dynamic_cast<DeclareSortParser*>(m_buffer["DeclareSortParser"]);
 }
 
 CommandParser* CommandParserBuffer::getCommandParser() {

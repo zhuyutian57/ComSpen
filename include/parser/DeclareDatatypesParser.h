@@ -1,7 +1,7 @@
 #if !defined(DECLDATATYPESPARSER_H)
 #define DECLDATATYPESPARSER_H
 /*******************************************
-*  @file  DeclDatatypesParser.h            *
+*  @file  DeclareDatatypesParser.h            *
 *  @brief  Brief file description          *
 *                                          *
 *  @author   Chong Gao                     *
@@ -13,11 +13,11 @@
 #include "CommandParser.h"
 
 
-class DeclDatatypesParser: public CommandParser
+class DeclareDatatypesParser: public CommandParser
 {
 public:
-    DeclDatatypesParser(z3::context& ctx, Z3Buffer& buffer): CommandParser(ctx, buffer) { }
-    virtual ~DeclDatatypesParser() { }
+    DeclareDatatypesParser(z3::context& ctx, Z3Buffer& buffer): CommandParser(ctx, buffer) { }
+    virtual ~DeclareDatatypesParser() { }
 
     virtual void parse(Table* table);
 

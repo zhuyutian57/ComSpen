@@ -1,7 +1,7 @@
-#if !defined(DEFINE_FUNCTION_PARSER_)
-#define DEFINE_FUNCTION_PARSER_
+#if !defined(DEFINE_FUN_PARSER_)
+#define DEFINE_FUN_PARSER_
 /*******************************************
-*  @file  DefineFunctionParser.h           * 
+*  @file  DefineFunParser.h           * 
 *  @brief    Brief file description        *
 *                                          *
 *  @author   Wanyun Su                     *
@@ -17,11 +17,11 @@
  *
  *  Detailed description
  */
-class DefineFunctionParser: public CommandParser
+class DefineFunParser: public CommandParser
 {
 public:
-    DefineFunctionParser(z3::context& ctx, Z3Buffer& buffer): CommandParser(ctx, buffer) {}
-    virtual ~DefineFunctionParser() {}
+    DefineFunParser(z3::context& ctx, Z3Buffer& buffer): CommandParser(ctx, buffer) {}
+    virtual ~DefineFunParser() {}
 
     virtual void parse(Table* table);
 

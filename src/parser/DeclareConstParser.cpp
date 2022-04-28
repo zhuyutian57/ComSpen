@@ -1,5 +1,5 @@
 /*******************************************
-*  @file  DeclConstParser.cpp              *
+*  @file  DeclareConstParser.cpp              *
 *  @brief  Brief file description          *
 *                                          *
 *  @author   Chong Gao                     *
@@ -8,11 +8,11 @@
 *                                          *
 *******************************************/
 
-#include "parser/DeclConstParser.h"
+#include "parser/DeclareConstParser.h"
 
 extern SyntaxErrorTable SYNTAX_ERROR_INFO;
 
-void DeclConstParser::parse(Table* table) {
+void DeclareConstParser::parse(Table* table) {
     Token* curr = scanner->checkNext(SYMBOL_TOKEN, SYNTAX_ERROR_INFO[SYMBOL_TOKEN]);
     string vname = dynamic_cast<StrToken*>(curr)->value();
     

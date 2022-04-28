@@ -1,7 +1,7 @@
 #if !defined(DECL_SORT_PARSER_)
 #define DECL_SORT_PARSER_
 /*******************************************
-*  @file  DeclSortParser.h                 * 
+*  @file  DeclareSortParser.h                 * 
 *  @brief    Brief file description        *
 *                                          *
 *  @author   Chong Gao                     *
@@ -12,16 +12,16 @@
 
 #include "CommandParser.h"
 
-/*! @class DeclSortParser
+/*! @class DeclareSortParser
  *  @brief Brief class description
  *
  *  Detailed description
  */
-class DeclSortParser: public CommandParser
+class DeclareSortParser: public CommandParser
 {
 public:
-    DeclSortParser(z3::context& ctx, Z3Buffer& buffer): CommandParser(ctx, buffer) {}
-    virtual ~DeclSortParser() {}
+    DeclareSortParser(z3::context& ctx, Z3Buffer& buffer): CommandParser(ctx, buffer) {}
+    virtual ~DeclareSortParser() {}
 
     virtual void parse(Table* table);
 

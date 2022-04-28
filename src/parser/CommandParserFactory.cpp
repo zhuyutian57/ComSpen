@@ -24,17 +24,17 @@ CommandParser* CommandParserFactory::getCommandParser(const string& sign) {
     } else if (sign == "set-info") {
         return m_buffer.getSetInfoParser();
     } else if (sign == "declare-sort") {
-        return m_buffer.getDeclSortParser();
+        return m_buffer.getDeclareSortParser();
     } else if (sign == "declare-datatypes") {
-        return m_buffer.getDeclDatatypesParser();
+        return m_buffer.getDeclareDatatypesParser();
     } else if (sign == "declare-heap") {
-        return m_buffer.getDeclHeapParser();
+        return m_buffer.getDeclareHeapParser();
     }  else if (sign == "define-fun") {
-        return m_buffer.getDefineFunctionParser();
+        return m_buffer.getDefineFunParser();
     }  else if (sign == "define-fun-rec") {
-        return m_buffer.getDefineFunctionRecParser();
+        return m_buffer.getDefineFunRecParser();
     } else if (sign == "declare-const") {
-        return m_buffer.getDeclConstParser();
+        return m_buffer.getDeclareConstParser();
     } else if (sign == "assert") {
         return m_buffer.getAssertParser();
     } else if (sign == "check-sat") {

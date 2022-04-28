@@ -1,7 +1,7 @@
 #if !defined(DECLCONSTPARSER_H)
 #define DECLCONSTPARSER_H
 /*******************************************
-*  @file  DeclConstParser.h                *
+*  @file  DeclareConstParser.h                *
 *  @brief  Brief file description          *
 *                                          *
 *  @author   Chong Gao                     *
@@ -12,11 +12,11 @@
 
 #include "CommandParser.h"
 
-class DeclConstParser: public CommandParser
+class DeclareConstParser: public CommandParser
 {
 public:
-    DeclConstParser(z3::context& ctx, Z3Buffer& buffer): CommandParser(ctx, buffer) { }
-    virtual ~DeclConstParser() { }
+    DeclareConstParser(z3::context& ctx, Z3Buffer& buffer): CommandParser(ctx, buffer) { }
+    virtual ~DeclareConstParser() { }
 
     virtual void parse(Table* table);
 };

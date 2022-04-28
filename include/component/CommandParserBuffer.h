@@ -15,12 +15,12 @@
 #include "parser/CommandParser.h"
 #include "parser/SetLogicParser.h"
 #include "parser/SetInfoParser.h"
-#include "parser/DeclSortParser.h"
-#include "parser/DeclDatatypesParser.h"
-#include "parser/DeclHeapParser.h"
-#include "parser/DefineFunctionParser.h"
-#include "parser/DefineFunctionRecParser.h"
-#include "parser/DeclConstParser.h"
+#include "parser/DeclareSortParser.h"
+#include "parser/DeclareDatatypesParser.h"
+#include "parser/DeclareHeapParser.h"
+#include "parser/DefineFunParser.h"
+#include "parser/DefineFunRecParser.h"
+#include "parser/DeclareConstParser.h"
 #include "parser/AssertParser.h"
 #include "parser/CheckSatParser.h"
 
@@ -42,21 +42,21 @@ public:
 
     CommandParser* getCommandParser();
 
-    DeclHeapParser* getDeclHeapParser();
+    DeclareHeapParser* getDeclareHeapParser();
 
-    DeclSortParser* getDeclSortParser();
+    DeclareSortParser* getDeclareSortParser();
 
-    DeclDatatypesParser* getDeclDatatypesParser();
+    DeclareDatatypesParser* getDeclareDatatypesParser();
 
     SetLogicParser* getSetLogicParser();
     
     SetInfoParser* getSetInfoParser();
     
-    DefineFunctionParser* getDefineFunctionParser();
+    DefineFunParser* getDefineFunParser();
 
-    DefineFunctionRecParser* getDefineFunctionRecParser();
+    DefineFunRecParser* getDefineFunRecParser();
 
-    DeclConstParser* getDeclConstParser();
+    DeclareConstParser* getDeclareConstParser();
 
     AssertParser* getAssertParser();
 

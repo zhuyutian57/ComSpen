@@ -1,5 +1,5 @@
 /*******************************************
-*  @file  DeclDatatypesParser.cpp          *
+*  @file  DeclareDatatypesParser.cpp          *
 *  @brief  Brief file description          *
 *                                          *
 *  @author   Chong Gao                     *
@@ -8,14 +8,14 @@
 *                                          *
 *******************************************/
 
-#include "parser/DeclDatatypesParser.h"
+#include "parser/DeclareDatatypesParser.h"
 
 //#include "component/Z3Buffer.h"
 
 extern SyntaxErrorTable SYNTAX_ERROR_INFO;
 //extern Z3Buffer z3_buffer;
 
-void DeclDatatypesParser::parse(Table* table) {
+void DeclareDatatypesParser::parse(Table* table) {
     scanner->checkNext(LEFT_PAREN, SYNTAX_ERROR_INFO[LEFT_PAREN]);
     SortTypeList st_list;
     parseSortDeclList(table, st_list);

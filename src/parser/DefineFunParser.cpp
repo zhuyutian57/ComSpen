@@ -1,5 +1,5 @@
 /*******************************************
-*  @file  DefineFunctionParser.cpp         *
+*  @file  DefineFunParser.cpp         *
 *  @brief  Brief file description          *
 *                                          *
 *  @author   Wanyun Su                     *
@@ -8,7 +8,7 @@
 *                                          *
 *******************************************/
 
-#include "parser/DefineFunctionParser.h"
+#include "parser/DefineFunParser.h"
 //#include "component/Z3Buffer.h"
 #include "solver_slah/HeapChunk.h"
 
@@ -16,7 +16,7 @@ extern SyntaxErrorTable SYNTAX_ERROR_INFO;
 //extern Z3Buffer z3_buffer; 
 //extern z3::context z3_ctx;
 
-void DefineFunctionParser::parse(Table* table) {
+void DefineFunParser::parse(Table* table) {
 	if(table->getProblem()->getLogic() != "QF_SLAH"){ 
     	throw SemanticException("Only QF_SLAH can use define-fun to define hck!");
 	}

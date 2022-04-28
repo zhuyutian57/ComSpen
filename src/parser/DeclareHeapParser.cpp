@@ -1,5 +1,5 @@
 /*******************************************
-*  @file  DeclHeapParser.cpp               *
+*  @file  DeclareHeapParser.cpp               *
 *  @brief  Brief file description          *
 *                                          *
 *  @author   Chong Gao                     *
@@ -8,11 +8,11 @@
 *                                          *
 *******************************************/
 
-#include "parser/DeclHeapParser.h"
+#include "parser/DeclareHeapParser.h"
 
 extern SyntaxErrorTable SYNTAX_ERROR_INFO;
 
-void DeclHeapParser::parse(Table* table) {
+void DeclareHeapParser::parse(Table* table) {
     scanner->checkNext(LEFT_PAREN, SYNTAX_ERROR_INFO[LEFT_PAREN]);
 
     SortType* sort_src = parseSort(table);

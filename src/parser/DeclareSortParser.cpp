@@ -1,5 +1,5 @@
 /*******************************************
-*  @file  DeclSortParser.cpp               *
+*  @file  DeclareSortParser.cpp               *
 *  @brief  Brief file description          *
 *                                          *
 *  @author   Chong Gao                     *
@@ -8,7 +8,7 @@
 *                                          *
 *******************************************/
 
-#include "parser/DeclSortParser.h"
+#include "parser/DeclareSortParser.h"
 #include "component/SortType.h"
 //#include "component/Z3Buffer.h"
 
@@ -22,7 +22,7 @@ extern SyntaxErrorTable SYNTAX_ERROR_INFO;
  * @param parser Parameter description
  * @return Return parameter description
  */
-void DeclSortParser::parse(Table* table) {
+void DeclareSortParser::parse(Table* table) {
     Token* curr = scanner->checkNext(SYMBOL_TOKEN, SYNTAX_ERROR_INFO[SYMBOL_TOKEN]);
     string sort = dynamic_cast<StrToken*>(curr)->value();
     int row = curr->row();

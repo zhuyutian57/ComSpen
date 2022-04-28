@@ -1,7 +1,7 @@
-#if !defined(DEFINE_FUNCTION_REC_PARSER_)
-#define DEFINE_FUNCTION_REC_PARSER_
+#if !defined(DEFINE_FUN_REC_PARSER_)
+#define DEFINE_FUN_REC_PARSER_
 /*******************************************
-*  @file  DefineFunctionRecParser.h        * 
+*  @file  DefineFunRecParser.h        * 
 *  @brief    Brief file description        *
 *                                          *
 *  @author   Chong Gao                     *
@@ -12,16 +12,16 @@
 
 #include "CommandParser.h"
 
-/*! @class DefineFunctionRecParser
+/*! @class DefineFunRecParser
  *  @brief Brief class description
  *
  *  Detailed description
  */
-class DefineFunctionRecParser: public CommandParser
+class DefineFunRecParser: public CommandParser
 {
 public:
-    DefineFunctionRecParser(z3::context& ctx, Z3Buffer& buffer): CommandParser(ctx, buffer) {}
-    virtual ~DefineFunctionRecParser() {}
+    DefineFunRecParser(z3::context& ctx, Z3Buffer& buffer): CommandParser(ctx, buffer) {}
+    virtual ~DefineFunRecParser() {}
 
     virtual void parse(Table* table);
     void checkSLAHRecRule(Table* table, z3::expr rec, string fname);

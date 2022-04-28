@@ -1,5 +1,5 @@
 /*******************************************
-*  @file  DefineFunctionRecParser.cpp      *
+*  @file  DefineFunRecParser.cpp      *
 *  @brief  Brief file description          *
 *                                          *
 *  @author   Chong Gao                     *
@@ -8,7 +8,7 @@
 *                                          *
 *******************************************/
 
-#include "parser/DefineFunctionRecParser.h"
+#include "parser/DefineFunRecParser.h"
 #include "component/Z3Buffer.h"
 #include "component/Predicate.h"
 #include "component/Predicate_SLID_SET.h"
@@ -19,7 +19,7 @@ extern SyntaxErrorTable SYNTAX_ERROR_INFO;
 //extern Z3Buffer z3_buffer; 
 //extern z3::context z3_ctx;
 
-void DefineFunctionRecParser::parse(Table* table) {
+void DefineFunRecParser::parse(Table* table) {
     Token* curr = scanner->checkNext(SYMBOL_TOKEN, SYNTAX_ERROR_INFO[SYMBOL_TOKEN]);
     string fname = dynamic_cast<StrToken*>(curr)->value();
     parseParameters(table);
@@ -96,7 +96,7 @@ void DefineFunctionRecParser::parse(Table* table) {
 //cout<<"define-fun-rec done"<<endl;
 }
 
-void DefineFunctionRecParser::checkSLAHRecRule(Table* table, z3::expr rec, string fname){
+void DefineFunRecParser::checkSLAHRecRule(Table* table, z3::expr rec, string fname){
 	z3::expr body = rec.body();
 	if (!body.is_app() || body.decl().name().str() != "sep") {
         throw SemanticException("'sep' is excepted in the recursive rule");

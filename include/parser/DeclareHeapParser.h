@@ -1,7 +1,7 @@
 #if !defined(DECLHEAPPARSER_H)
 #define DECLHEAPPARSER_H
 /*******************************************
-*  @file  DeclHeapParser.h                 *
+*  @file  DeclareHeapParser.h                 *
 *  @brief  Brief file description          *
 *                                          *
 *  @author   Chong Gao                     *
@@ -12,11 +12,11 @@
 
 #include "CommandParser.h"
 
-class DeclHeapParser: public CommandParser
+class DeclareHeapParser: public CommandParser
 {
 public:
-    DeclHeapParser(z3::context& ctx, Z3Buffer& buffer): CommandParser(ctx, buffer) { }
-    virtual ~DeclHeapParser() { }
+    DeclareHeapParser(z3::context& ctx, Z3Buffer& buffer): CommandParser(ctx, buffer) { }
+    virtual ~DeclareHeapParser() { }
 
     virtual void parse(Table* table);
 };
