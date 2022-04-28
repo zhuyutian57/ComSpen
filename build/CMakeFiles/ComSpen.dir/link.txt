@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/ComSpen.dir/src/main.cpp.o -o ComSpen  -Wl,-rpath,/usr/local/lib libsmt2z3.a /usr/local/lib/libz3.so.4.8.16.0 
