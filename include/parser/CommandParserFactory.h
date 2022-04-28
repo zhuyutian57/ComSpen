@@ -11,7 +11,20 @@
 *                                          *
 *******************************************/
 
-#include "component/CommandParserBuffer.h"
+#include "CommandParser.h"
+#include "AssertParser.h"
+#include "CheckSatParser.h"
+#include "DeclareConstParser.h"
+#include "DeclareConstParser.h"
+#include "DeclareDatatypesParser.h"
+#include "DeclareFunParser.h"
+#include "DeclareHeapParser.h"
+#include "DeclareSortParser.h"
+#include "DefineFunParser.h"
+#include "DefineFunRecParser.h"
+#include "SetInfoParser.h"
+#include "SetLogicParser.h"
+#include "Types.h"
 
 //extern CommandParserBuffer cmd_parser_buffer;
 
@@ -21,14 +34,16 @@
  *
  *  Detailed description
  */
-class CommandParserFactory
-{
+
+class CommandParserFactory {
+
 public:
-    CommandParserFactory(z3::context& z3_ctx, Z3Buffer& z3_buffer) :m_buffer(z3_ctx, z3_buffer) {}
+    CommandParserFactory(z3::context& z3_ctx, Z3Buffer& z3_buffer);
     virtual ~CommandParserFactory() {}
-    CommandParser* getCommandParser(const string& sign); 
+
+    CommandParser* getCommandParser(const string& cmd); 
 
 private:
-    CommandParserBuffer m_buffer;
+    std::map<std::string, CommandParser*> factory;
 };
 #endif

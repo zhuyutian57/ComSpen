@@ -1,4 +1,4 @@
-(set-logic QF_SLID_TYPED)
+(set-logic QF_SLID_LC)
 
 ; Sorts for locations, one by cell sort
 (declare-sort Loc 0)

@@ -35,6 +35,7 @@ void CommandParser::parse(Table* table) {
         }
         cmd_parser->setScanner(this->scanner);
         cmd_parser->parse(table);
+        table->show();
     }
     if (curr != nullptr && curr->type() != EOF_TOKEN) {
         throw SemanticException("'(' is expected!", curr->row(), curr->col());

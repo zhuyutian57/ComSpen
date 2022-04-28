@@ -1,7 +1,3 @@
-
-
-
-
 (theory QF_SLID_LC
 
  :smt-lib-version 2.0
@@ -9,7 +5,7 @@
  :date "2017-10-1"
  :last_modified "2018-6-11"
 
- :sorts ((Field 2)  (SetRef 1) (Space 0) (Rat 0) (Int 0) )
+ :sorts ((Field 2)  (SetRef 1) (Space 0))
 
  :funs  ((emp Space)
          (ssep Space Space :left-assoc)
@@ -30,7 +26,6 @@
     a reference field is typed by two sorts, thus its arity is 2;
   - the sort SetRef denotes the set of typed location variables;
   - the sort Space denotes the set of spatial formulas;
-  - the sort Rat denotes the set of rational formulas;
   - the sort Int denotes the set of integer formulas;
 
   - for all sp in Space, v is a location variable, sr in SetRef, 

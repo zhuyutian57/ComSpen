@@ -10,8 +10,6 @@
 
 #include "parser/AssertParser.h"
 
-//extern z3::context z3_ctx;
-
 extern SyntaxErrorTable SYNTAX_ERROR_INFO;
 
 void AssertParser::parse(Table* table) {

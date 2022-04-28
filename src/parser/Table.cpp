@@ -25,18 +25,43 @@ extern SyntaxErrorTable SYNTAX_ERROR_INFO;
  * @return Return parameter description
  */
 
-void Table::addSort(string key, SortType* value, int row, int col) {
-    if (m_sort_table.find(key) != m_sort_table.end()) {
+void Table::addField(std::string name, Field* field, int row, int col) {
+    if (m_field_table.find(name) != m_field_table.end()) {
         throw SemanticException("Redefined sort!", row, col); 
     }
-    m_sort_table[key] = value;
+    m_field_table[name] = field;
 }
 
-void Table::addFunc(string key, FuncType* value, int row, int col) {
-    if (m_func_table.find(key) != m_func_table.end()) {
+void Table::addSort(string name, SortType* st, int row, int col) {
+    if (m_sort_table.find(name) != m_sort_table.end()) {
+        throw SemanticException("Redefined sort!", row, col); 
+    }
+    m_sort_table[name] = st;
+}
+
+void Table::addFunc(string name, FuncType* ft, int row, int col) {
+    if (m_func_table.find(name) != m_func_table.end()) {
         throw SemanticException("Redefined function!", row, col); 
     }
-    m_func_table[key] = value;
+    m_func_table[name] = ft;
+}
+
+Field* Table::getField(std::string& name) {
+    if (m_field_table.find(name) != m_field_table.end())
+        return m_field_table[name];
+    return nullptr;
+}
+
+FuncType* Table::getFunc(string& name) {
+    if (m_func_table.find(name) != m_func_table.end())
+        return m_func_table[name];
+    return nullptr;
+}
+
+SortType* Table::getSort(string& name) {
+    if (m_sort_table.find(name) != m_sort_table.end())
+        return m_sort_table[name];
+    return nullptr;
 }
 
 
@@ -147,6 +172,13 @@ void Table::mkApp() {
 }
 
 void Table::showEnv() {
+    cout << "supported fileds: ";
+    for(auto p : m_field_table) {
+        cout << "(" << p.first << ", ";
+        cout << p.second->getSort() << ") ";
+    }
+    cout << endl;
+    cout << endl;
     cout << "var environment: \n";
     int i = 0;
     for (auto item: m_var_stack) {
@@ -183,7 +215,7 @@ void Table::showEnv() {
 }
 
 void Table::show() {
-    cout << "supported sort: \n";
+    cout << "supported sort: ";
     for (auto item : m_sort_table) {
         cout << item.first << " ";
     }
@@ -195,7 +227,7 @@ void Table::show() {
     }
     cout << endl;
 
-    // showEnv();
+    showEnv();
 }
 
 

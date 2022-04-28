@@ -10,7 +10,6 @@
 
 #include "component/TokenBuffer.h"
 #include "component/TokenScannerBuffer.h"
-#include "component/CommandParserBuffer.h"
 #include "component/Z3Buffer.h"
 #include "TokenScannerFactory.h"
 #include "parser/CommandParserFactory.h"

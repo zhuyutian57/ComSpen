@@ -17,12 +17,14 @@
 #include "TokenScannerFactory.h"
 #include "exception/SemanticException.h"
 #include "exception/SyntaxException.h"
+#include "component/Field.h"
 #include "component/FuncType.h"
 #include "component/SortType.h"
 #include "component/Var.h"
 #include "component/Problem.h"
 
 
+using FieldTable = std::map<std::string, Field*>;
 using SortTable = map<string, SortType*>; 
 using FuncTable = map<string, FuncType*>;
 using VarStack = vector<Var*>;
@@ -48,17 +50,11 @@ public:
     Table(z3::context& ctx, Z3Buffer& buffer);
     virtual ~Table();
 
-    void addSort(string key, SortType* value, int row=-1, int col=-1); 
-    void addFunc(string key, FuncType* value, int row=-1, int col=-1); 
+    void addSort(string name, SortType* st, int row=-1, int col=-1); 
+    void addFunc(string name, FuncType* ft, int row=-1, int col=-1); 
 
-    SortType* getSort(string& key) {
-        if (m_sort_table.find(key) != m_sort_table.end())
-            return m_sort_table[key]; return nullptr;
-    }
-    FuncType* getFunc(string& key) {
-        if (m_func_table.find(key) != m_func_table.end())
-            return m_func_table[key]; return nullptr;
-    }
+    SortType* getSort(string& name);
+    FuncType* getFunc(string& name);
 
     void addVar(Var* pvar) {m_var_stack.push_back(pvar);}
     void addVarScope() { m_scope_mark_stack.push_back(m_var_stack.size()); }
@@ -96,6 +92,9 @@ public:
     string getLogic() { return logic; }
     const vector<std::string>& getTheories() { return theories; }
 
+    void addField(std::string name, Field* field, int row=-1, int col=-1);
+    Field* getField(std::string& name);
+
 private:
 
     std::string logic;
@@ -103,6 +102,7 @@ private:
     std::map<std::string, std::string> logic_info;
     std::map<std::string, std::string> theory_info;
 
+    FieldTable m_field_table;
     SortTable m_sort_table; ///< global sort table
     FuncTable m_func_table; ///< global function table
 

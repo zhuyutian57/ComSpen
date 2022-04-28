@@ -17,29 +17,21 @@
  * @param sign Parameter description
  * @return Return parameter description
  */
-CommandParser* CommandParserFactory::getCommandParser(const string& sign) {
-    
-    if (sign == "set-logic") {
-        return m_buffer.getSetLogicParser(); 
-    } else if (sign == "set-info") {
-        return m_buffer.getSetInfoParser();
-    } else if (sign == "declare-sort") {
-        return m_buffer.getDeclareSortParser();
-    } else if (sign == "declare-datatypes") {
-        return m_buffer.getDeclareDatatypesParser();
-    } else if (sign == "declare-heap") {
-        return m_buffer.getDeclareHeapParser();
-    }  else if (sign == "define-fun") {
-        return m_buffer.getDefineFunParser();
-    }  else if (sign == "define-fun-rec") {
-        return m_buffer.getDefineFunRecParser();
-    } else if (sign == "declare-const") {
-        return m_buffer.getDeclareConstParser();
-    } else if (sign == "assert") {
-        return m_buffer.getAssertParser();
-    } else if (sign == "check-sat") {
-        return m_buffer.getCheckSatParser();
-    }
 
-    return nullptr;
+CommandParserFactory::CommandParserFactory(z3::context& z3_ctx, Z3Buffer& z3_buffer) {
+    factory["set-logic"] = new SetLogicParser(z3_ctx, z3_buffer);
+    factory["set-info"] = new SetInfoParser(z3_ctx, z3_buffer);
+    factory["declare-sort"] = new DeclareSortParser(z3_ctx, z3_buffer); 
+    factory["declare-datatypes"] = new DeclareDatatypesParser(z3_ctx, z3_buffer);
+    factory["declare-heap"] = new DeclareHeapParser(z3_ctx, z3_buffer); 
+    factory["define-fun"] = new DefineFunParser(z3_ctx, z3_buffer); 
+    factory["define-fun-rec"] = new DefineFunRecParser(z3_ctx, z3_buffer); 
+    factory["declare-const"] = new DeclareConstParser(z3_ctx, z3_buffer); 
+    factory["assert"] = new AssertParser(z3_ctx, z3_buffer); 
+    factory["check-sat"] = new CheckSatParser(z3_ctx, z3_buffer); 
+    factory["declare-fun"] = new DeclareFunParser(z3_ctx, z3_buffer);
+}
+
+CommandParser* CommandParserFactory::getCommandParser(const string& cmd) {
+    return factory[cmd];
 }
