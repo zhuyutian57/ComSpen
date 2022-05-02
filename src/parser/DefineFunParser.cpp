@@ -47,10 +47,8 @@ void DefineFunParser::parse(Table* table) {
     z3::sort rangesort = z3_buffer.getSort(range);
     z3::func_decl fun = z3_ctx.function(fname_sym, domain, rangesort);//
 
-    parseExpr(table);
-    expr exp = table->topArg();
-    table->popArg();
-
+    scanner->checkNext(LEFT_PAREN, SYNTAX_ERROR_INFO[LEFT_PAREN]);
+    z3::expr exp = parseExpr(table);
     scanner->checkNext(RIGHT_PAREN, SYNTAX_ERROR_INFO[RIGHT_PAREN]);
     // action
     table->popVar();

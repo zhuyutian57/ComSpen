@@ -10,6 +10,7 @@
  :funs  ((emp Space)
          (ssep Space Space :left-assoc)
          (par (A) (pto A (SetRef A) Space :left-assoc))
+         (par (A A) (blk A A Space))
          (tobool Space Bool)
          (tospace Bool Space)
          (par (A B) (ref (Field A B) B (SetRef A)))

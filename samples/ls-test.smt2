@@ -9,12 +9,16 @@
 
 (define-fun-rec lseg ((?x Loc) (?y Loc)) Bool
 	(or
-		(and (= ?x ?y) emp)
+		(and
+			(= ?x ?y)
+			(tobool emp)
+		)
 		(exists ((?z Loc))
-			(ssep
-				(pto ?x (ref next ?z))
-				(lseg ?z ?y)
-			)
+			(tobool
+				(ssep
+					(pto ?x (ref next ?z))
+					(lseg ?z ?y)
+				)
 			)
 		)
 	)

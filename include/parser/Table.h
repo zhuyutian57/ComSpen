@@ -61,13 +61,12 @@ public:
     void popVar();
     void topVar(VarList& vlist);
 
-    Var* getVar(string& name) {for(auto pv=m_var_stack.rbegin(); pv != m_var_stack.rend(); pv++) {if ((*pv)->getName() == name) return *pv;} return nullptr; }
-
-    void pushOp(string op) {m_op_stack.push_back(op); pushArgScope();}
-    void pushArg(expr arg) {m_arg_stack.push_back(arg);}
-    void popArg();
-    expr topArg() {return m_arg_stack.back();}
-    void pushArgScope() {m_arg_scope_stack.push_back(m_arg_stack.size());}
+    Var* getVar(string& name) {
+        for(auto pv=m_var_stack.rbegin(); pv != m_var_stack.rend(); pv++)
+            if ((*pv)->getName() == name)
+                return *pv;
+        return nullptr;
+    }
 
     // fill problem
     void addPredicate(Predicate* pred) {m_problem.setPredicate(pred);} 
@@ -108,10 +107,6 @@ private:
 
     VarStack m_var_stack; ///< var environment
     ScopeMarkStack m_scope_mark_stack; ///< scope mark
-
-    OpStack m_op_stack; ///< opration stack
-    ArgStack m_arg_stack; ///< argument stack
-    ArgScopeStack m_arg_scope_stack; ///< argument scope stack
 
     Problem m_problem; ///< problem description
 

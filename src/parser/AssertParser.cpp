@@ -13,12 +13,8 @@
 extern SyntaxErrorTable SYNTAX_ERROR_INFO;
 
 void AssertParser::parse(Table* table) {
-    parseExpr(table);
-
-    scanner->checkNext(RIGHT_PAREN, SYNTAX_ERROR_INFO[RIGHT_PAREN]);
-    // action
-    z3::expr phi = table->topArg();
-    table->popArg();
+    this->scanner->checkNext(LEFT_PAREN, SYNTAX_ERROR_INFO[LEFT_PAREN]);
+    z3::expr phi = parseExpr(table);
 
     if (phi.is_app() && phi.decl().name().str() == "not") {
         expr psi(z3_ctx);
@@ -37,5 +33,6 @@ void AssertParser::parse(Table* table) {
 		}
         table->addPhi(phi);
     }
+    this->scanner->checkNext(RIGHT_PAREN, SYNTAX_ERROR_INFO[RIGHT_PAREN]);
 //cout<<"assert done"<<endl;
 }

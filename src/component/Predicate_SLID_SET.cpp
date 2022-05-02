@@ -14,7 +14,6 @@ Predicate_SLID_SET::Predicate_SLID_SET(z3::context& ctx, Z3Buffer& buffer, z3::e
     expr_vector x(z3_ctx);
     getX(x);
     expr body = m_rec_rule.body().substitute(x);  
-
     int num = body.num_args();
     expr_vector data_items(z3_ctx);
     for (int i=0; i<num-1; i++) {
@@ -27,7 +26,6 @@ Predicate_SLID_SET::Predicate_SLID_SET(z3::context& ctx, Z3Buffer& buffer, z3::e
     m_rec_app = sep_app.arg(1);
 
     m_deltap = getDeltaP();
-
     initSucc();
     m_tr = getTr();
 }
@@ -371,7 +369,6 @@ void Predicate_SLID_SET::initSucc() {
     m_succ_pars.push_back(S);
     m_succ_pars.push_back(x);
     m_succ_pars.push_back(y);
-
     and_items.push_back(z3_buffer.getBelongsto(x, S));
     and_items.push_back(z3_buffer.getBelongsto(y, S));
     expr_vector pars(z3_ctx);

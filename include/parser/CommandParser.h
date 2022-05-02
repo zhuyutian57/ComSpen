@@ -45,12 +45,11 @@ protected:
     void parseConstructorDeclList(Table* table, ConstructorDecList& cd_list);
 
     void parseParameters(Table* table);
-    void parseExpr(Table* table);
-    void parseExists(Table* table);
+    z3::expr parseExpr(Table* table);
+    z3::expr parseExists(Table* table);
     SortType* parseSort(Table* table);
 
 private:
-    void _parseExpr(Table* table);
-
+    z3::expr mk_app(FuncType* pf, z3::expr_vector args, ArgTypeList& args_types);
 };
 #endif

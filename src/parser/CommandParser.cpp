@@ -26,16 +26,19 @@ void CommandParser::parse(Table* table) {
     CommandParser* cmd_parser;
     Token* curr = nullptr;
     while((curr = this->scanner->nextToken()) != nullptr
-    && curr->type() == LEFT_PAREN) {
+        && curr->type() == LEFT_PAREN) {
         curr = this->scanner->checkNext(SYMBOL_TOKEN, "command symbol is excepted!");
-        cmd_parser = factory.getCommandParser(dynamic_cast<StrToken*>(curr)->value());
+        string cmd = dynamic_cast<StrToken*>(curr)->value();
+        cmd_parser = factory.getCommandParser(cmd);
         // check
         if (cmd_parser == nullptr) {
-            throw SemanticException("unsupported command!", curr->row(), curr->col());
+            throw SemanticException(
+                cmd + " is unsupported command!", curr->row(), curr->col());
         }
+        // cout << cmd << endl;
         cmd_parser->setScanner(this->scanner);
         cmd_parser->parse(table);
-        table->show();
+        // cout << "done\n";
     }
     if (curr != nullptr && curr->type() != EOF_TOKEN) {
         throw SemanticException("'(' is expected!", curr->row(), curr->col());
@@ -155,97 +158,93 @@ void CommandParser::parseParameters(Table* table) {
     }
 }
 
-void CommandParser::_parseExpr(Table* table) {
-    Token* curr = this->scanner->checkNext(SYMBOL_TOKEN, SYNTAX_ERROR_INFO[SYMBOL_TOKEN]);
-    string op = dynamic_cast<StrToken*>(curr)->value();
-    if (op == "_") {
-        // parse (_ emp A B)
-        curr = this->scanner->checkNext(SYMBOL_TOKEN, SYNTAX_ERROR_INFO[SYMBOL_TOKEN]);
-        // string emp = dynamic_cast<StrToken*>(cur)->value();
-        curr = this->scanner->checkNext(SYMBOL_TOKEN, SYNTAX_ERROR_INFO[SYMBOL_TOKEN]);
-        curr = this->scanner->checkNext(SYMBOL_TOKEN, SYNTAX_ERROR_INFO[SYMBOL_TOKEN]);
-        curr = this->scanner->checkNext(RIGHT_PAREN, SYNTAX_ERROR_INFO[RIGHT_PAREN]);
-        m_paren_counter --;
-        return ;
+z3::expr CommandParser::parseExpr(Table* table) {
+    Token* curr = nullptr;
+    curr = this->scanner->checkNext(SYMBOL_TOKEN, SYNTAX_ERROR_INFO[SYMBOL_TOKEN]);
+    string fname = dynamic_cast<StrToken*>(curr)->value();
+
+    // ignore (_ emp Int data)
+    if (fname == "_") {
+        this->scanner->checkNext(SYMBOL_TOKEN, SYNTAX_ERROR_INFO[SYMBOL_TOKEN]);
+        this->scanner->checkNext(SYMBOL_TOKEN, SYNTAX_ERROR_INFO[SYMBOL_TOKEN]);
+        this->scanner->checkNext(SYMBOL_TOKEN, SYNTAX_ERROR_INFO[SYMBOL_TOKEN]);
+        this->scanner->checkNext(RIGHT_PAREN, SYNTAX_ERROR_INFO[RIGHT_PAREN]);
+        return z3_ctx.bool_val(true);
     }
-    
-    if(op == "exists"){
-    	parseExists(table);
-    	return;
-	}
-//    FuncType* pf =  getFunc(op);
-//    if (pf != nullptr) {
-//        cout << "found function: "; pf->show(); cout << endl;
-//    } else {
-//        cout << "not supported op: " << op << endl;
-//    }
-    table->pushOp(op);
-    while ((curr = this->scanner->nextToken()) != nullptr) {
-        switch (curr->type()) {
-            case LEFT_PAREN:
-                m_paren_counter ++;
-                _parseExpr(table);
-                break;
-            case RIGHT_PAREN:
-                m_paren_counter --;
-                table->mkApp();
-                break;
-            case INT_TOKEN: {
-                int val = dynamic_cast<IntToken*>(curr)->value();
-                expr ie = z3_ctx.int_val(val);
-                table->pushArg(ie);
-                break;
-            }
-            case FLOAT_TOKEN: {
-                float val = dynamic_cast<FloatToken*>(curr)->value();
-                expr fe = z3_ctx.real_val((int)val); // TODO
-                table->pushArg(fe);
-                break;
-            }
-            case SYMBOL_TOKEN:
-            {
-                string id = dynamic_cast<StrToken*>(curr)->value();
-                if (id == "true") table->pushArg(z3_ctx.bool_val(true));
-                else if (id == "false") table->pushArg(z3_ctx.bool_val(false));
-                else {
-                    Var* pv = table->getVar(id);
-                    expr ve = z3_buffer.getVar(pv);
-                    table->pushArg(ve);
-                }
-                break;
-            }
-            default:
-                throw SemanticException("the argument is not valid!", curr->row(), curr->col());
+
+    FuncType* pf = table->getFunc(fname);
+    z3::expr_vector args(z3_ctx);
+    ArgTypeList args_types;
+    while((curr = this->scanner->nextToken()) != nullptr
+            && curr->type() != RIGHT_PAREN) {
+        if(curr->type() == LEFT_PAREN) {
+            args.push_back(parseExpr(table));
+        } else if(curr->type() == INT_TOKEN) {
+            int val = dynamic_cast<IntToken*>(curr)->value();
+            args.push_back(z3_ctx.int_val(val));
+        } else {
+            string id = dynamic_cast<StrToken*>(curr)->value();
+            Var* pv = table->getVar(id);
+            args.push_back(z3_buffer.getVar(pv));
         }
-
-        if (m_paren_counter == 0) break;
+        string arg_sort_name = args.back().get_sort().name().str();
+        SortType* arg_type = table->getSort(arg_sort_name);
+        args_types.push_back(arg_type);
     }
+    assert(curr->type() == RIGHT_PAREN);
+    return this->mk_app(pf, args, args_types);
 }
 
-void CommandParser::parseExpr(Table* table) {
-    this->scanner->checkNext(LEFT_PAREN, SYNTAX_ERROR_INFO[LEFT_PAREN]);
-    m_paren_counter = 1;
-    _parseExpr(table);
-}
-
-void CommandParser::parseExists(Table* table) {
+z3::expr CommandParser::parseExists(Table* table) {
     parseParameters(table);
 
     VarList vlist;
     table->topVar(vlist);
 
-    expr_vector evars(z3_ctx);
+    z3::expr_vector xs(z3_ctx);
     for (auto ve : vlist) {
-        evars.push_back(z3_buffer.getVar(ve));
+        xs.push_back(z3_buffer.getVar(ve));
     }
-
-    parseExpr(table);
+    
+    this->scanner->checkNext(LEFT_PAREN, SYNTAX_ERROR_INFO[LEFT_PAREN]);
+    z3::expr body = parseExpr(table);
     this->scanner->checkNext(RIGHT_PAREN, SYNTAX_ERROR_INFO[RIGHT_PAREN]);
     
-    // exists
-    expr ebody = table->topArg();
-    table->popArg();
-    expr rec = exists(evars, ebody);
-    table->pushArg(rec);
+    return z3::exists(xs, body);
 }
 
+
+z3::expr CommandParser::mk_app(
+    FuncType* pf,
+    z3::expr_vector args,
+    ArgTypeList& args_types) {
+    string op = pf->getName();
+    if (op == "not") return !args[0];
+    else if (op == "and") return z3::mk_and(args);
+    else if (op == "or") return z3::mk_or(args);
+    else if (op == "=") return args[0] == args[1];
+    else if (op == "+") return z3::sum(args);
+    else if (op == "-") {
+        if (args.size() == 1) return -args[0];
+        z3::expr res(z3_ctx);
+        res = args[0];
+        for(int i = 1; i < args.size(); i++)
+            res =  res - args[i];
+        return res;
+    } else if (op == "*") {
+        z3::expr res(z3_ctx);
+        res = args[0];
+        for(int i = 1; i < args.size(); i++)
+            res =  res * args[i];
+        return res;
+    } else if (op == "<=") return args[0] <= args[1];
+    else if (op == "<") return args[0] < args[1];
+    else if (op == ">=") return args[0] >= args[1];
+    else if (op == ">") return args[0] > args[1];
+    else {
+        z3::func_decl fd = z3_buffer.getFuncDecl(pf, args_types);
+        return fd(args);
+    }
+    std::cout << "no such operator!!!" << std::endl;
+    assert(false);
+}

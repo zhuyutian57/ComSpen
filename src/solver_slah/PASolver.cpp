@@ -41,7 +41,7 @@ void PASolver::check_preds() {
 		throw SemanticException("invalid number of parameters in recursive rules of predicate. \n");
 	}
 	
-	//hckºóÃæµÄ²ÎÊýÒªµÈÓÚºóÃæ¹éÄÉÎ½´ÊµÄÇ°ÃæµÄ²ÎÊý 
+	//hckï¿½ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½Úºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î½ï¿½Êµï¿½Ç°ï¿½ï¿½Ä²ï¿½ï¿½ï¿½ 
 	for(int j=0;j<exsize;j++){
 		if(hck_in_pdef.arg(exsize+j).to_string() != rec_app.arg(j).to_string()){
 			throw SemanticException("tail of hck in rec predicate def must equal to head of rec_app. \n");
@@ -356,7 +356,7 @@ z3::check_result PASolver::check_entl() {//suppose no emp
 				z3::expr_vector pi_ex_set(z3_ctx);
 				z3::expr pi_ex=z3_ctx.bool_val(true);
 				pi_ex_set.push_back(pi_ex);
-		    	pre_match(absA, spaceA, absB, spaceB, ex_var_set, pi_ex_set);//ÒòÎªÀïÃæmatch_atomÊ±ÐèÒªÈ«²¿µÄabsA£¬Èç¹ûÖ»ÓÐdataA¾Í»á¶ªÊ§Ò»Ð©Ô¼Êø¡£´«absBÊÇÒòÎªºóÃæ¼ÓÈëËùÓÐ´æÔÚ±äÁ¿È¡ÖµµÄÔ¼Êøºó»¹ÐèÒª¿´Õû¸öÔÌº­ÊÇ·ñ³ÉÁ¢ 
+		    	pre_match(absA, spaceA, absB, spaceB, ex_var_set, pi_ex_set);//ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½match_atomÊ±ï¿½ï¿½ÒªÈ«ï¿½ï¿½ï¿½ï¿½absAï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½dataAï¿½Í»á¶ªÊ§Ò»Ð©Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½absBï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½Ú±ï¿½ï¿½ï¿½È¡Öµï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìºï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ 
 		   	    pre_P(spaceA, dataA, spaceB, absB, absA, spaceAhls, spaceBhls, ex_var_set, pi_ex_set);
 			}catch(int e){
 				continue;//return z3::sat;
@@ -391,7 +391,7 @@ z3::expr_vector PASolver::get_conjunct(z3::expr formula){
 		std::string info = "invalid conjunct of spatial formula in assertion.\n";
         throw SyntaxException(info);
 	}
-	if(!is_fun(formula, "and")){//disjunctÖÐ¿ÉÄÜÊÇÔ­×Ó»ò¿Õ¼ä¹«Ê½ 
+	if(!is_fun(formula, "and")){//disjunctï¿½Ð¿ï¿½ï¿½ï¿½ï¿½ï¿½Ô­ï¿½Ó»ï¿½Õ¼ä¹«Ê½ 
 		conjunct_set.push_back(formula);
 		return conjunct_set;
 	}
@@ -413,7 +413,7 @@ z3::expr_vector PASolver::get_conjunct(z3::expr formula){
 }
 
 void PASolver::get_data_space(z3::expr &formula, z3::expr &data, z3::expr &space) {
-	//formulaÔÚassertparserÊ±´¦Àí¹ý£¬ÈôÖ»ÓÐÒ»¸öÔ­×Óatom»á¸ÄÐ´³É(and atom) £¬//disjunctÖÐ¿ÉÄÜÊÇÔ­×Ó»ò¿Õ¼ä¹«Ê½  
+	//formulaï¿½ï¿½assertparserÊ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½Ò»ï¿½ï¿½Ô­ï¿½ï¿½atomï¿½ï¿½ï¿½Ð´ï¿½ï¿½(and atom) ï¿½ï¿½//disjunctï¿½Ð¿ï¿½ï¿½ï¿½ï¿½ï¿½Ô­ï¿½Ó»ï¿½Õ¼ä¹«Ê½  
 	if(Z3_ast(formula)==nullptr) return;
 	expr_vector data_items(z3_ctx);
     data_items.push_back(z3_ctx.int_const("nil") == 0); // nil == 0
@@ -694,9 +694,9 @@ bool PASolver::isP(z3::expr atom){
  * @param new_bools [new bool vars]
  * @return      [the abstraction]
  */
-z3::expr PASolver::pred2abs(z3::expr &atom) {//solverÖÐ¶¨ÒåµÄ´¿Ðéº¯Êý 
+z3::expr PASolver::pred2abs(z3::expr &atom) {//solverï¿½Ð¶ï¿½ï¿½ï¿½Ä´ï¿½ï¿½éº¯ï¿½ï¿½ 
 	
-    //if (atom.to_string() == "emp") return z3_ctx.bool_val(true);//empÔÚCommandParser::_parseExpr()ÖÐ±»´¦ÀíÁË 
+    //if (atom.to_string() == "emp") return z3_ctx.bool_val(true);//empï¿½ï¿½CommandParser::_parseExpr()ï¿½Ð±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
     
     z3::expr_vector args(z3_ctx);
 	for(int j=0;j<atom.num_args();j++){
@@ -714,7 +714,7 @@ z3::expr PASolver::pred2abs(z3::expr &atom) {//solverÖÐ¶¨ÒåµÄ´¿Ðéº¯Êý
 	}else{
 		if(ishck(atom)){
 			HeapChunk* hckdef=m_problem->getHeapChunk();
-			//ÐÎ²ÎÓÃÊµ²ÎÌæ»» data²¿·Ö 
+			//ï¿½Î²ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½æ»» dataï¿½ï¿½ï¿½ï¿½ 
 			z3::expr data = hckdef->get_data();
 			pi_remove_ex(data);
 			par2arg(data,hckdef->get_pars(),args);
@@ -1557,7 +1557,7 @@ void PASolver::pre_P(z3::expr spaceA, z3::expr dataA, z3::expr spaceB, z3::expr 
         	z3::expr dest = tail(atom);
 			
 			//the first possibility(size = 0):P->emp
-			if(rel.get_relation(source,dest) == 0 || rel.get_relation(source,dest)==1 || rel.get_relation(source,dest)==3){//z1 ? z2 »òÕß z1 = z2  »òÕß z1 <= z2 
+			if(rel.get_relation(source,dest) == 0 || rel.get_relation(source,dest)==1 || rel.get_relation(source,dest)==3){//z1 ? z2 ï¿½ï¿½ï¿½ï¿½ z1 = z2  ï¿½ï¿½ï¿½ï¿½ z1 <= z2 
 				z3_sol.reset();
     			z3_sol.add(absA && source == dest);
     			if(rel.get_relation(source,dest)==1 || z3_sol.check() == z3::sat){
@@ -1572,7 +1572,7 @@ void PASolver::pre_P(z3::expr spaceA, z3::expr dataA, z3::expr spaceB, z3::expr 
 			
     		
     		//the first possibility(size >= 1):P->P
-    		if(rel.get_relation(source,dest) == 0 || rel.get_relation(source,dest) == 2|| rel.get_relation(source,dest) == 3){//z1 ? z2 »òÕß z1 < z2 »òÕß z1 <= z2 
+    		if(rel.get_relation(source,dest) == 0 || rel.get_relation(source,dest) == 2|| rel.get_relation(source,dest) == 3){//z1 ? z2 ï¿½ï¿½ï¿½ï¿½ z1 < z2 ï¿½ï¿½ï¿½ï¿½ z1 <= z2 
     			z3_sol.reset();
     			z3_sol.add(absA && (dest - source) >= 1);
     			if(z3_sol.check() == z3::sat){////////////////////////////////////////////////////////////
@@ -1608,7 +1608,7 @@ void PASolver::pre_P(z3::expr spaceA, z3::expr dataA, z3::expr spaceB, z3::expr 
         	z3::expr dest = tail(atom);
 			
 			//1
-			if(rel.get_relation(source,dest) == 0 || rel.get_relation(source,dest)==1|| rel.get_relation(source,dest)==3){//z1 ? z2 »òÕß z1 = z2»òÕß z1 <= z2
+			if(rel.get_relation(source,dest) == 0 || rel.get_relation(source,dest)==1|| rel.get_relation(source,dest)==3){//z1 ? z2 ï¿½ï¿½ï¿½ï¿½ z1 = z2ï¿½ï¿½ï¿½ï¿½ z1 <= z2
 				z3_sol.reset();
     			z3_sol.add(absA && source == dest);
     			if(rel.get_relation(source,dest)==1||z3_sol.check() == z3::sat){////////////////////////////////////////////////////////////
@@ -1627,7 +1627,7 @@ void PASolver::pre_P(z3::expr spaceA, z3::expr dataA, z3::expr spaceB, z3::expr 
 	    		
     		
     		//2
-    		if(rel.get_relation(source,dest) == 0 || rel.get_relation(source,dest) == 2|| rel.get_relation(source,dest) == 3){//z1 ? z2 »òÕß z1 < z2 »òÕß z1 <= z2 
+    		if(rel.get_relation(source,dest) == 0 || rel.get_relation(source,dest) == 2|| rel.get_relation(source,dest) == 3){//z1 ? z2 ï¿½ï¿½ï¿½ï¿½ z1 < z2 ï¿½ï¿½ï¿½ï¿½ z1 <= z2 
     			z3_sol.reset();
 	    		z3_sol.add(absA && (dest - source) >= 1);
 	    		if(z3_sol.check() == z3::sat){///////////////////////////////////////////////////////////////
@@ -1698,7 +1698,7 @@ z3::check_result PASolver::check_entl_get_relations(z3::expr dataA, z3::expr spa
 				adds_eq[j].push_back(adds[i]);
     			addsuc = true;
     			break;
-			}else if(rel.get_relation(adds[i],adds[j])!=2 && rel.get_relation(adds[i],adds[j])!=4){//²»ÊÇ < »ò >
+			}else if(rel.get_relation(adds[i],adds[j])!=2 && rel.get_relation(adds[i],adds[j])!=4){//ï¿½ï¿½ï¿½ï¿½ < ï¿½ï¿½ >
 				z3_sol.reset();
 	    		z3_sol.add(absA && (!(adds[i] == adds_rep[j])));
 	    		if(z3_sol.check() == z3::unsat){//////////////////////////////////////////////////////////////////
@@ -1718,14 +1718,14 @@ z3::check_result PASolver::check_entl_get_relations(z3::expr dataA, z3::expr spa
 		}
 	}
 
-	//rel_sub£º×ÓÔÌº­ÎÊÌâÖÐÐèÒªÅÅÐòµÄµØÖ·ÒÑÖªµÄ¹ØÏµ 
+	//rel_subï¿½ï¿½ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½Äµï¿½Ö·ï¿½ï¿½Öªï¿½Ä¹ï¿½Ïµ 
 	Relation rel_sub(z3_ctx);
 	rel_sub.init(adds_rep); 
 	for(int i = 0; i < adds_rep.size(); i++){
 		for(int j = 0; j < adds_rep.size(); j++){
 			if(rel.get_relation(adds_rep[i],adds_rep[j]) == 2){//<
 				rel_sub.set_relation(adds_rep[i],adds_rep[j],2);
-			}else if(rel.get_relation(adds_rep[i],adds_rep[j]) == 3){//×î¿ªÊ¼ÊÇ<=£¬¾­¹ýhls¸ÄÐ´ºóÊÇ¿ÉÄÜ±ä³É<µÄ 
+			}else if(rel.get_relation(adds_rep[i],adds_rep[j]) == 3){//ï¿½î¿ªÊ¼ï¿½ï¿½<=ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½hlsï¿½ï¿½Ð´ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½Ü±ï¿½ï¿½<ï¿½ï¿½ 
 				z3_sol.reset();
     			z3_sol.add(absA && (!(adds_rep[i] < adds_rep[j])));
     			if(z3_sol.check() == z3::unsat){
@@ -1774,7 +1774,7 @@ z3::check_result PASolver::check_entl_get_sorts(z3::expr_vector &adds_rep, Relat
 	} 
 	
 	//sort_set_tmp:set of incomplete sorts; sorts_tmp_pf:set of pure formulas coresponding to sorts
-	std::vector<std::vector<z3::expr_vector>> sort_set_tmp;//ÓÉsort×é³É£¬Ã¿¸ösortÓÉz3::expr_vector×é³É£¬ÔÚÒ»¸öz3::expr_vectorÖÐµØÖ·µÄÏàµÈ 
+	std::vector<std::vector<z3::expr_vector>> sort_set_tmp;//ï¿½ï¿½sortï¿½ï¿½É£ï¿½Ã¿ï¿½ï¿½sortï¿½ï¿½z3::expr_vectorï¿½ï¿½É£ï¿½ï¿½ï¿½Ò»ï¿½ï¿½z3::expr_vectorï¿½Ðµï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	std::vector<z3::expr> sort_set_tmp_pf;
 	//initialize sorts_tmp and sorts_tmp_pf
 	//sort_set_tmp:     {  {{x1}}  ,  {{y1}}  ,  {{z1}}  }
@@ -1806,12 +1806,12 @@ z3::check_result PASolver::check_entl_get_sorts(z3::expr_vector &adds_rep, Relat
 		}
 		for(int i = 0; i < adds_rep.size(); i++){
 			z3::expr add = adds_rep[i];
-			if(get_eq_class(sort_tmp,add).size() ==0){//add²»ÔÚÕâ¸ösort_tmpÖÐ
+			if(get_eq_class(sort_tmp,add).size() ==0){//addï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sort_tmpï¿½ï¿½
 				for(int j =0;j<adds_rep.size();j++){
 					if(rel.get_relation(add,adds_rep[j]) == 2|| rel.get_relation(add,adds_rep[j]) == 3)
 						flag_tmp[j] = 0;
 				}
-			}else{//addÒÑ¾­ÔÚÕâ¸ösort_tmpÖÐ 
+			}else{//addï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sort_tmpï¿½ï¿½ 
 				flag_tmp[i] = 0;
 			}
 		}
@@ -1854,7 +1854,7 @@ z3::check_result PASolver::check_entl_get_sorts(z3::expr_vector &adds_rep, Relat
 						z3::expr sort_tmp_pf_new1 = sort_tmp_pf && (sort_tmp.back()[0] == adds_rep[i]);
 						z3::expr con = absA && sort_tmp_pf_new1;
 						//avoid {x1}{y1}.It should be {x1 x2-1}
-						for(int j = 0;j<adds_rep.size();j++){//°Ñµ±Ç°Ìí¼ÓµÄµØÖ·<=ËùÓÐ²»ÔÚÕâ¸ösortÖÐµÄaddÕâ¸öÌõ¼þÒ²¼ÓÉÏ 
+						for(int j = 0;j<adds_rep.size();j++){//ï¿½Ñµï¿½Ç°ï¿½ï¿½ï¿½ÓµÄµï¿½Ö·<=ï¿½ï¿½ï¿½Ð²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sortï¿½Ðµï¿½addï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ 
 							z3::expr add=adds_rep[j];
 							if(get_eq_class(sort_tmp_new1,add).size() == 0){
 								con = con && (adds_rep[i] <= adds_rep[j]);
@@ -1899,7 +1899,7 @@ z3::check_result PASolver::check_entl_get_sorts(z3::expr_vector &adds_rep, Relat
 									//std::cout<<"apply the sort, the entl is false"<<std::endl;
 									return z3::sat;
 								}			
-							}else{//sort is incomplete£¬ÎªÁË·ÀÖ¹{x1,t1} and {t1,x1}ÕâÖÖÖØ¸´£¬¼ÓÈëµ½Ç°Ãæ±È½ÏºÃ 
+							}else{//sort is incompleteï¿½ï¿½Îªï¿½Ë·ï¿½Ö¹{x1,t1} and {t1,x1}ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ëµ½Ç°ï¿½ï¿½È½Ïºï¿½ 
 								std::vector<std::vector<z3::expr_vector>>::iterator begin = sort_set_tmp.begin();
 								std::vector<z3::expr>::iterator begin_pf = sort_set_tmp_pf.begin();
 								sort_set_tmp.insert(begin,sort_tmp_new1);

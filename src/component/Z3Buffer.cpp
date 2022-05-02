@@ -21,6 +21,7 @@ void Z3Buffer::init(Table* table) {
     for (auto kv : table->m_func_table) {
         if (kv.second->isDetermine()) {
         	ostringstream oss;
+            oss << kv.second->getName();
 			ArgTypeList arg_list;
             ParTypeList& parg_list = kv.second->getArgList();
             for (auto item : parg_list) {
