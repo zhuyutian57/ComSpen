@@ -35,13 +35,14 @@ std::string SortType::getSort() {
 
 
 SortType::operator z3::sort() {
-    if (m_sort_name == "Bool") {
+    string sort = this->getSort();
+    if (sort == "Bool") {
         return z3_ctx.bool_sort();
-    } else if (m_sort_name == "Int") {
+    } else if (sort == "Int") {
         return z3_ctx.int_sort();
-    } else if (m_sort_name == "Float") {
+    } else if (sort == "Float") {
         return z3_ctx.real_sort();
     } else {
-        return z3_ctx.uninterpreted_sort(m_sort_name.c_str());
+        return z3_ctx.uninterpreted_sort(sort.c_str());
     }
 }

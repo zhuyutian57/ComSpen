@@ -49,6 +49,5 @@ void DeclareSortParser::parse(Table* table) {
     	Var* pv = new Var(z3_ctx, z3_buffer, emptyset, ps);
     	table->addVar(pv);	
 	}
-//cout<<"declare-sort done"<<endl;
 }
 

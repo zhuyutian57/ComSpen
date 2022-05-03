@@ -60,7 +60,7 @@ string SepSolver::checkSat() {
 string SepSolver::check(expr& abs, expr_vector& free_items) {
     if (free_items.size() == 0) {
         // simple case
-//cout << "simple case: \n";
+// cout << "simple case: \n";
         MonaTranslator mona_tl(z3_ctx, z3_buffer, abs);
         mona_tl.writeToFile("test.mona");
         std::map<std::string, std::string> model;

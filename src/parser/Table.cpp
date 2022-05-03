@@ -33,7 +33,7 @@ Table::Table(z3::context& ctx, Z3Buffer& buffer)
 
 void Table::addField(std::string name, Field* field, int row, int col) {
     if (m_field_table.find(name) != m_field_table.end()) {
-        throw SemanticException("Redefined sort!", row, col); 
+        throw SemanticException("Redefined field!", row, col); 
     }
     m_field_table[name] = field;
 }
@@ -52,24 +52,38 @@ void Table::addFunc(string name, FuncType* ft, int row, int col) {
     m_func_table[name] = ft;
 }
 
-Field* Table::getField(std::string& name) {
+Field* Table::getField(std::string name) {
     if (m_field_table.find(name) != m_field_table.end())
         return m_field_table[name];
     return nullptr;
 }
 
-FuncType* Table::getFunc(string& name) {
+FuncType* Table::getFunc(string name) {
     if (m_func_table.find(name) != m_func_table.end())
         return m_func_table[name];
     return nullptr;
 }
 
-SortType* Table::getSort(string& name) {
+SortType* Table::getSort(string name) {
     if (m_sort_table.find(name) != m_sort_table.end())
         return m_sort_table[name];
     return nullptr;
 }
 
+void Table::addVar(Var* pvar) {
+    m_var_stack.push_back(pvar);
+}
+
+void Table::addVarScope() {
+    m_scope_mark_stack.push_back(m_var_stack.size());
+}
+
+Var* Table::getVar(string& name) {
+    for(auto pv=m_var_stack.rbegin(); pv != m_var_stack.rend(); pv++)
+        if ((*pv)->getName() == name)
+            return *pv;
+    return nullptr;
+}
 
 void Table::popVar() {
     int start = m_scope_mark_stack.back();
@@ -88,13 +102,6 @@ void Table::topVar(VarList& vlist) {
 }
 
 void Table::showEnv() {
-    cout << "supported fileds: ";
-    for(auto p : m_field_table) {
-        cout << "(" << p.first << ", ";
-        cout << p.second->getSort() << ") ";
-    }
-    cout << endl;
-    cout << endl;
     cout << "var environment: \n";
     int i = 0;
     for (auto item: m_var_stack) {

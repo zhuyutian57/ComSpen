@@ -22,15 +22,13 @@ void Z3Buffer::init(Table* table) {
         if (kv.second->isDetermine()) {
         	ostringstream oss;
             oss << kv.second->getName();
-			ArgTypeList arg_list;
-            ParTypeList& parg_list = kv.second->getArgList();
-            for (auto item : parg_list) {
-                oss << "_" << item;
-                arg_list.push_back(table->getSort(item));
-            }
+            SortList arg_list = kv.second->getArgList();
+            for (auto item : arg_list)
+                oss << "_" << item->getSort();
             arg_list.pop_back();
             string key = oss.str();
-            z3_fun_table.insert(pair<string, func_decl>(key, kv.second->determine(arg_list)));
+            z3_fun_table.insert(pair<string, func_decl>
+                (key, kv.second->determine(arg_list, table)));
         }
     }
     //z3_var_table.insert(pair<string, expr>("emptyset", z3_ctx.constant("emptyset", z3_sort_table.at("SetInt"))));
@@ -45,7 +43,7 @@ void Z3Buffer::setVarEnv(Table* table) {
 }
 
 sort& Z3Buffer::getSort(SortType* pst) {
-    string key = pst->getName();
+    string key = pst->getSort();
     if (z3_sort_table.find(key) == z3_sort_table.end()) {
         z3_sort_table.insert(pair<string, sort>(key, pst->operator z3::sort()));
     }
@@ -67,17 +65,18 @@ expr& Z3Buffer::getVar(Var* pvar) {
     return z3_var_table.at(key);
 }
 
-func_decl Z3Buffer::getFuncDecl(FuncType* pft, ArgTypeList& arg_type_list) {
+func_decl Z3Buffer::getFuncDecl(FuncType* pft, SortList& arg_type_list, Table* table) {
     ostringstream oss;
     oss << pft->getName();
     for (auto item : arg_type_list) {
         oss << "_" << item->getName();
     }
-    oss << "_" <<pft->getRange();
+    oss << "_" << pft->getRange();
 
     string key = oss.str();
     if (z3_fun_table.find(key) == z3_fun_table.end()) {
-        z3_fun_table.insert(pair<string, func_decl>(key, pft->determine(arg_type_list)));
+        z3_fun_table.insert(pair<string, func_decl>
+            (key, pft->determine(arg_type_list, table)));
     }
     return z3_fun_table.at(key);
 }

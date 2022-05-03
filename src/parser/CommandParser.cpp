@@ -171,10 +171,10 @@ z3::expr CommandParser::parseExpr(Table* table) {
         this->scanner->checkNext(RIGHT_PAREN, SYNTAX_ERROR_INFO[RIGHT_PAREN]);
         return z3_ctx.bool_val(true);
     }
-
     FuncType* pf = table->getFunc(fname);
+    assert(pf != nullptr);
     z3::expr_vector args(z3_ctx);
-    ArgTypeList args_types;
+    SortList args_types;
     while((curr = this->scanner->nextToken()) != nullptr
             && curr->type() != RIGHT_PAREN) {
         if(curr->type() == LEFT_PAREN) {
@@ -182,17 +182,18 @@ z3::expr CommandParser::parseExpr(Table* table) {
         } else if(curr->type() == INT_TOKEN) {
             int val = dynamic_cast<IntToken*>(curr)->value();
             args.push_back(z3_ctx.int_val(val));
-        } else {
+        } else if(curr->type() == SYMBOL_TOKEN) {
             string id = dynamic_cast<StrToken*>(curr)->value();
             Var* pv = table->getVar(id);
             args.push_back(z3_buffer.getVar(pv));
         }
-        string arg_sort_name = args.back().get_sort().name().str();
-        SortType* arg_type = table->getSort(arg_sort_name);
+        std::string arg_sort = args.back().get_sort().to_string();
+        SortType* arg_type = table->getSort(arg_sort);
+        assert(arg_type != nullptr);
         args_types.push_back(arg_type);
     }
     assert(curr->type() == RIGHT_PAREN);
-    return this->mk_app(pf, args, args_types);
+    return this->mk_app(pf, args, args_types, table);
 }
 
 z3::expr CommandParser::parseExists(Table* table) {
@@ -217,7 +218,8 @@ z3::expr CommandParser::parseExists(Table* table) {
 z3::expr CommandParser::mk_app(
     FuncType* pf,
     z3::expr_vector args,
-    ArgTypeList& args_types) {
+    SortList& args_types,
+    Table* table) {
     string op = pf->getName();
     if (op == "not") return !args[0];
     else if (op == "and") return z3::mk_and(args);
@@ -242,7 +244,7 @@ z3::expr CommandParser::mk_app(
     else if (op == ">=") return args[0] >= args[1];
     else if (op == ">") return args[0] > args[1];
     else {
-        z3::func_decl fd = z3_buffer.getFuncDecl(pf, args_types);
+        z3::func_decl fd = z3_buffer.getFuncDecl(pf, args_types, table);
         return fd(args);
     }
     std::cout << "no such operator!!!" << std::endl;

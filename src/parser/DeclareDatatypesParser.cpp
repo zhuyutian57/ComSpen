@@ -38,9 +38,9 @@ void DeclareDatatypesParser::parse(Table* table) {
     ConstructorDec cd = cd_list[0];
     FuncType* pf = new FuncType(z3_ctx,z3_buffer,cd.first);
     for (auto item : cd.second) {
-        pf->addArg(item.second->getName());
+        pf->addArg(item.second);
     }
-    pf->addArg(ptr->getName());
+    pf->addArg(ptr);
     table->addFunc(cd.first, pf);
 //cout<<"declare-datatypes done"<<endl;
 }

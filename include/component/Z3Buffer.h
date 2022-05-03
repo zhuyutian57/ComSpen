@@ -30,8 +30,7 @@ public:
 };
 
 using Z3ExprSet = set<expr, exprcomp>;
-using ArgTypeList = vector<SortType*>;
-using ParTypeList = vector<string>;
+using SortList = vector<SortType*>;
 class FuncType;
 class Table;
 class Var;
@@ -52,7 +51,7 @@ public:
 
     expr& getVar(Var* pvar);
 
-    func_decl getFuncDecl(FuncType* pft, ArgTypeList& arg_type_list);
+    func_decl getFuncDecl(FuncType* pft, SortList& arg_type_list,  Table* table);
     func_decl getFuncDecl(string key);
     sort getSort(string key);
 

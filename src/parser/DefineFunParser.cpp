@@ -33,13 +33,13 @@ void DefineFunParser::parse(Table* table) {
     z3::sort_vector domain(z3_ctx);//
     for (auto par : vpars) {
         pars.push_back(z3_buffer.getVar(par));
-        pf->addArg(par->getSort()->getName());
+        pf->addArg(par->getSort());
         domain.push_back(z3_buffer.getSort(par->getSort()));//
     }
 
     SortType* range = parseSort(table);
 
-    pf->addArg(range->getName());
+    pf->addArg(range);
 
     table->addFunc(fname, pf);
     

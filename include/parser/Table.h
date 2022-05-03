@@ -53,20 +53,14 @@ public:
     void addSort(string name, SortType* st, int row=-1, int col=-1); 
     void addFunc(string name, FuncType* ft, int row=-1, int col=-1); 
 
-    SortType* getSort(string& name);
-    FuncType* getFunc(string& name);
+    SortType* getSort(string name);
+    FuncType* getFunc(string name);
 
-    void addVar(Var* pvar) {m_var_stack.push_back(pvar);}
-    void addVarScope() { m_scope_mark_stack.push_back(m_var_stack.size()); }
+    void addVar(Var* pvar);
+    void addVarScope();
+    Var* getVar(string& name);
     void popVar();
     void topVar(VarList& vlist);
-
-    Var* getVar(string& name) {
-        for(auto pv=m_var_stack.rbegin(); pv != m_var_stack.rend(); pv++)
-            if ((*pv)->getName() == name)
-                return *pv;
-        return nullptr;
-    }
 
     // fill problem
     void addPredicate(Predicate* pred) {m_problem.setPredicate(pred);} 
@@ -92,7 +86,7 @@ public:
     const vector<std::string>& getTheories() { return theories; }
 
     void addField(std::string name, Field* field, int row=-1, int col=-1);
-    Field* getField(std::string& name);
+    Field* getField(std::string name);
 
 private:
 

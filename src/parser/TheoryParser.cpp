@@ -64,6 +64,13 @@ void TheoryParser::parse(Table* table) {
             table->addTheoryInfo(key, value);
         }
     }
+
+    // emp is a fix var
+    if (theory == "QF_SLID_LC") {
+        string emp = "emp";
+        string sort = "Space";
+        table->addVar(new Var(z3_ctx, z3_buffer, emp, table->getSort(sort)));
+    }
 }
 
 SortType* TheoryParser::parseSort() {
@@ -121,7 +128,7 @@ FuncType* TheoryParser::parseFun(Table* table) {
         fun = new ParFuncType(z3_ctx, z3_buffer, "");
         scanner->checkNext(LEFT_PAREN, SYNTAX_ERROR_INFO[LEFT_PAREN]);
         vector<SortType*> parsTypes = parseSortsList(table);
-        for(SortType* st : parsTypes) fun->addPar(st->getSort());
+        for(SortType* st : parsTypes) fun->addPar(st);
         scanner->checkNext(LEFT_PAREN, SYNTAX_ERROR_INFO[LEFT_PAREN]);
         curr = scanner->checkNext(SYMBOL_TOKEN, SYNTAX_ERROR_INFO[SYMBOL_TOKEN]);
         fun->setName(dynamic_cast<StrToken*>(curr)->value());
@@ -139,7 +146,7 @@ FuncType* TheoryParser::parseFun(Table* table) {
         if (fun->getName() == "-")
             fun->setName("--");
     }
-    for(SortType* st : argsTypes) fun->addArg(st->getSort());
+    for(SortType* st : argsTypes) fun->addArg(st);
     return fun;
 }
 

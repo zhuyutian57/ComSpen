@@ -2,7 +2,9 @@
 
 ; Sorts for locations, one by cell sort
 (declare-sort Loc 0)
+
 ; Types of cells in the heap
+(declare-heap (Loc SetRef))
 
 (declare-fun next () (Field Loc Loc))
 (declare-fun data () (Field Loc Int))
@@ -17,7 +19,7 @@
 			(tobool
 				(ssep
 					(pto ?x (ref next ?z))
-					(lseg ?z ?y)
+					(tospace (lseg ?z ?y))
 				)
 			)
 		)
@@ -31,12 +33,14 @@
 (declare-const n Loc)
 (declare-const w Int)
 
-(assert 
+(assert
+(tobool
 	(ssep
-		(lseg x y)
+		(tospace (lseg x y))
 		(pto y (sref (ref data w) (ref next z)))
-		(lseg z n)
+		(tospace (lseg z n))
 	)
+)
 )
 
 (check-sat)

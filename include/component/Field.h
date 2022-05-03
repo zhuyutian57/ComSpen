@@ -1,21 +1,21 @@
 #if !defined(FIELD_)
 #define FIELD_
 
+#include "SortType.h"
 #include "Types.h"
 
 class Field {
 
 public:
-  Field(std::string name, std::string sort);
+  Field(std::string name, SortType* sort);
   ~Field() {}
 
-  std::string getSort();
+  SortType* getSort();
   std::string getName();
 
 private:
   std::string name;
-  std::string sort;
-
+  SortType* sort;
 };
 
 #endif

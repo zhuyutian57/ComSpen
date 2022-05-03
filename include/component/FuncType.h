@@ -12,14 +12,12 @@
 
 #include "component/SortType.h"
 #include "component/Z3Buffer.h"
+#include "parser/Table.h"
 #include "Types.h"
 #include "z3++.h"
 
 
-using ArgTypeList = vector<SortType*>;
-using ParTypeList = vector<string>;
-using ParTypeSet = set<string>;
-using FuncDeclBucket = map<string, string>;
+using SortList = vector<SortType*>;
 
 
 /*! @class FuncType
@@ -34,39 +32,27 @@ public:
 	Z3Buffer& z3_buffer;
     FuncType(z3::context& ctx, Z3Buffer& buffer, string name, string attr="", bool determine=true)
         :z3_ctx(ctx), z3_buffer(buffer), m_name(name), m_attr(attr), m_determine(determine){}
-    virtual void addArg(string arg) {m_arg_list.push_back(arg);}
-    virtual void addPar(string par) {}
+    virtual void addArg(SortType* arg) {m_arg_sort_list.push_back(arg);}
+    virtual void addPar(SortType* par) {}
     void setName(string name) { m_name = name; }
     void setAttr(string attr) { m_attr = attr; }
     virtual ~FuncType() {}
 
     virtual string getName() {return m_name;}
-    virtual string getRange() {return m_arg_list.back();}
+    virtual string getRange() {return m_arg_sort_list.back()->getSort();}
     virtual bool isDetermine() {return m_determine;}
 
-    virtual z3::func_decl determine(ArgTypeList& arg_type_list);
+    virtual z3::func_decl determine(SortList& arg_type_list, Table* table);
 
-    ParTypeList& getArgList() { return m_arg_list; }
+    SortList& getArgList() { return m_arg_sort_list; }
 
     virtual void show(); 
 
 protected:
-    void genStr(ArgTypeList& alist, string& result) {
-        ostringstream oss;
-        for (auto item : alist) {
-            oss << item->getName() << "_";
-        }
-
-        result = oss.str();
-    }
-
-protected:
     string m_name; ///< Member description
-    ParTypeList m_arg_list; ///< parameter list
+    SortList m_arg_sort_list; ///< parameter list
     string m_attr; ///< associate type
     bool m_determine; ///< arg_list whether determine
-    FuncDeclBucket m_func_decl_bucket; ///< actual function declaration
-    
 };
 
 
@@ -79,16 +65,22 @@ protected:
 class ParFuncType :public FuncType
 {
 public:
-    ParFuncType(z3::context& ctx, Z3Buffer& buffer, string name):FuncType(ctx, buffer, name, "", false) {}
+    ParFuncType(z3::context& ctx, Z3Buffer& buffer, string name)
+        : FuncType(ctx, buffer, name, "", false) {}
     virtual ~ParFuncType() {}
-    virtual void addPar(string par) {m_par_set.insert(par);}
-    virtual void addArg(string arg); 
-    virtual z3::func_decl determine(ArgTypeList& arg_type_list);
+    virtual void addPar(SortType* par) { m_par_list.push_back(par); }
+    virtual z3::func_decl determine(SortList& arg_type_list, Table* table);
     virtual void show(); 
 
 protected:
-    ParTypeSet m_par_set; ///< Member description
-    vector<bool> m_par_arg_mark_list; ///< mark the same position argument
+    SortList m_par_list; ///< Member description
+
+private:
+    bool isPar(std::string s);
+    bool checkEqual(
+        std::string label,
+        std::string type,
+        std::map<std::string, std::string>& mp);
 };
 
 #endif

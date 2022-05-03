@@ -50,6 +50,6 @@ protected:
     SortType* parseSort(Table* table);
 
 private:
-    z3::expr mk_app(FuncType* pf, z3::expr_vector args, ArgTypeList& args_types);
+    z3::expr mk_app(FuncType* pf, z3::expr_vector args, SortList& args_types, Table* table);
 };
 #endif

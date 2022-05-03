@@ -15,7 +15,6 @@ extern SyntaxErrorTable SYNTAX_ERROR_INFO;
 void AssertParser::parse(Table* table) {
     this->scanner->checkNext(LEFT_PAREN, SYNTAX_ERROR_INFO[LEFT_PAREN]);
     z3::expr phi = parseExpr(table);
-
     if (phi.is_app() && phi.decl().name().str() == "not") {
         expr psi(z3_ctx);
 		if(phi.num_args() > 0) psi = phi.arg(0);
