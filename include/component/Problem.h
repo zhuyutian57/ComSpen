@@ -11,9 +11,10 @@
 *******************************************/
 
 #include "Predicate.h"
-#include "solvers/slah/HeapChunk.h"
 #include "z3++.h"
 #include "SortType.h"
+
+#include "solvers/slah/HeapChunk.h"
 
 using HeapType = pair<SortType*, SortType*>;
 
@@ -24,7 +25,6 @@ public:
     virtual ~Problem();
     void setLogic(string logic) {m_logic = logic;}
     void setPredicate(Predicate* pred) {m_pred = pred;}
-    void setHeapChunk(HeapChunk* hck) {m_hck = hck;}
     void setPhi(z3::expr phi){m_phi = phi;}
     void setPsi(z3::expr psi){m_psi = psi;}
     void setHeap(SortType* src, SortType* dst) {m_heap.first = src; m_heap.second = dst;}
@@ -33,20 +33,18 @@ public:
     z3::expr getPhi(){return m_phi;}
     z3::expr getPsi(){return m_psi;}
     Predicate* getPredicate(){return m_pred;}
-    HeapChunk* getHeapChunk(){return m_hck;}
 
     bool isSat();
 
-    void show();
+    virtual void show();
+
+    virtual void setHeapChunk(HeapChunk* hck) {}
 
 protected:
-//    SepSolver* m_ss;
     HeapType m_heap;
-
     z3::expr m_phi;
     z3::expr m_psi;
     Predicate* m_pred;
-    HeapChunk* m_hck;
     string m_logic;
 };
 

@@ -2,7 +2,7 @@
 #define LISTSOLVER_
 
 #include "component/Problem.h"
-#include "component/Predicate_SLID_INT.h"
+#include "Predicate_SLID_INT.h"
 #include "listgraph.h"
 #include "expr_tool.h"
 

@@ -13,22 +13,22 @@
 #include "solvers/slid_int/listsolver.h"
 #include "solvers/slid_int/alistsolver.h"
 #include "solvers/slah/PASolver.h"
+#include "solvers/slah/Problem_SLAH.h"
 //#include "component/Z3Buffer.h"
 
 extern SyntaxErrorTable SYNTAX_ERROR_INFO;
 //extern Z3Buffer z3_buffer;
 
 void CheckSatParser::parse(Table* table) {
-    scanner->checkNext(RIGHT_PAREN, SYNTAX_ERROR_INFO[RIGHT_PAREN]);
+  scanner->checkNext(RIGHT_PAREN, SYNTAX_ERROR_INFO[RIGHT_PAREN]);
 
-    z3_buffer.setVarEnv(table);
-
-    Problem* problem = table->getProblem();
-    problem->show();
-    if(problem->getLogic()=="QF_SLID_SET"){
-    	SepSolver ss(z3_ctx,z3_buffer);
-    	ss.setProblem(problem);
-    	ss.solve();
+  z3_buffer.setVarEnv(table);
+  Problem* problem = table->getProblem();
+  problem->show();
+  if(problem->getLogic()=="QF_SLID_SET"){
+   	SepSolver ss(z3_ctx,z3_buffer);
+   	ss.setProblem(problem);
+   	ss.solve();
 	}else if(problem->getLogic()=="QF_SLID_INT"){
 		Predicate_SLID_INT *pred = dynamic_cast<Predicate_SLID_INT *>(problem->getPredicate()); 
 		if (pred->get_pars().size() == 2) {
@@ -40,7 +40,7 @@ void CheckSatParser::parse(Table* table) {
         }
 	}else if(problem->getLogic()=="QF_SLAH"){
     	PASolver ss(z3_ctx);
-    	ss.setProblem(problem);
+    	ss.setProblem((Problem_SLAH*)problem);
     	ss.solve();
 	}else{
 		std::cout<<"No solver for the logic"<<std::endl;

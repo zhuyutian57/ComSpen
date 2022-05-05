@@ -22,7 +22,7 @@ extern SyntaxErrorTable SYNTAX_ERROR_INFO;
  */
 
 Table::Table(z3::context& ctx, Z3Buffer& buffer) 
-: z3_ctx(ctx), z3_buffer(buffer), m_problem(ctx) { 
+: z3_ctx(ctx), z3_buffer(buffer), m_problem(nullptr) { 
     addVarScope();
     theories.push_back("Core");
 }

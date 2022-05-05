@@ -23,6 +23,8 @@
 #include "component/Var.h"
 #include "component/Problem.h"
 
+#include "solvers/slah/HeapChunk.h"
+
 
 using FieldTable = std::map<std::string, Field*>;
 using SortTable = map<string, SortType*>; 
@@ -63,11 +65,13 @@ public:
     void topVar(VarList& vlist);
 
     // fill problem
-    void addPredicate(Predicate* pred) {m_problem.setPredicate(pred);} 
-    void addHeapChunk(HeapChunk* hck) {m_problem.setHeapChunk(hck);} 
-    void addPhi(expr& phi) {m_problem.setPhi(phi);}
-    void addPsi(expr& psi) {m_problem.setPsi(psi);}
-    Problem* getProblem() {return &m_problem;}
+    void addPredicate(Predicate* pred) {m_problem->setPredicate(pred);} 
+    void addHeapChunk(HeapChunk* hck) {m_problem->setHeapChunk(hck);} 
+    void addPhi(expr& phi) {m_problem->setPhi(phi);}
+    void addPsi(expr& psi) {m_problem->setPsi(psi);}
+    
+    void setProblem(Problem* problem) { m_problem = problem; }
+    Problem* getProblem() {return m_problem;}
 
     void mkApp();
 
@@ -75,9 +79,9 @@ public:
 
     void showEnv();
 
-    void showProblem() {m_problem.show();}
+    void showProblem() {m_problem->show();}
 
-    void addLogic(string logic) { this->logic = logic; m_problem.setLogic(logic); }
+    void addLogic(string logic) { this->logic = logic; m_problem->setLogic(logic); }
     void addLogicInfo(string key, string value) { logic_info[key] = value; }
     void addTheory(string theory) { theories.push_back(theory); }
     void addTheoryInfo(string key, string value) { theory_info[key] = value; }
@@ -102,7 +106,7 @@ private:
     VarStack m_var_stack; ///< var environment
     ScopeMarkStack m_scope_mark_stack; ///< scope mark
 
-    Problem m_problem; ///< problem description
+    Problem* m_problem; ///< problem description
 
     friend class Z3Buffer;
 };

@@ -1,4 +1,4 @@
-#include "component/Predicate_SLAH.h"
+#include "solvers/slah/Predicate_SLAH.h"
 #include "exception/SemanticException.h"
 
 //extern z3::context z3_ctx;

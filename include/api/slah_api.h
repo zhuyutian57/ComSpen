@@ -14,7 +14,7 @@
 
 #include "component/Predicate.h"
 
-#include "component/Predicate_SLAH.h"
+#include "solvers/slah/Predicate_SLAH.h"
 
 
 

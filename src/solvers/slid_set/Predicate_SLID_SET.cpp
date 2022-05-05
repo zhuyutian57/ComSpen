@@ -1,4 +1,4 @@
-#include "component/Predicate_SLID_SET.h"
+#include "solvers/slid_set/Predicate_SLID_SET.h"
 //#include "component/Z3Buffer.h"
 #include "Types.h"
 

@@ -11,9 +11,10 @@
 #include "parser/DefineFunRecParser.h"
 #include "component/Z3Buffer.h"
 #include "component/Predicate.h"
-#include "component/Predicate_SLID_SET.h"
-#include "component/Predicate_SLID_INT.h"
-#include "component/Predicate_SLAH.h"
+#include "solvers/slid_set/Predicate_SLID_SET.h"
+#include "solvers/slid_int/Predicate_SLID_INT.h"
+#include "solvers/slah/Predicate_SLAH.h"
+#include "solvers/slah/Problem_SLAH.h"
 
 extern SyntaxErrorTable SYNTAX_ERROR_INFO;
 //extern Z3Buffer z3_buffer; 
@@ -104,10 +105,11 @@ void DefineFunRecParser::checkSLAHRecRule(Table* table, z3::expr rec, string fna
 	if (body.num_args() != 2) {
         throw SemanticException("two args is excepted in sep of the recursive rule");
 	}
-	if(table->getProblem()->getHeapChunk() == nullptr){
+    Problem_SLAH* problem = (Problem_SLAH*)table->getProblem();
+	if(problem->getHeapChunk() == nullptr){
 		throw SemanticException("'hck' is not defined");
 	}
-	if(body.arg(0).decl().name().str() != table->getProblem()->getHeapChunk()->get_name()){
+	if(body.arg(0).decl().name().str() != problem->getHeapChunk()->get_name()){
 		throw SemanticException("'hck' is excepted in the recursive rule");
 	}
 	if(body.arg(1).decl().name().str() != fname){

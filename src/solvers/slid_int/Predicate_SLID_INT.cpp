@@ -1,4 +1,4 @@
-#include "component/Predicate_SLID_INT.h"
+#include "solvers/slid_int/Predicate_SLID_INT.h"
 
 //extern z3::context z3_ctx;
 

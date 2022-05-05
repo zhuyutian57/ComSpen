@@ -144,7 +144,7 @@ z3::check_result slah_api::checkSat(z3::expr phi){
 
 	}
 
-	Problem m_problem(z3_ctx);
+	Problem_SLAH m_problem(z3_ctx);
 
 	m_problem.setLogic("QF_SLAH");
 
@@ -201,7 +201,7 @@ z3::check_result slah_api::checkEnt(z3::expr phi, z3::expr psi){
 
 
 
-	Problem m_problem(z3_ctx);
+	Problem_SLAH m_problem(z3_ctx);
 
 	m_problem.setLogic("QF_SLAH");
 

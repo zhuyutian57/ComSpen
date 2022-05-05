@@ -14,6 +14,8 @@
 //#include "component/Z3Buffer.h"
 #include <iostream>
 
+#include "solvers/slah/Problem_SLAH.h"
+
 extern SyntaxErrorTable SYNTAX_ERROR_INFO;
 //extern Z3Buffer z3_buffer;
 
@@ -35,6 +37,11 @@ void SetLogicParser::parse(Table* table) {
     }
     //
     string logic = dynamic_cast<StrToken*>(curr)->value();
+
+    if (logic == "QF_SLAH")
+        table->setProblem(new Problem_SLAH(z3_ctx));
+    else
+        table->setProblem(new Problem(z3_ctx));
 	table->addLogic(logic); 
 
     // cout << "logic: " <<  logic << endl;

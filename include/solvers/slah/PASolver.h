@@ -11,11 +11,11 @@
 *******************************************/
 
 #include "Relation.h"
-#include "component/Problem.h"
+#include "Problem_SLAH.h"
 
 class PASolver{
 private:
-	Problem* m_problem;
+	Problem_SLAH* m_problem;
 	z3::solver z3_sol;
 	int k_index;
 	int z_newvar_index;//match_P�������±�����Ҫ 
@@ -26,7 +26,7 @@ public:
 	z3::context& z3_ctx;
 	PASolver(z3::context& ctx);
 	~PASolver(){}
-	void setProblem(Problem* problem){m_problem = problem;}
+	void setProblem(Problem_SLAH* problem){m_problem = problem;}
     void solve();
 	 
 	void check_preds();
