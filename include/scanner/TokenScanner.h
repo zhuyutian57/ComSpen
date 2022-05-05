@@ -11,13 +11,14 @@
 *******************************************/
 #include "Scanner.h"
 #include "Token.h"
-#include "component/TokenBuffer.h"
-extern TokenBuffer token_buffer;
+#include "TokenBuffer.h"
 
 #include <cctype>
 #include <set>
 
 using std::set;
+
+extern TokenBuffer token_buffer;
 
 
 /*! @class TokenScanner

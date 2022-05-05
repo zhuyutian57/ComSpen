@@ -8,7 +8,7 @@
 *                                          *
 *******************************************/
 
-#include "component/TokenBuffer.h"
+#include "scanner/TokenBuffer.h"
 
 /*! @brief Brief function description here
  *

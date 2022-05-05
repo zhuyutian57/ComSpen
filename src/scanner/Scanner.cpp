@@ -8,8 +8,8 @@
 *                                          *
 *******************************************/
 
-#include "TokenScanner.h"
-#include "TokenScannerFactory.h"
+#include "scanner/Scanner.h"
+#include "scanner/TokenScannerFactory.h"
 
 extern TokenScannerFactory tokenScannerFactory;
 

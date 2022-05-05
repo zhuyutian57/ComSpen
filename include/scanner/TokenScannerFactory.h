@@ -10,7 +10,8 @@
 *                                          *
 *******************************************/
 
-#include "component/TokenScannerBuffer.h"
+#include "TokenScannerBuffer.h"
+
 extern TokenScannerBuffer token_scanner_buffer;
 
 /*! @class TokenScannerFactory

@@ -11,12 +11,8 @@
 #include "parser/Table.h"
 #include "Types.h"
 #include "parser/CommandParserFactory.h"
-//#include "component/Z3Buffer.h"
-
 
 extern SyntaxErrorTable SYNTAX_ERROR_INFO;
-//extern Z3Buffer z3_buffer;
-//extern z3::context z3_ctx;
 
 /*! @brief Brief function description here
  *

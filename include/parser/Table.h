@@ -13,8 +13,8 @@
 #include <iostream>
 #include "z3++.h"
 #include "Types.h"
-#include "Scanner.h"
-#include "TokenScannerFactory.h"
+#include "scanner/Scanner.h"
+#include "scanner/TokenScannerFactory.h"
 #include "exception/SemanticException.h"
 #include "exception/SyntaxException.h"
 #include "component/Field.h"

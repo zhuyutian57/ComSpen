@@ -8,7 +8,7 @@
 *                                          *
 *******************************************/
 
-#include "component/TokenScannerBuffer.h"
+#include "scanner/TokenScannerBuffer.h"
 
 TokenScannerBuffer::TokenScannerBuffer() {
     m_buffer["TokenScanner"] = new TokenScanner();

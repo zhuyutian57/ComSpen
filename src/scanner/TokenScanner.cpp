@@ -8,7 +8,7 @@
 *                                          *
 *******************************************/
 
-#include "TokenScanner.h"
+#include "scanner/TokenScanner.h"
 
 char TokenScanner::m_normalized_table[256] = {};
 

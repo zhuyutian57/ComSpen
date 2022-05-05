@@ -8,7 +8,7 @@
 *                                          *
 *******************************************/
 
-#include "TokenScannerFactory.h"
+#include "scanner/TokenScannerFactory.h"
 
 /*! @brief Build TokenScanner
  *

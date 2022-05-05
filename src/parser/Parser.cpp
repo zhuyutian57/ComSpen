@@ -1,5 +1,18 @@
 #include "parser/Parser.h"
 
+SyntaxErrorTable SYNTAX_ERROR_INFO = {
+    "",
+    "'(' is expected!",
+    "')' is expected!",
+    "keyword is expected!",
+    "symbol is expected!",
+    "string literal is expected!",
+    "int literal is expected!",
+    "float literal is expected!",
+    "bit vector is expected!", 
+    "EOF is expected!"
+};
+
 void Parser::setInput(string file) {
     std::ifstream* fin = new std::ifstream();
     fin->open(file, std::ios_base::binary);

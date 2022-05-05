@@ -1,7 +1,7 @@
 #include "parser/Table.h"
 #include "parser/CommandParser.h"
 #include "parser/TheoryParser.h"
-#include "Scanner.h"
+#include "scanner/Scanner.h"
 
 #include <fstream>
 #include <iostream>
