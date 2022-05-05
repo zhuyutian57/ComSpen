@@ -10,7 +10,7 @@
 
 #include "parser/DefineFunParser.h"
 //#include "component/Z3Buffer.h"
-#include "solvers/solver_slah/HeapChunk.h"
+#include "solvers/slah/HeapChunk.h"
 
 extern SyntaxErrorTable SYNTAX_ERROR_INFO;
 //extern Z3Buffer z3_buffer; 

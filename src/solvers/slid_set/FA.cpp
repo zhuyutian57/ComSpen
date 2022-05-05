@@ -1,4 +1,4 @@
-#include "solvers/solver_slid_set/FA.h"
+#include "solvers/slid_set/FA.h"
 #include <iostream>
 #include <fstream>
 #include <random>

@@ -1,4 +1,4 @@
-#include "solvers/solver_slah/PASolver.h"
+#include "solvers/slah/PASolver.h"
 #include "component/Predicate_SLAH.h"
 #include "exception/SemanticException.h"
 #include "exception/SyntaxException.h"

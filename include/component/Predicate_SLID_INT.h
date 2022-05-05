@@ -12,7 +12,7 @@
 
 
 #include "component/Predicate.h"
-#include "solvers/solver_slid_int/expr_tool.h"
+#include "solvers/slid_int/expr_tool.h"
 
 
 /**

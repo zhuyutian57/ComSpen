@@ -1,4 +1,4 @@
-#include "solvers/solver_slah/HeapChunk.h"
+#include "solvers/slah/HeapChunk.h"
 #include "exception/SemanticException.h"
 
 

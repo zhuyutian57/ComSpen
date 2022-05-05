@@ -1,4 +1,4 @@
-#include "solvers/solver_slah/Fts.h"
+#include "solvers/slah/Fts.h"
 #include "exception/SemanticException.h"
 
 void Fts::init_state_edge(z3::expr pi_i,z3::expr_vector m_pars,int m_z_size){

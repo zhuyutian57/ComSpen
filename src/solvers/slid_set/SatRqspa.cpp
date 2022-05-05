@@ -1,4 +1,4 @@
-#include "solvers/solver_slid_set/SatRqspa.h"
+#include "solvers/slid_set/SatRqspa.h"
 
 
 

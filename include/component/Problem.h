@@ -11,7 +11,7 @@
 *******************************************/
 
 #include "Predicate.h"
-#include "solvers/solver_slah/HeapChunk.h"
+#include "solvers/slah/HeapChunk.h"
 #include "z3++.h"
 #include "SortType.h"
 
