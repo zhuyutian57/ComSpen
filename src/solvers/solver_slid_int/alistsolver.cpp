@@ -1,4 +1,4 @@
-#include "solver_slid_int/alistsolver.h"
+#include "solvers/solver_slid_int/alistsolver.h"
 //extern z3::context z3_ctx;
 
 bool alistsolver::match_graph(listgraph& g_psi, listgraph& omega_g_i) {

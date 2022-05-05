@@ -3,8 +3,8 @@
 
 #include "component/Problem.h"
 #include "component/Predicate_SLID_INT.h"
-#include "solver_slid_int/listgraph.h"
-#include "solver_slid_int/expr_tool.h"
+#include "listgraph.h"
+#include "expr_tool.h"
 
 using namespace std;
 

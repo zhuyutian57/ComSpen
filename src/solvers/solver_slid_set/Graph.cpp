@@ -4,7 +4,7 @@
 #include <iostream>
 #include <fstream>
 
-#include "solver_slid_set/Graph.h"
+#include "solvers/solver_slid_set/Graph.h"
 
 /* --------------------------------------------------------------------------*/
 /**

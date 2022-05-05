@@ -8,9 +8,9 @@
 
 #include "component/Problem.h"
 
-#include "solver_slah/HeapChunk.h"
+#include "solvers/solver_slah/HeapChunk.h"
 
-#include "solver_slah/PASolver.h"
+#include "solvers/solver_slah/PASolver.h"
 
 #include "component/Predicate.h"
 

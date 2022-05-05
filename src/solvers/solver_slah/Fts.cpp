@@ -1,4 +1,4 @@
-#include "solver_slah/Fts.h"
+#include "solvers/solver_slah/Fts.h"
 #include "exception/SemanticException.h"
 
 void Fts::init_state_edge(z3::expr pi_i,z3::expr_vector m_pars,int m_z_size){
@@ -106,7 +106,7 @@ void Fts::make_path_set(){
 			visited[*sourceIt]=1;
 			myfts_graph::adjacency_iterator neighbourIt, neighbourEnd;
 			boost::tie(neighbourIt, neighbourEnd) = boost::adjacent_vertices(*sourceIt, graph);
-			while(*neighbourIt != *neighbourEnd && *neighbourIt!=*destIt && visited[*neighbourIt]!=1){//×ßµ½¾¡Í·£¬»òÕß×ßµ½dest£¬»òÕßÓÐ»·ÇÒÃ»ÕÒµ½ 
+			while(*neighbourIt != *neighbourEnd && *neighbourIt!=*destIt && visited[*neighbourIt]!=1){//ï¿½ßµï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ßµï¿½destï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½ï¿½ï¿½Ã»ï¿½Òµï¿½ 
 				min_len++;
 				visited[*neighbourIt]=1;
 				boost::tie(neighbourIt, neighbourEnd) = boost::adjacent_vertices(*neighbourIt, graph);

@@ -1,6 +1,7 @@
 #ifndef ALISTSOLVER_H_
 #define ALISTSOLVER_H_
-#include "solver_slid_int/listsolver.h"
+
+#include "listsolver.h"
 
 class alistsolver: public listsolver {
 protected:

@@ -29,7 +29,7 @@ public:
     void setLogic(string logic);
 
 private:
-    const string prefix="../logic_def/Logics/";
+    const string prefix="../config/Logics/";
     std::string logic;
 };
 

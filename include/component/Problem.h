@@ -10,10 +10,10 @@
 *                                          *
 *******************************************/
 
-#include "component/Predicate.h"
-#include "solver_slah/HeapChunk.h"
+#include "Predicate.h"
+#include "solvers/solver_slah/HeapChunk.h"
 #include "z3++.h"
-#include "component/SortType.h"
+#include "SortType.h"
 
 using HeapType = pair<SortType*, SortType*>;
 

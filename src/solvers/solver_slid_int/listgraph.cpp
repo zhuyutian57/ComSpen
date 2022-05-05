@@ -4,7 +4,7 @@
 #include <iostream>
 #include <fstream>
 
-#include "solver_slid_int/listgraph.h"
+#include "solvers/solver_slid_int/listgraph.h"
 
 // using namespace std;
 

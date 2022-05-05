@@ -31,7 +31,7 @@ public:
     void setTheory(string theory);
 
 private:
-    const std::string prefix = "../logic_def/Theories/";
+    const std::string prefix = "../config/Theories/";
     std::string theory;
     
     SortType* parseSort();

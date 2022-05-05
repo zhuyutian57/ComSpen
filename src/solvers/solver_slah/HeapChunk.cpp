@@ -1,4 +1,4 @@
-#include "solver_slah/HeapChunk.h"
+#include "solvers/solver_slah/HeapChunk.h"
 #include "exception/SemanticException.h"
 
 
@@ -66,7 +66,7 @@ void HeapChunk::set_v(){
     if(data.decl().name().str()=="or"){
     	first_con=data.arg(0);//pix and piw and piz
     	
-    	//获得所有在data中出现的v，后面matchP要用 
+    	//锟斤拷锟斤拷锟斤拷锟斤拷锟絛ata锟叫筹拷锟街碉拷v锟斤拷锟斤拷锟斤拷matchP要锟斤拷 
     	for(int i=1;i<data.num_args();i++){
     		z3::expr coni=data.arg(i);
     		if(coni.decl().name().str() == "and"){
@@ -131,10 +131,10 @@ void HeapChunk::get_summ(z3::expr &summ,int &k_index,z3::expr_vector args){//arg
  */
  	z3::expr y_x = m_pars[1+m_z_size] - m_pars[0];
 	z3::expr arg_vj(z3_ctx);
-	if(v_index!=-1) arg_vj=args[v_index];//实参 
+	if(v_index!=-1) arg_vj=args[v_index];//实锟斤拷 
 	
     
-    z3::expr fts_abs=z3_ctx.bool_val(false);//ki可以取得值 
+    z3::expr fts_abs=z3_ctx.bool_val(false);//ki锟斤拷锟斤拷取锟斤拷值 
     std::vector<path> path_set=m_fts.get_path_set();
 	
 	z3::expr arg_y_x = args[1+m_z_size] - args[0];

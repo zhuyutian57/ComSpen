@@ -10,7 +10,7 @@
 *                                          *
 *******************************************/
 
-#include "solver_slah/Relation.h"
+#include "Relation.h"
 #include "component/Problem.h"
 
 class PASolver{
@@ -18,8 +18,8 @@ private:
 	Problem* m_problem;
 	z3::solver z3_sol;
 	int k_index;
-	int z_newvar_index;//match_P中引入新变量需要 
-	int w_newvar_index;//match_P中引入新变量需要 
+	int z_newvar_index;//match_P锟斤拷锟斤拷锟斤拷锟铰憋拷锟斤拷锟斤拷要 
+	int w_newvar_index;//match_P锟斤拷锟斤拷锟斤拷锟铰憋拷锟斤拷锟斤拷要 
 	int ex_newvar_index;//change_hck of B
 	Relation rel;
 public:

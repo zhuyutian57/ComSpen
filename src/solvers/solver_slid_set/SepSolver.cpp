@@ -8,11 +8,11 @@
 *                                          *
 *******************************************/
 
-#include "solver_slid_set/SepSolver.h"
+#include "solvers/solver_slid_set/SepSolver.h"
 //#include "component/Z3Buffer.h"
-#include "solver_slid_set/MonaExecutor.h"
-#include "solver_slid_set/MonaTranslator.h"
-#include "solver_slid_set/SatRqspa.h"
+#include "solvers/solver_slid_set/MonaExecutor.h"
+#include "solvers/solver_slid_set/MonaTranslator.h"
+#include "solvers/solver_slid_set/SatRqspa.h"
 #include "Types.h"
 
 //extern z3::context z3_ctx;

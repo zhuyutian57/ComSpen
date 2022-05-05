@@ -12,7 +12,7 @@
 
 #include "component/Problem.h"
 #include "component/Predicate_SLID_SET.h"
-#include "solver_slid_set/Graph.h"
+#include "Graph.h"
 #include "component/Z3Buffer.h"
 
 using EdgeType = pair<pair<int, int>, int>;

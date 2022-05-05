@@ -9,10 +9,10 @@
 *******************************************/
 
 #include "parser/CheckSatParser.h"
-#include "solver_slid_set/SepSolver.h"
-#include "solver_slid_int/listsolver.h"
-#include "solver_slid_int/alistsolver.h"
-#include "solver_slah/PASolver.h"
+#include "solvers/solver_slid_set/SepSolver.h"
+#include "solvers/solver_slid_int/listsolver.h"
+#include "solvers/solver_slid_int/alistsolver.h"
+#include "solvers/solver_slah/PASolver.h"
 //#include "component/Z3Buffer.h"
 
 extern SyntaxErrorTable SYNTAX_ERROR_INFO;
