@@ -1,4 +1,4 @@
-(set-logic QF_SLID_LC)
+(set-logic QF_SLID_TYPED)
 
 ; Sorts for locations, one by cell sort
 (declare-sort Loc 0)
@@ -13,14 +13,12 @@
 	(or
 		(and
 			(= ?x ?y)
-			(tobool emp)
+			(_ emp Loc SetRef)
 		)
 		(exists ((?z Loc))
-			(tobool
-				(ssep
-					(pto ?x (ref next ?z))
-					(tospace (lseg ?z ?y))
-				)
+			(ssep
+				(pto ?x (ref next ?z))
+				(lseg ?z ?y)
 			)
 		)
 	)
@@ -34,13 +32,11 @@
 (declare-const w Int)
 
 (assert
-(tobool
 	(ssep
-		(tospace (lseg x y))
+		(lseg x y)
 		(pto y (sref (ref data w) (ref next z)))
-		(tospace (lseg z n))
+		(lseg z n)
 	)
-)
 )
 
 (check-sat)

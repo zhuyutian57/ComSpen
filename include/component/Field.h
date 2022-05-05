@@ -12,6 +12,7 @@ public:
 
   SortType* getSort();
   std::string getName();
+  void show();
 
 private:
   std::string name;

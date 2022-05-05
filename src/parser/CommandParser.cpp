@@ -163,7 +163,7 @@ z3::expr CommandParser::parseExpr(Table* table) {
     curr = this->scanner->checkNext(SYMBOL_TOKEN, SYNTAX_ERROR_INFO[SYMBOL_TOKEN]);
     string fname = dynamic_cast<StrToken*>(curr)->value();
 
-    // ignore (_ emp Int data)
+    // An identifier (_ emp Loc SetRef)
     if (fname == "_") {
         this->scanner->checkNext(SYMBOL_TOKEN, SYNTAX_ERROR_INFO[SYMBOL_TOKEN]);
         this->scanner->checkNext(SYMBOL_TOKEN, SYNTAX_ERROR_INFO[SYMBOL_TOKEN]);

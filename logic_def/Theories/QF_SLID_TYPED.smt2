@@ -20,7 +20,7 @@
 
   - for all sp in Space, v is a location variable, sr in SetRef, f in Field:
 
-    - emp denotes the empty heap space constraint;
+    - (_ emp Loc SetRef) denotes the empty heap space constraint typed by Loc -> SetRef;
 
     - (ssep sp sp) denotes the strong separating space constraint;
 

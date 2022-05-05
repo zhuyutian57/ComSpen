@@ -105,28 +105,35 @@ void Table::showEnv() {
     cout << "var environment: \n";
     int i = 0;
     for (auto item: m_var_stack) {
-        cout << i++ << ": ";
+        cout << "  " << i++ << ": ";
         item->show();
         cout << endl;
     }
     cout << "var scope: \n";
     for (auto item : m_scope_mark_stack) {
-        cout << item << " ";
+        cout << "  "<< item << " ";
     }
     cout << endl;
     cout << endl;
 }
 
 void Table::show() {
-    cout << "supported sort: ";
+    cout << "supported sort: \n";
     for (auto item : m_sort_table) {
-        cout << item.first << " ";
+        cout << "  " << item.first << " "
+            << item.second->getArity() << endl;
+    }
+    cout << endl;
+    cout << "supported fields: \n";
+    for(auto field : m_field_table) {
+        cout << "  ";
+        field.second->show();
     }
     cout << endl;
     cout << "supported func: \n";
     for (auto item: m_func_table) {
+        cout << "  ";
         item.second->show();
-        cout << endl;
     }
     cout << endl;
 
