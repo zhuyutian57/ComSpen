@@ -9,6 +9,7 @@
 *******************************************/
 
 #include "parser/CheckSatParser.h"
+#include "solvers/slid/SlidSolver.h"
 #include "solvers/slid_set/SepSolver.h"
 #include "solvers/slid_int/listsolver.h"
 #include "solvers/slid_int/alistsolver.h"
@@ -42,6 +43,9 @@ void CheckSatParser::parse(Table* table) {
     	PASolver ss(z3_ctx);
     	ss.setProblem((Problem_SLAH*)problem);
     	ss.solve();
+	} else if(problem->getLogic() == "QF_SLID_TYPED") {
+		SlidSolver sol(z3_ctx, problem);
+		sol.solve();
 	}else{
 		std::cout<<"No solver for the logic"<<std::endl;
 	}
