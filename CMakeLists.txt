@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 3.16.0)
 project(ComSpen)
 
 set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+set(COMSPEN_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
 # include z3 into the project
 find_package(Z3
@@ -18,15 +20,4 @@ find_package(Z3
 message(STATUS "The version of z3 is ${Z3_VERSION_STRING}")
 message(STATUS "Paths of z3: ${Z3_DIR} ${Z3_CXX_INCLUDE_DIRS}")
 
-include_directories(include)
-
-file(GLOB_RECURSE SRCS "include/*.h" "src/*.cpp")
-
-# message(STATUS ${SRCS})
-
-add_library(
-  smt2z3 STATIC ${SRCS}
-)
-
-add_executable(ComSpen src/main.cpp)
-target_link_libraries(ComSpen smt2z3 ${Z3_LIBRARIES})
+add_subdirectory(src)
