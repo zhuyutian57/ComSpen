@@ -21,7 +21,7 @@ public:
 protected:
   Scanner* scanner;
   
-  void setInput(std::string file);
+  void set_input(std::string file);
 
 };
 

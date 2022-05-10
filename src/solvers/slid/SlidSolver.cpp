@@ -11,7 +11,7 @@ void SlidSolver::solve() {
     res = check_sat(phi);
   cout << res << endl;
   if (res == z3::sat)
-    cout << getModel().to_string() << endl;
+    cout << getModel() << endl;
 }
 
 z3::model SlidSolver::getModel() {
@@ -23,41 +23,33 @@ z3::check_result SlidSolver::checkSat(z3::expr& formula) {
 }
 
 z3::check_result SlidSolver::check_sat(z3::expr formula) {
-  z3::expr f = get_abs(formula);
-  cout << "abs : " << f << endl;
-  z3_sol.reset(); z3_sol.add(f);
+  z3::expr abs = get_abs(formula);
+  z3_sol.reset(); z3_sol.add(abs);
   z3::check_result res = z3_sol.check();
   return res;
 }
 
 z3::expr SlidSolver::get_abs(z3::expr formula) {
   z3::expr abs(z3_ctx);
-  if (formula.is_or()) {
-    for(z3::expr f : formula.args()) {
-      if (Z3_ast(abs) == 0) abs = get_abs(f);
-      else abs = abs || get_abs(f);
-    }
-  } else if (formula.is_and()) {
-    for(z3::expr f : formula.args()) {
-      if (Z3_ast(abs) == 0) abs = get_abs(f);
-      else abs = abs && get_abs(f);
-    }
-  } else if (formula.is_app()) {
+  if (is_space(formula)) {
     std::string fun = formula.decl().name().str();
     if (is_fun(formula, "emp")) abs = get_abs_emp(formula);
     else if (is_fun(formula, "ssep")) abs = get_abs_ssep(formula);
     else if (is_fun(formula, "pto")) abs = get_abs_pto(formula);
     else if (is_fun(formula, "blk")) abs = get_abs_blk(formula);
-    // else if (fun == "ref") return get_abs_ref(formula);
-    // else if (fun == "sref") return get_abs_sref(formula);
     else {
       cout << "no such fun : " << fun << endl;
       assert(false);
     }
-  } else {
-    cout << "error: " << formula << endl;
-    assert(false);
-  }
+  } else if (formula.is_and() || formula.is_or()) {
+    for(z3::expr f : formula.args()) {
+      z3::expr abs_f = get_abs(f);
+      if (Z3_ast(abs) == 0) abs = abs_f;
+      else abs =
+        (formula.is_and() ?
+          abs && abs_f : abs || abs_f);
+    }
+  } else abs = formula;
   return abs;
 }
 
@@ -67,6 +59,11 @@ bool SlidSolver::is_fun(z3::expr& formula, std::string name) {
 }
 bool SlidSolver::is_loc(z3::expr& formula) {
   return formula.get_sort().to_string() == "Loc";
+}
+bool SlidSolver::is_space(z3::expr& formula) {
+  if (!formula.is_app()) return false;
+  std::string name = formula.decl().name().str();
+  return name == "ssep" || name == "pto" || name == "blk";
 }
 
 z3::expr SlidSolver::head(z3::expr formula) {
@@ -89,7 +86,6 @@ z3::expr SlidSolver::loc_to_int(z3::expr formula) {
   std::string name = formula.decl().name().str();
   return z3_ctx.int_const(name.c_str());
 }
-  
 
 z3::expr SlidSolver::get_abs_emp(z3::expr& formula) {
   return  z3_ctx.bool_val(true);
@@ -141,7 +137,7 @@ z3::expr SlidSolver::get_abs_blk(z3::expr& formula) {
   z3::expr y = formula.arg(1);
   if (is_loc(x)) x = loc_to_int(x);
   if (is_loc(y)) y = loc_to_int(y);
-  abs = x > 0 && x < y;
+  abs = x > 0 && x <= y;
   return abs;
 }
 

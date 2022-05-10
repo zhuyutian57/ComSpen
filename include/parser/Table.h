@@ -92,6 +92,8 @@ public:
     void addField(std::string name, Field* field, int row=-1, int col=-1);
     Field* getField(std::string name);
 
+    bool isSpace(std::string fun);
+
 private:
 
     std::string logic;

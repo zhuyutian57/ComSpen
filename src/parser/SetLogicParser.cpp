@@ -59,4 +59,5 @@ void SetLogicParser::parse(Table* table) {
     // action: init context by logic file
     z3_ctx.check_error();
     z3_buffer.init(table);
+    table->show();
 }

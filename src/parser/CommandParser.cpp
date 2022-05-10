@@ -17,7 +17,7 @@ extern SyntaxErrorTable SYNTAX_ERROR_INFO;
 //extern Z3Buffer z3_buffer;
 
 void CommandParser::setScanner(Scanner* scanner) { this->scanner = scanner; }
-void CommandParser::setFile(string file) { this->setInput(file); }
+void CommandParser::setFile(string file) { this->set_input(file); }
 
 void CommandParser::parse(Table* table) {
     // parse ( and symbol
@@ -221,32 +221,43 @@ z3::expr CommandParser::mk_app(
     SortList& args_types,
     Table* table) {
     string op = pf->getName();
-    if (op == "not") return !args[0];
-    else if (op == "and") return z3::mk_and(args);
-    else if (op == "or") return z3::mk_or(args);
-    else if (op == "=") return args[0] == args[1];
-    else if (op == "+") return z3::sum(args);
-    else if (op == "-") {
-        if (args.size() == 1) return -args[0];
-        z3::expr res(z3_ctx);
-        res = args[0];
-        for(int i = 1; i < args.size(); i++)
-            res =  res - args[i];
-        return res;
-    } else if (op == "*") {
-        z3::expr res(z3_ctx);
-        res = args[0];
-        for(int i = 1; i < args.size(); i++)
-            res =  res * args[i];
-        return res;
-    } else if (op == "<=") return args[0] <= args[1];
-    else if (op == "<") return args[0] < args[1];
-    else if (op == ">=") return args[0] >= args[1];
-    else if (op == ">") return args[0] > args[1];
-    else {
+    if (table->isSpace(op)) {
         z3::func_decl fd = z3_buffer.getFuncDecl(pf, args_types, table);
         return fd(args);
+    } else {
+        for(int i = 0; i < args.size(); i++) {
+            std::string sort = args[i].get_sort().to_string();
+            std::string name = args[i].decl().name().str();
+            if (sort == "Loc") {
+                z3::expr arg = z3_ctx.int_const(name.c_str());
+                args.set(i, arg);
+            }
+        }
+        if (op == "not") return !args[0];
+        else if (op == "and") return z3::mk_and(args);
+        else if (op == "or") return z3::mk_or(args);
+        else if (op == "=") return args[0] == args[1];
+        else if (op == "+") return z3::sum(args);
+        else if (op == "-") {
+            if (args.size() == 1) return -args[0];
+            z3::expr res(z3_ctx);
+            res = args[0];
+            for(int i = 1; i < args.size(); i++)
+                res =  res - args[i];
+            return res;
+        } else if (op == "*") {
+            z3::expr res(z3_ctx);
+            res = args[0];
+            for(int i = 1; i < args.size(); i++)
+                res =  res * args[i];
+            return res;
+        } else if( op == "div") return args[0] / args[1];
+        else if (op == "<=") return args[0] <= args[1];
+        else if (op == "<") return args[0] < args[1];
+        else if (op == ">=") return args[0] >= args[1];
+        else if (op == ">") return args[0] > args[1];
+        else if (op == "distinct") return args[0] != args[1];
     }
-    std::cout << "no such operator!!!" << std::endl;
+    std::cout << op << " " << "no such operator!!!" << std::endl;
     assert(false);
 }

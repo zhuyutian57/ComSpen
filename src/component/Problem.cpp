@@ -28,7 +28,7 @@ Problem::~Problem() {
 
 void Problem::show() {
 	cout << "logic: " << m_logic << endl;
-    cout << "Heap: \n";
+    cout << "heap: \n";
     cout << m_heap.first->getName() << " -> " << m_heap.second->getName() << endl;
     cout << "predicate: \n";
     m_pred->show();

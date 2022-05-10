@@ -24,6 +24,7 @@ private:
   
   bool is_fun(z3::expr& formula, std::string name);
   bool is_loc(z3::expr& formula);
+  bool is_space(z3::expr& formmula);
   z3::expr head(z3::expr formula);
   z3::expr tail(z3::expr formula);
   z3::expr loc_to_int(z3::expr formula);

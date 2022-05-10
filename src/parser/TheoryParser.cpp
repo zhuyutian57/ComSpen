@@ -23,7 +23,7 @@ extern SyntaxErrorTable SYNTAX_ERROR_INFO;
 
 void TheoryParser::setTheory(string theory) {
   this->theory = theory;
-  this->setInput(prefix + theory + ".smt2");
+  this->set_input(prefix + theory + ".smt2");
 }
 
 void TheoryParser::parse(Table* table) {

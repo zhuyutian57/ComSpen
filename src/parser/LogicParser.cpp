@@ -22,7 +22,7 @@ extern SyntaxErrorTable SYNTAX_ERROR_INFO;
 
 void LogicParser::setLogic(string logic) {
     this->logic = logic;
-    this->setInput(prefix + logic + ".smt2");
+    this->set_input(prefix + logic + ".smt2");
 }
 
 void LogicParser::parse(Table* table) {

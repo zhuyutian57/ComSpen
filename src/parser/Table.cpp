@@ -97,6 +97,13 @@ void Table::topVar(VarList& vlist) {
     }
 }
 
+bool Table::isSpace(std::string fun) {
+    return
+        fun == "ssep" || fun == "pto" ||
+        fun == "blk" || fun == "ref" || fun == "sref" ||
+        fun == "lseg";
+}
+
 void Table::showEnv() {
     cout << "var environment: \n";
     int i = 0;

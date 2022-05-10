@@ -13,7 +13,7 @@ SyntaxErrorTable SYNTAX_ERROR_INFO = {
     "EOF is expected!"
 };
 
-void Parser::setInput(string file) {
+void Parser::set_input(string file) {
     std::ifstream* fin = new std::ifstream();
     fin->open(file, std::ios_base::binary);
     if (!fin->is_open()) {

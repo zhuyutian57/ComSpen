@@ -30,13 +30,22 @@
 (declare-const z Loc)
 (declare-const n Loc)
 (declare-const w Int)
+(declare-const a Loc)
+(declare-const b Loc)
+(declare-const c Loc)
+(declare-const d Loc)
+(declare-const e Loc)
 
 (assert
-	(ssep
-    (blk x y)
-    (pto y (ref data w))
-    (blk z n)
-	)
+  (and
+    (not (or (<= a b) (< c d) (>= e a) (> b c)))
+    (distinct x y)
+    (ssep
+      (blk x y)
+      (pto y (ref data w))
+      (blk z n)
+    )
+  )
 )
 
 (check-sat)
