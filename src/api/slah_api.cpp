@@ -1,8 +1,9 @@
 #include "api/slah_api.h"
-
-
-
-//extern z3::context z3_ctx;
+#include "component/Problem.h"
+#include "solvers/slah/HeapChunk.h"
+#include "solvers/slah/PASolver.h"
+#include "component/Predicate.h"
+#include "solvers/slah/Predicate_SLAH.h"
 
 
 

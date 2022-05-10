@@ -6,19 +6,11 @@
 
 #include "z3++.h"
 
-#include "component/Problem.h"
 
-#include "solvers/slah/HeapChunk.h"
-
-#include "solvers/slah/PASolver.h"
-
-#include "component/Predicate.h"
-
-#include "solvers/slah/Predicate_SLAH.h"
-
-
-
-
+class Problem;
+class Predicate;
+class HeapChunk;
+class PASolver;
 
 class slah_api{
 
