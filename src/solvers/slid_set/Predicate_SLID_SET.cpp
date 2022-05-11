@@ -5,8 +5,12 @@
 //extern z3::context z3_ctx;
 //extern Z3Buffer z3_buffer;
 
-Predicate_SLID_SET::Predicate_SLID_SET(z3::context& ctx, Z3Buffer& buffer, z3::expr_vector pars, z3::expr base, z3::expr rec)
-        :Predicate(ctx, pars,base,rec),z3_buffer(buffer),  
+Predicate_SLID_SET::Predicate_SLID_SET(
+    z3::context& ctx,
+    Z3Buffer& buffer,
+    std::string name,
+    z3::expr_vector pars, z3::expr base, z3::expr rec)
+    : Predicate(ctx, name, pars,base,rec),z3_buffer(buffer),  
         m_data(ctx), m_pto(ctx), m_rec_app(ctx), 
         m_deltap(ctx), m_succ(ctx), m_succ_pars(ctx),
         m_case_i(-1), m_svars(ctx), m_strt_items(ctx), m_strt_pars(ctx),

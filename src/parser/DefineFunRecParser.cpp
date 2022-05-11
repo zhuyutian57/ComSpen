@@ -83,14 +83,14 @@ void DefineFunRecParser::parse(Table* table) {
     // TODO generate predicate definition
     Predicate* pred;
     if(table->getProblem()->getLogic() == "QF_SLID_SET"){ 
-    	pred = new Predicate_SLID_SET(z3_ctx, z3_buffer, pars, base, rec);
+    	pred = new Predicate_SLID_SET(z3_ctx, z3_buffer, fname, pars, base, rec);
 	}else if(table->getProblem()->getLogic() == "QF_SLID_INT"){
 		pred = new Predicate_SLID_INT(z3_ctx, fun, pars, base, rec);
 	}else if(table->getProblem()->getLogic() == "QF_SLAH"){
 		checkSLAHRecRule(table, rec, fname);
 		pred = new Predicate_SLAH(z3_ctx, fun, pars, base, rec);
 	}else{
-		pred = new Predicate(z3_ctx, pars, base, rec);
+		pred = new Predicate(z3_ctx, fname, pars, base, rec);
 	}
     
     table->addPredicate(pred);

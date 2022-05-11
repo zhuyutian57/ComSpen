@@ -97,11 +97,13 @@ void Table::topVar(VarList& vlist) {
     }
 }
 
-bool Table::isSpace(std::string fun) {
+bool Table::isFixedOp(std::string op) {
     return
-        fun == "ssep" || fun == "pto" ||
-        fun == "blk" || fun == "ref" || fun == "sref" ||
-        fun == "lseg";
+        op == "not" || op == "and" ||
+        op == "or" || op == "=" ||
+        op == "distinct" || op == "ite" ||
+        op == "+" || op == "-" || op == "*" || op == "div" ||
+        op == "<=" || op == "<" || op == ">=" || op == ">";
 }
 
 void Table::showEnv() {

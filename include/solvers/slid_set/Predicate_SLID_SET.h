@@ -21,7 +21,11 @@ using namespace std;
 class Predicate_SLID_SET:public Predicate {
 public:
     Z3Buffer& z3_buffer;
-    Predicate_SLID_SET(z3::context& ctx, Z3Buffer& buffer, z3::expr_vector pars, z3::expr base, z3::expr rec);
+    Predicate_SLID_SET(
+        z3::context& ctx,
+        Z3Buffer& buffer,
+        std::string name,
+        z3::expr_vector pars, z3::expr base, z3::expr rec);
     virtual ~Predicate_SLID_SET();
 
     void getABC(expr_vector& alpha, expr_vector& beta, expr_vector& gamma);

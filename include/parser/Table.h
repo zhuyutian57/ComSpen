@@ -92,10 +92,11 @@ public:
     void addField(std::string name, Field* field, int row=-1, int col=-1);
     Field* getField(std::string name);
 
-    bool isSpace(std::string fun);
+    bool isFixedOp(std::string op);
 
 private:
-
+    friend class Z3Buffer;
+    
     std::string logic;
     vector<std::string> theories;
     std::map<std::string, std::string> logic_info;
@@ -109,8 +110,6 @@ private:
     ScopeMarkStack m_scope_mark_stack; ///< scope mark
 
     Problem* m_problem; ///< problem description
-
-    friend class Z3Buffer;
 };
 
 #endif

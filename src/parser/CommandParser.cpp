@@ -221,10 +221,7 @@ z3::expr CommandParser::mk_app(
     SortList& args_types,
     Table* table) {
     string op = pf->getName();
-    if (table->isSpace(op)) {
-        z3::func_decl fd = z3_buffer.getFuncDecl(pf, args_types, table);
-        return fd(args);
-    } else {
+    if (table->isFixedOp(op)) {
         for(int i = 0; i < args.size(); i++) {
             std::string sort = args[i].get_sort().to_string();
             std::string name = args[i].decl().name().str();
@@ -257,6 +254,9 @@ z3::expr CommandParser::mk_app(
         else if (op == ">=") return args[0] >= args[1];
         else if (op == ">") return args[0] > args[1];
         else if (op == "distinct") return args[0] != args[1];
+    } else {
+        z3::func_decl fd = z3_buffer.getFuncDecl(pf, args_types, table);
+        return fd(args);
     }
     std::cout << op << " " << "no such operator!!!" << std::endl;
     assert(false);
