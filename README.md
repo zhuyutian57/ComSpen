@@ -72,4 +72,4 @@ result: unsat
 ```
 
 ## API
-If you want to use our solvers, you can just include API header in you source files and use *find_package* to include *.so* file.
+If you want to use our solvers, you can just include API header in you source files and use *find_package* to include *.so* file. See [examples](examples/).
