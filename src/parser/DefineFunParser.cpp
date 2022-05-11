@@ -48,9 +48,7 @@ void DefineFunParser::parse(Table* table) {
     z3::func_decl fun = z3_ctx.function(fname_sym, domain, rangesort);//
 
     scanner->checkNext(LEFT_PAREN, SYNTAX_ERROR_INFO[LEFT_PAREN]);
-    cout << 1 << endl;
     z3::expr exp = parseExpr(table);
-    cout << exp << endl;
     scanner->checkNext(RIGHT_PAREN, SYNTAX_ERROR_INFO[RIGHT_PAREN]);
     // action
     table->popVar();
