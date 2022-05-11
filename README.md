@@ -14,10 +14,11 @@ mkdir build
 cd build
 cmake -DZ3_DIR=<path to Z3Config.cmake> ..
 make
+sudo make install
 ```
 **Notes**: If z3 can be found by CMake, "-DZ3_DIR" can be ignored, otherwise you should tell cmake how to find z3 configuration. In my system, the path to configuration **folder** is "/usr/local/lib/cmake/z3/".
 
-## Ruuning ComSpen
+## Running ComSpen
 The tool receive *smt* formula and return **sat** or **unsat** for the satisfiability problems and entailment problems.
 - **sat**: *true* for satisfiability problems.
 - **unsat**: *true* for entailment problems.
@@ -69,3 +70,6 @@ phi: (and (= nil nil)
 psi: null
 result: unsat
 ```
+
+## API
+If you want to use our solvers, you can just include API header in you source files and use *find_package* to include *.so* file.
