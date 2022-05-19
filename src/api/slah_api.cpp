@@ -5,7 +5,7 @@
 #include "component/Predicate.h"
 #include "solvers/slah/Predicate_SLAH.h"
 
-
+using namespace ComSpen;
 
 bool slah_api::isFun(z3::expr expr, std::string fname) {
 	
@@ -137,7 +137,7 @@ z3::check_result slah_api::checkSat(z3::expr phi){
 
 	if(phi.decl().name().str() != "and"){
 
-    	expr_vector items(z3_ctx);
+    	z3::expr_vector items(z3_ctx);
 
     	if(Z3_ast(phi) != nullptr) items.push_back(phi);
 
@@ -182,7 +182,7 @@ z3::check_result slah_api::checkEnt(z3::expr phi, z3::expr psi){
 
 	if(Z3_ast(phi) == nullptr||phi.decl().name().str() != "and"){
 
-	    	expr_vector items(z3_ctx);
+	    	z3::expr_vector items(z3_ctx);
 
 	    	if(Z3_ast(phi) != nullptr) items.push_back(phi);
 
@@ -192,7 +192,7 @@ z3::check_result slah_api::checkEnt(z3::expr phi, z3::expr psi){
 
 	if(Z3_ast(psi) == nullptr||psi.decl().name().str() != "and"){
 
-	    	expr_vector items(z3_ctx);
+	    	z3::expr_vector items(z3_ctx);
 
 	    	if(Z3_ast(psi) != nullptr) items.push_back(psi);
 

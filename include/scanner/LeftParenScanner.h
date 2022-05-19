@@ -11,6 +11,8 @@
 *******************************************/
 #include "TokenScanner.h"
 
+namespace ComSpen {
+
 /*! @class LeftParenScanner
  *  @brief Brief class description
  *
@@ -27,5 +29,7 @@ public:
         return token;
     }
 };
+
+}
 
 #endif

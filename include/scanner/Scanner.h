@@ -16,9 +16,7 @@
 #include "Token.h"
 #include "exception/SyntaxException.h"
 
-using std::istream;
-using std::string;
-using std::vector;
+namespace ComSpen {
 
 /*! @class Scanner
  *  @brief Brief class description
@@ -28,11 +26,11 @@ using std::vector;
 class Scanner 
 {
 public:
-    Token* checkNext(TOKEN type, string info);
+    Token* checkNext(TOKEN type, std::string info);
     Token* nextToken();
 
 public:
-    Scanner(istream& in);
+    Scanner(std::istream& in);
     ~Scanner() {}
     bool next();
     bool skip();
@@ -45,7 +43,7 @@ public:
 
     void clearStrCache() {m_str_cache.clear();}
     void cache(char ch) {m_str_cache.push_back(ch);}
-    const vector<char>& getCache() const { return m_str_cache;}
+    const std::vector<char>& getCache() const { return m_str_cache;}
 
 protected:
 
@@ -55,8 +53,11 @@ protected:
 
     bool m_is_eof; ///< EOF flag
 
-    vector<char> m_str_cache; ///< cache the string value
+    std::vector<char> m_str_cache; ///< cache the string value
 
-    istream& m_in; ///< input stream
+    std::istream& m_in; ///< input stream
 };
+
+}
+
 #endif

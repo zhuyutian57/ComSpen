@@ -4,6 +4,8 @@
 #include "component/Field.h"
 #include "CommandParser.h"
 
+namespace ComSpen {
+
 /*! @class DeclareFunParser
  *  @brief Brief class description
  *
@@ -19,5 +21,7 @@ public:
     virtual void parse(Table* table);
 
 };
+
+}
 
 #endif

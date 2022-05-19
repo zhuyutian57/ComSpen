@@ -11,13 +11,10 @@
 #include "parser/TheoryParser.h"
 #include "Types.h"
 
-
 #include <fstream>
 #include <iostream>
 
-using std::ifstream;
-using std::cout;
-using std::endl;
+using namespace ComSpen;
 
 extern SyntaxErrorTable SYNTAX_ERROR_INFO;
 
@@ -54,9 +51,9 @@ void TheoryParser::parse(Table* table) {
             if (curr->type() == STRING_TOKEN) {
                 value = dynamic_cast<StrToken*>(curr)->value();
             } else if (curr->type() == INT_TOKEN) {
-                value = to_string(dynamic_cast<IntToken*>(curr)->value());
+                value = std::to_string(dynamic_cast<IntToken*>(curr)->value());
             } else if (curr->type() == FLOAT_TOKEN) {
-                value = to_string(dynamic_cast<FloatToken*>(curr)->value());
+                value = std::to_string(dynamic_cast<FloatToken*>(curr)->value());
             } else {
                 string info = "description info is expected!";
                 throw SyntaxException(info, curr->row(), curr->col());

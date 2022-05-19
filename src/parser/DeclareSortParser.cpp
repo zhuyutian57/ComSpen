@@ -10,10 +10,10 @@
 
 #include "parser/DeclareSortParser.h"
 #include "component/SortType.h"
-//#include "component/Z3Buffer.h"
+
+using namespace ComSpen;
 
 extern SyntaxErrorTable SYNTAX_ERROR_INFO;
-//extern Z3Buffer z3_buffer;
 
 /*! @brief Brief function description here
  *

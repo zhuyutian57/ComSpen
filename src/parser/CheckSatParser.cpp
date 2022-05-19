@@ -15,10 +15,10 @@
 #include "solvers/slid_int/alistsolver.h"
 #include "solvers/slah/PASolver.h"
 #include "solvers/slah/Problem_SLAH.h"
-//#include "component/Z3Buffer.h"
+
+using namespace ComSpen;
 
 extern SyntaxErrorTable SYNTAX_ERROR_INFO;
-//extern Z3Buffer z3_buffer;
 
 void CheckSatParser::parse(Table* table) {
   scanner->checkNext(RIGHT_PAREN, SYNTAX_ERROR_INFO[RIGHT_PAREN]);

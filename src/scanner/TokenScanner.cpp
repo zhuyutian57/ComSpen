@@ -10,6 +10,8 @@
 
 #include "scanner/TokenScanner.h"
 
+using namespace ComSpen;
+
 char TokenScanner::m_normalized_table[256] = {};
 
 /*! @brief init normalized table.

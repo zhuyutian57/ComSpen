@@ -16,9 +16,9 @@
 #include "Types.h"
 #include "z3++.h"
 
+namespace ComSpen {
 
 using SortList = vector<SortType*>;
-
 
 /*! @class FuncType
  *  @brief Brief class description
@@ -82,5 +82,7 @@ private:
         std::string type,
         std::map<std::string, std::string>& mp);
 };
+
+}
 
 #endif

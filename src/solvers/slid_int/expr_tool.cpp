@@ -1,6 +1,8 @@
 #include "solvers/slid_int/expr_tool.h"
 #include <fstream>
 
+using namespace ComSpen;
+
 void expr_tool::get_vars(z3::expr exp, std::set<z3::expr, exprcomp> &var_set) {
         if (exp.is_app()) {
                 for (int i=0; i<exp.num_args(); i++) {

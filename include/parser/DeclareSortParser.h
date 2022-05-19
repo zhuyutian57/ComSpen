@@ -12,6 +12,8 @@
 
 #include "CommandParser.h"
 
+namespace ComSpen {
+
 /*! @class DeclareSortParser
  *  @brief Brief class description
  *
@@ -24,7 +26,8 @@ public:
     virtual ~DeclareSortParser() {}
 
     virtual void parse(Table* table);
-
 };
+
+}
 
 #endif

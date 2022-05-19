@@ -12,6 +12,8 @@
 
 #include "TokenScanner.h"
 
+namespace ComSpen {
+
 /*! @class RightParenScanner
  *  @brief Brief class description
  *
@@ -29,4 +31,7 @@ public:
         return token;
     }
 };
+
+}
+
 #endif

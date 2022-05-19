@@ -1,6 +1,8 @@
 #include "solvers/slah/Fts.h"
 #include "exception/SemanticException.h"
 
+using namespace ComSpen;
+
 void Fts::init_state_edge(z3::expr pi_i,z3::expr_vector m_pars,int m_z_size){
 	std::vector<int> state1;
 	std::vector<int> state2;

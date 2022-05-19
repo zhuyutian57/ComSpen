@@ -16,6 +16,9 @@
 #include <vector>
 
 #include "Fts.h"
+
+namespace ComSpen {
+
 /**
  * the hck definition
  * binding arguments (var env)
@@ -28,16 +31,16 @@ private:
         z3::expr_vector m_pars;
         z3::expr m_data;
         z3::expr_vector m_space;
-        int m_z_size;//ÔÚcheck_preds()ÖĞ¸³ÖµÎª¹éÄÉÎ½´ÊµÄÖĞ´æÔÚÁ¿´Êz'µÄ¸öÊı 
-        int m_ex_size;//parseÊ±»ñµÃ¼´wµÄ¸öÊı 
+        int m_z_size;//ï¿½ï¿½check_preds()ï¿½Ğ¸ï¿½ÖµÎªï¿½ï¿½ï¿½ï¿½Î½ï¿½Êµï¿½ï¿½Ğ´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½z'ï¿½Ä¸ï¿½ï¿½ï¿½ 
+        int m_ex_size;//parseÊ±ï¿½ï¿½Ã¼ï¿½wï¿½Ä¸ï¿½ï¿½ï¿½ 
         int m_v_size;
         Fts m_fts;
         
         int type;// 0: true or n<=y-x  1: n<=y-x<=n'  2: n<=y-x<=vj
-        int v_index;//ÔÚset_vÖĞ¸³Öµ 
+        int v_index;//ï¿½ï¿½set_vï¿½Ğ¸ï¿½Öµ 
         int min_bound;
         int max_bound;
-        std::vector<int> v_index_set;//Êµ¼ÊÉÏÓ¦¸Ã´æ²»³öÏÖÔÚsigmaÖĞ£¬Ö»³öÏÖÔÚpiÔ¼ÊøÖĞµÄindex £¬ÕâÀï¼ò»¯ÁË 
+        std::vector<int> v_index_set;//Êµï¿½ï¿½ï¿½ï¿½Ó¦ï¿½Ã´æ²»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sigmaï¿½Ğ£ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½piÔ¼ï¿½ï¿½ï¿½Ğµï¿½index ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 public:
 z3::context& z3_ctx;
 HeapChunk(z3::context& ctx, z3::func_decl fun, z3::expr_vector pars, z3::expr exp, int ex_size);
@@ -62,7 +65,7 @@ HeapChunk(z3::context& ctx, z3::func_decl fun, z3::expr_vector pars, z3::expr ex
 		
 		void set_v();
 		
-        void get_summ(z3::expr &summ,int &k_index,z3::expr_vector args);//ÕâÀïÃæ»¹»áÈ¥ÉèÖÃv_index,v_index_set,v_min_bound 
+        void get_summ(z3::expr &summ,int &k_index,z3::expr_vector args);//ï¿½ï¿½ï¿½ï¿½ï¿½æ»¹ï¿½ï¿½È¥ï¿½ï¿½ï¿½ï¿½v_index,v_index_set,v_min_bound 
         
         int get_v_index(){return v_index;}
 		int get_min_bound(){return min_bound;}
@@ -72,5 +75,6 @@ HeapChunk(z3::context& ctx, z3::func_decl fun, z3::expr_vector pars, z3::expr ex
         void show();
 };
 
+}
 
 #endif

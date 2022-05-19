@@ -7,10 +7,7 @@
 #include <iostream>
 #include <cstdlib>
 
-using std::ifstream;
-using std::cout;
-using std::endl;
-using std::string;
+using namespace ComSpen;
 
 void check(const char* file) {
     TokenScanner::initNormalizedTable();

@@ -6,6 +6,7 @@
 
 #include "z3++.h"
 
+namespace ComSpen {
 
 class Problem;
 class Predicate;
@@ -46,6 +47,6 @@ public:
 
 };
 
-
+}
 
 #endif

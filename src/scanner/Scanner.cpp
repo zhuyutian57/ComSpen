@@ -7,15 +7,18 @@
 *  @date     2018-11-7                     *
 *                                          *
 *******************************************/
+#include <iostream>
 
 #include "scanner/Scanner.h"
 #include "scanner/TokenScannerFactory.h"
 
+using namespace ComSpen;
+
+namespace ComSpen {
+
 extern TokenScannerFactory tokenScannerFactory;
 
-#include <iostream>
-using std::cout;
-using std::endl;
+}
 
 /**
 * @brief constructor 
@@ -23,8 +26,8 @@ using std::endl;
 * @param in input stream 
 *
 */
-Scanner::Scanner(istream& in)
-    :m_line(1),
+Scanner::Scanner(std::istream& in)
+    : m_line(1),
     m_position(0),
     m_curr(0),
     m_is_eof(false),
@@ -41,7 +44,7 @@ Scanner::Scanner(istream& in)
  * @param info Parameter description
  * @return Return parameter description
  */
-Token* Scanner::checkNext(TOKEN type, string info) {
+Token* Scanner::checkNext(TOKEN type, std::string info) {
 
     if (skip()) {
         TokenScanner* ts = nullptr;

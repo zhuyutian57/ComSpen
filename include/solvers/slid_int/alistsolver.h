@@ -3,6 +3,8 @@
 
 #include "listsolver.h"
 
+namespace ComSpen {
+
 class alistsolver: public listsolver {
 protected:
     // match
@@ -14,5 +16,6 @@ public:
 
 };
 
+}
 
 #endif // ALISTSOLVER_H_INCLUDED

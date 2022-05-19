@@ -3,9 +3,7 @@
 #include <fstream>
 #include <random>
 
-//extern z3::context z3_ctx;
-//extern Z3Buffer z3_buffer;
-
+using namespace ComSpen;
 
 FA::FA(const FA& other):z3_ctx(other.z3_ctx), z3_buffer(other.z3_buffer) {
     m_init_state = other.m_init_state;

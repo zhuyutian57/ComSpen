@@ -14,6 +14,7 @@
 #include "component/Predicate.h"
 #include "expr_tool.h"
 
+namespace ComSpen {
 
 /**
  * the recursive definition
@@ -58,5 +59,6 @@ public:
         virtual void show();
 };
 
+}
 
 #endif

@@ -12,6 +12,8 @@
 
 #include "CommandParser.h"
 
+namespace ComSpen {
+
 /*! @class DefineFunctionRecParser
  *  @brief Brief class description
  *
@@ -24,7 +26,8 @@ public:
     virtual ~DefineFunParser() {}
 
     virtual void parse(Table* table);
-
 };
+
+}
 
 #endif

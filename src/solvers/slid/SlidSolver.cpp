@@ -1,5 +1,7 @@
 #include "solvers/slid/SlidSolver.h"
 
+using namespace ComSpen;
+
 SlidSolver::SlidSolver(z3::context& ctx, Problem* problem)
   : z3_ctx(ctx), z3_sol(ctx), problem(problem) {}
 

@@ -4,6 +4,7 @@
 #include <map>
 #include <algorithm>
 
+namespace ComSpen {
 
 class MonaExecutor {
 private:
@@ -22,5 +23,6 @@ public:
 
 };
 
+}
 
 #endif /* MONA_EXECUTOR_H */

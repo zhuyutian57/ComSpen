@@ -15,8 +15,7 @@
 #include "component/Z3Buffer.h"
 #include "component/Predicate.h"
 
-using namespace z3;
-using namespace std;
+namespace ComSpen {
 
 class Predicate_SLID_SET:public Predicate {
 public:
@@ -28,66 +27,68 @@ public:
         z3::expr_vector pars, z3::expr base, z3::expr rec);
     virtual ~Predicate_SLID_SET();
 
-    void getABC(expr_vector& alpha, expr_vector& beta, expr_vector& gamma);
-    void getAlpha(expr_vector& alpha);
-    void getBeta(expr_vector& beta);
-    void getGamma(expr_vector& gamma);
-    void getX(expr_vector& x);
-    expr_vector& getPars() {return m_pars;}
-    expr getFreeItem() {return m_free_item;}
+    void getABC(z3::expr_vector& alpha, z3::expr_vector& beta, z3::expr_vector& gamma);
+    void getAlpha(z3::expr_vector& alpha);
+    void getBeta(z3::expr_vector& beta);
+    void getGamma(z3::expr_vector& gamma);
+    void getX(z3::expr_vector& x);
+    z3::expr_vector& getPars() {return m_pars;}
+    z3::expr getFreeItem() {return m_free_item;}
 
-    expr getPhip() {return m_deltap;}
+    z3::expr getPhip() {return m_deltap;}
 
-    expr getUnfold1();
-    expr getUnfold2(expr_vector& new_vars);
+    z3::expr getUnfold1();
+    z3::expr getUnfold2(z3::expr_vector& new_vars);
 
-    expr subPhiR2(expr e1, expr e2);
-    expr getDataItem(expr e1);
+    z3::expr subPhiR2(z3::expr e1, z3::expr e2);
+    z3::expr getDataItem(z3::expr e1);
     int getCase() {return m_case_i;}
 
     int getEinGamma();
     bool getStrt();
-    expr getTr();
+    z3::expr getTr();
 
-    expr apply(expr_vector& args);
-    expr unfoldPredicate(expr_vector& args);
+    z3::expr apply(z3::expr_vector& args);
+    z3::expr unfoldPredicate(z3::expr_vector& args);
 
     virtual void show();
 
 private:
-    expr getDeltaP();
+    z3::expr getDeltaP();
 
-    expr getTrPossiblelyEmpty();
-    expr getTrSurelyNonempty();
-    expr getUnfoldDeltap2();
-    expr getUnfoldDeltap3();
+    z3::expr getTrPossiblelyEmpty();
+    z3::expr getTrSurelyNonempty();
+    z3::expr getUnfoldDeltap2();
+    z3::expr getUnfoldDeltap3();
 
     void initSucc();
     void initStrtPars();
-    int getCard(expr& var, expr_vector& svars);
+    int getCard(z3::expr& var, z3::expr_vector& svars);
     void setMatrix(int (&matrix)[4][4], int i, int j, int val);
     bool floyd(int (&matrix)[4][4]);
-    expr getIJExpr(int (&matrix)[4][4], int i, int j, expr_vector& svars);
-    expr getIExpr(int i, expr_vector& svars);
+    z3::expr getIJExpr(int (&matrix)[4][4], int i, int j, z3::expr_vector& svars);
+    z3::expr getIExpr(int i, z3::expr_vector& svars);
 
     string newName(string name, int i);
 
 private:
-    expr m_data;
-    expr m_pto;
-    expr m_rec_app;
-    expr m_deltap;
+    z3::expr m_data;
+    z3::expr m_pto;
+    z3::expr m_rec_app;
+    z3::expr m_deltap;
 
-    expr m_succ;
-    expr_vector m_succ_pars;
+    z3::expr m_succ;
+    z3::expr_vector m_succ_pars;
 
     int m_case_i;
-    expr_vector m_svars;
-    expr_vector m_strt_items;
-    expr_vector m_strt_pars;
+    z3::expr_vector m_svars;
+    z3::expr_vector m_strt_items;
+    z3::expr_vector m_strt_pars;
 
-    expr m_tr;
-    expr m_free_item;
+    z3::expr m_tr;
+    z3::expr m_free_item;
 };
+
+}
 
 #endif

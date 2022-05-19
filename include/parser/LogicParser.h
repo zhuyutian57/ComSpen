@@ -12,6 +12,7 @@
 
 #include "Parser.h"
 
+namespace ComSpen {
 
 /*! @class LogicParser
  *  @brief Brief class description
@@ -32,5 +33,7 @@ private:
     const string prefix="../config/Logics/";
     std::string logic;
 };
+
+}
 
 #endif

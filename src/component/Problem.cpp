@@ -11,7 +11,7 @@
 #include "component/Problem.h"
 #include "Types.h"
 
-//z3::context z3_ctx;
+using namespace ComSpen;
 
 Problem::Problem(z3::context& ctx):
     z3_ctx(ctx), m_phi(ctx), m_psi(ctx), m_pred(nullptr) {}

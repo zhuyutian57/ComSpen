@@ -13,6 +13,8 @@
 #include "Relation.h"
 #include "Problem_SLAH.h"
 
+namespace ComSpen {
+
 class PASolver{
 private:
 	Problem_SLAH* m_problem;
@@ -88,7 +90,6 @@ public:
 	bool check_sorted_entl(std::vector<z3::expr_vector> sort, z3::expr dataC, z3::expr spaceC, z3::expr dataD, z3::expr spaceD, z3::expr_vector &ex_var_set, z3::expr_vector &pi_ex_set);
 };
 
-
-
+}
 
 #endif

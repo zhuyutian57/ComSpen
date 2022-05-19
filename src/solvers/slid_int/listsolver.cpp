@@ -1,6 +1,6 @@
 #include "solvers/slid_int/listsolver.h"
 
-//extern z3::context z3_ctx;
+using namespace ComSpen;
 
 /**
  *###################### listsolver ####################################
@@ -173,7 +173,7 @@ z3::expr listsolver::get_abstraction(z3::expr &formula, z3::expr_vector& new_boo
 
 void listsolver::get_data_space(z3::expr &formula, z3::expr &data, z3::expr &space) {
 	if(Z3_ast(formula)==nullptr) return;
-	expr_vector data_items(z3_ctx);
+	z3::expr_vector data_items(z3_ctx);
     data_items.push_back(z3_ctx.int_const("nil") == 0); // nil == 0
     int num = formula.num_args();
     int data_num = num-1;
@@ -496,7 +496,7 @@ bool listsolver::is_emp(z3::expr& abs, z3::expr& space) {
 
         std::string source_name = space.arg(i).arg(0).to_string();
         if (source_name == "nil") continue;
-        std::string bool_name = "["+source_name+","+to_string(i)+"]";
+        std::string bool_name = "["+source_name+","+ std::to_string(i)+"]";
         allocated_vec.push_back(z3_ctx.bool_const(source_name.c_str()));
     }
 
@@ -570,7 +570,7 @@ bool listsolver::check_allocating_plans(listgraph& g_phi, listgraph& g_psi, z3::
 
                             construct_graph(m_phi_const_vec, m_phi_const_eq_class_vec, omega_eq_class_vec, m_phi_space, omega_g_i1);
 
-                            std::string file_name = "omega_g_"+to_string(i)+"_"+to_string(j++)+".dot";
+                            std::string file_name = "omega_g_"+ std::to_string(i)+"_"+ std::to_string(j++)+".dot";
                             omega_g_i = omega_g_i1;
                             // omega_g_i.print(m_ctx.phi_const_vec, m_ctx.phi_space, file_name);
                             // exit(-1);
@@ -982,7 +982,7 @@ bool listsolver::match_path_to_atom_space(std::vector<int> &paths, z3::expr &psi
                     int expected_size = psi_arg_size/2;
                     if (phi_vars.size() < expected_size) {
                         for (int j=phi_vars.size(); j<expected_size; j++) {
-                            std::string new_data_name = "_data_"+to_string(counter++);
+                            std::string new_data_name = "_data_"+ std::to_string(counter++);
                             z3::expr new_data_var = z3_ctx.int_const(new_data_name.c_str());
                             phi_vars.push_back(new_data_var);
                             left_data_items.push_back(new_data_var == psi_atom.arg(j));
@@ -1057,7 +1057,7 @@ bool listsolver::match_path_to_atom_space(std::vector<int> &paths, z3::expr &psi
                             int expected_size = psi_arg_size/2;
                             if (var_vec1.size() < expected_size) {
                                 for (int j=var_vec1.size(); j<expected_size; j++) {
-                                    std::string new_data_name = "_data_"+to_string(counter++);
+                                    std::string new_data_name = "_data_"+ std::to_string(counter++);
                                     z3::expr new_data_var = z3_ctx.int_const(new_data_name.c_str());
                                     var_vec1.push_back(new_data_var);
                                     if (i == 0) {
@@ -1090,7 +1090,7 @@ bool listsolver::match_path_to_atom_space(std::vector<int> &paths, z3::expr &psi
                         int expected_size = psi_arg_size/2;
                         if (var_vec2.size() < expected_size) {
                             for (int j=var_vec2.size(); j<expected_size; j++) {
-                                std::string new_data_name = "_data_"+to_string(counter++);
+                                std::string new_data_name = "_data_"+ std::to_string(counter++);
                                 z3::expr new_data_var = z3_ctx.int_const(new_data_name.c_str());
                                 var_vec2.push_back(new_data_var);
                                 if(!is_pto1) {
@@ -1179,7 +1179,7 @@ bool listsolver::match_path_to_atom_space(std::vector<int> &paths, z3::expr &psi
                         int expected_size = psi_arg_size/2;
                         if (var_vec2.size() < expected_size) {
                             for (int j=var_vec2.size(); j<expected_size; j++) {
-                                std::string new_data_name = "_data_"+to_string(counter++);
+                                std::string new_data_name = "_data_"+ std::to_string(counter++);
                                 z3::expr new_data_var = z3_ctx.int_const(new_data_name.c_str());
                                 var_vec2.push_back(new_data_var);
                                 // left_data_items.push_back(new_data_var == psi_atom.arg(psi_arg_size/2+j));
@@ -1395,7 +1395,7 @@ void listsolver::unfold_pred(Predicate_SLID_INT *pred, std::vector<z3::expr> &at
         for (int i=0; i<size/2; i++) {
                 pred1_args.push_back(atom.arg(i));
                 z3::sort st = atom.arg(i).get_sort();
-                std::string new_name = "pred_var_"+to_string(i)+"_"+to_string(unfold_idx);
+                std::string new_name = "pred_var_"+std::to_string(i)+"_"+std::to_string(unfold_idx);
                 z3::expr new_var = z3_ctx.constant(new_name.c_str(), st);
                 // new_vars.push_back(new_var);
                 pred2_args.push_back(new_var);
@@ -1449,7 +1449,7 @@ void listsolver::unfold_pto(Predicate_SLID_INT *pred, z3::expr& atom_data, std::
                 std::string name = x_h[j].to_string();
                 name = name.replace(name.find(":"), 1, "");
                 name = name.replace(name.find(" "), 1, "_");
-                std::string ss = name.substr(1, name.length()-2)+"_"+to_string(unfold_idx);
+                std::string ss = name.substr(1, name.length()-2)+"_"+std::to_string(unfold_idx);
                 z3::expr new_var = z3_ctx.constant(ss.c_str(), st);
                 // new_vars.push_back(new_var);
                 a_args.push_back(new_var);
@@ -1492,7 +1492,7 @@ void listsolver::get_omega_phi_abs(z3::expr &phi_abs, listgraph &g, std::vector<
                                         listgraph::edge_t edge = cycle[k];
                                         int atom_idx = edge.second;
                                         z3::expr E = space.arg(atom_idx).arg(0);
-                                        std::string E_bool_name = "["+E.to_string()+","+to_string(atom_idx)+"]";
+                                        std::string E_bool_name = "["+E.to_string()+","+std::to_string(atom_idx)+"]";
                                         z3::expr E_bool = z3_ctx.bool_const(E_bool_name.c_str());
                                         omega_phi_abs = omega_phi_abs && (!E_bool);
                                 }
@@ -1509,7 +1509,7 @@ void listsolver::get_omega_phi_abs(z3::expr &phi_abs, listgraph &g, std::vector<
                                 listgraph::edge_t edge = cycle[k];
                                 int atom_idx = edge.second;
                                 z3::expr E = space.arg(atom_idx).arg(0);
-                                std::string E_bool_name = "["+E.to_string()+","+to_string(atom_idx)+"]";
+                                std::string E_bool_name = "["+E.to_string()+","+std::to_string(atom_idx)+"]";
                                 z3::expr E_bool = z3_ctx.bool_const(E_bool_name.c_str());
 
                                 if (Z3_ast(zeta) == 0) {
@@ -1555,7 +1555,7 @@ void listsolver::construct_graph(std::vector<z3::expr> &phi_const_vec, std::vect
                         // abs(\phi) \and [E,i]
                         z3::expr E = atom.arg(0);
                         //z3::expr F = atom.arg(atom.num_args()/2);
-                        std::string bool_name = "["+E.to_string()+","+to_string(i)+"]";
+                        std::string bool_name = "["+E.to_string()+","+std::to_string(i)+"]";
 
                         z3::expr bool_var = z3_ctx.bool_const(bool_name.c_str());
 
@@ -1997,7 +1997,7 @@ z3::expr listsolver::pred2abs(z3::expr &atom, int i, z3::expr_vector& new_bools)
         //if (atom.to_string() == "emp") return z3_ctx().bool_val(true);
 
         std::string source = atom.arg(0).to_string();
-        std::string new_name = "["+source+","+to_string(i)+"]";
+        std::string new_name = "["+source+","+std::to_string(i)+"]";
         // 1 introduce new vars
         z3::expr source_bool = z3_ctx.bool_const(new_name.c_str()); // [Z1,i]
         new_bools.push_back(source_bool);
@@ -2019,7 +2019,7 @@ z3::expr listsolver::pred2abs(z3::expr &atom, int i, z3::expr_vector& new_bools)
 
 z3::expr listsolver::pred_unfold_0(z3::expr& atom, int i, z3::expr_vector& new_bools) {
         std::string source = atom.arg(0).to_string();
-        std::string new_name = "["+source+","+to_string(i)+"]";
+        std::string new_name = "["+source+","+std::to_string(i)+"]";
         //std::string pred_name = atom.decl().name().str();
         //int index = 0;//index_of_pred(pred_name);
         //predicate pred = m_problem.get_pred(index); // get predicate definition
@@ -2031,7 +2031,7 @@ z3::expr listsolver::pred_unfold_0(z3::expr& atom, int i, z3::expr_vector& new_b
 
         // 1.2 predicate atom
         // 1.2.1 supposing atom is empty
-        std::string k_name = "[k,"+to_string(i)+"]";
+        std::string k_name = "[k,"+std::to_string(i)+"]";
         z3::expr k_i_int = z3_ctx.int_const(k_name.c_str()); // k_i
 
         z3::expr or_0(z3_ctx);
@@ -2052,7 +2052,7 @@ z3::expr listsolver::pred_unfold_0(z3::expr& atom, int i, z3::expr_vector& new_b
 
 z3::expr listsolver::pred_unfold_ge1(z3::expr& atom, int i, z3::expr_vector& new_bools) {
     std::string source = atom.arg(0).to_string();
-    std::string new_name = "["+source+","+to_string(i)+"]";
+    std::string new_name = "["+source+","+std::to_string(i)+"]";
 //    std::string pred_name = atom.decl().name().str();
 //    int index = index_of_pred(pred_name);
 //    predicate pred = m_ctx.get_pred(index); // get predicate definition
@@ -2064,7 +2064,7 @@ z3::expr listsolver::pred_unfold_ge1(z3::expr& atom, int i, z3::expr_vector& new
 
     // 1.2 predicate atom
     // 1.2.1 supposing atom is empty
-    std::string k_name = "[k,"+to_string(i)+"]";
+    std::string k_name = "[k,"+std::to_string(i)+"]";
     z3::expr k_i_int = z3_ctx.int_const(k_name.c_str()); // k_i
     // 1.2.2 supposing atom is not emtpy
     z3::expr phi_pd = delta_ge1_predicate; // the predicate data closure
@@ -2099,7 +2099,7 @@ z3::expr listsolver::pred_unfold_ge1(z3::expr& atom, int i, z3::expr_vector& new
             z3::expr beta_idx = atom.arg(size/2+idx+1);
             z3::expr beta_idx_int = z3_ctx.int_const(beta_idx.to_string().c_str());
 
-            std::string beta_idx_name = "["+beta_idx.to_string()+","+to_string(i)+"]";
+            std::string beta_idx_name = "["+beta_idx.to_string()+","+std::to_string(i)+"]";
             z3::expr beta_idx_bool = z3_ctx.bool_const(beta_idx_name.c_str());
             new_bools.push_back(beta_idx_bool); // new bool var
 

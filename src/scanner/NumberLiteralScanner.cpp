@@ -10,6 +10,7 @@
 
 #include "scanner/NumberLiteralScanner.h"
 
+using namespace ComSpen;
 
 /*! @brief Brief function description here
  *
@@ -55,20 +56,19 @@ Token* NumberLiteralScanner::scan(Scanner& scanner) {
     if (what == 0) {
         IntToken* token = m_buffer.getIntToken();
         token->reset(INT_TOKEN, line, col,
-                std::stoi(string(scanner.getCache().begin(), 
+                std::stoi(std::string(scanner.getCache().begin(), 
                         scanner.getCache().end())));
         return token;
     } else if (what == 1) {
         FloatToken* token = m_buffer.getFloatToken();
         token->reset(FLOAT_TOKEN, line, col,
-                std::stof(string(scanner.getCache().begin(),
+                std::stof(std::string(scanner.getCache().begin(),
                         scanner.getCache().end())));
         return token;
     } else {
         StrToken* token = m_buffer.getStrToken();
         token->reset(SYMBOL_TOKEN, line, col,
-                string(scanner.getCache().begin(), 
-                    scanner.getCache().end()));
+                std::string(scanner.getCache().begin(), scanner.getCache().end()));
         return token;
     }
 }
@@ -81,7 +81,7 @@ Token* NumberLiteralScanner::scan(Scanner& scanner) {
  * @return Return parameter description
  */
 bool NumberLiteralScanner::stop(char curr) {
-    set<char> stopset;
+    std::set<char> stopset;
     stopset.insert(' ');
     stopset.insert(')');
     stopset.insert('(');

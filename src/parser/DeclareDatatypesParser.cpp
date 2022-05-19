@@ -10,10 +10,9 @@
 
 #include "parser/DeclareDatatypesParser.h"
 
-//#include "component/Z3Buffer.h"
+using namespace ComSpen;
 
 extern SyntaxErrorTable SYNTAX_ERROR_INFO;
-//extern Z3Buffer z3_buffer;
 
 void DeclareDatatypesParser::parse(Table* table) {
     scanner->checkNext(LEFT_PAREN, SYNTAX_ERROR_INFO[LEFT_PAREN]);

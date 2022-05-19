@@ -14,8 +14,7 @@
 #include <string>
 #include <iostream>
 
-using std::string;
-using std::to_string;
+namespace ComSpen {
 
 /*! @class BaseException
  *  @brief Brief class description
@@ -25,14 +24,14 @@ using std::to_string;
 class BaseException : public std::exception
 {
 public:
-    BaseException(string prefix, string info, int row=-1, int col=-1)
+    BaseException(std::string prefix, std::string info, int row=-1, int col=-1)
         :m_prefix(prefix), m_info(info), m_row(row), m_col(col) 
     {
 		if (m_row == -1) {
             m_what = (m_prefix + ": " + m_info);
         } else {
-            m_what = (m_prefix + " (" + to_string(m_row) + ", " 
-                    + to_string(m_col) + "): " + m_info);
+            m_what = (m_prefix + " (" + std::to_string(m_row) + ", " 
+                    + std::to_string(m_col) + "): " + m_info);
         }
 	}
     virtual ~BaseException() {}
@@ -40,15 +39,17 @@ public:
         return m_what.c_str(); 
     }
 
-    virtual void setInfo(string info) {m_info = info;}
+    virtual void setInfo(std::string info) {m_info = info;}
 
 protected:
-    string m_prefix;
-    string m_info; ///< Member description
+    std::string m_prefix;
+    std::string m_info; ///< Member description
     int m_row;
     int m_col; 
 private:
-    string m_what;
+    std::string m_what;
 };
+
+}
 
 #endif

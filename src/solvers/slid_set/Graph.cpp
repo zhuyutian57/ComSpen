@@ -6,6 +6,8 @@
 
 #include "solvers/slid_set/Graph.h"
 
+using namespace ComSpen;
+
 /* --------------------------------------------------------------------------*/
 /**
  * @synopsis  Graph initialize a Graph using abstraction

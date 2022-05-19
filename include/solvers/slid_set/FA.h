@@ -10,6 +10,7 @@
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/graph_traits.hpp>
 
+namespace ComSpen {
 
 class transition {
 public:
@@ -90,10 +91,8 @@ private:
     void getValidStates(int accept_state, std::set<int>& valid_ids);
     bool isSameAlphabet(FA& other);
     bool intersetEdge(std::vector<std::string>& vec1, std::vector<std::string>& vec2, std::vector<std::string>& result);
-
-
-
 };
 
+}
 
 #endif /* FA_H */

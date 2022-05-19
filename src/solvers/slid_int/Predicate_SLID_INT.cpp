@@ -1,6 +1,6 @@
 #include "solvers/slid_int/Predicate_SLID_INT.h"
 
-//extern z3::context z3_ctx;
+using namespace ComSpen;
 
 Predicate_SLID_INT::Predicate_SLID_INT(z3::context& ctx, z3::func_decl fun, z3::expr_vector pars, z3::expr base, z3::expr rec)
         :Predicate(ctx, fun.name().str(), pars,base,rec), 

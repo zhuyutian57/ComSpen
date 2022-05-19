@@ -1,8 +1,7 @@
 #include "solvers/slid_set/MonaTranslator.h"
 #include <fstream>
 
-//extern z3::context z3_ctx;
-//extern Z3Buffer z3_buffer;
+using namespace ComSpen;
 
 std::string mop_strs[] = {"UNDEF",
     " & ", " | ", "~", " => ", " <= ",

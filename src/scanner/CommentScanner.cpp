@@ -10,6 +10,7 @@
 
 #include "scanner/CommentScanner.h"
 
+using namespace ComSpen;
 
 /*! @brief Brief function description here
  *

@@ -10,6 +10,7 @@
 
 #include "scanner/SymbolScanner.h"
 
+using namespace ComSpen;
 
 /*! @brief Brief function description here
  *
@@ -37,7 +38,7 @@ Token* SymbolScanner::scan(Scanner& scanner) {
             if (simple) scanner.back(-1);
             StrToken* token = m_buffer.getStrToken();
             token->reset(SYMBOL_TOKEN, line, col, 
-                    string(scanner.getCache().begin(), scanner.getCache().end()));
+                    std::string(scanner.getCache().begin(), scanner.getCache().end()));
             return token;
         } 
         scanner.cache(scanner.curr());
@@ -57,7 +58,7 @@ Token* SymbolScanner::scan(Scanner& scanner) {
  * @return Return parameter description
  */
 bool SymbolScanner::stop(char curr) {
-    set<char> stopset;
+    std::set<char> stopset;
     stopset.insert(' ');
     stopset.insert(')');
     stopset.insert('(');

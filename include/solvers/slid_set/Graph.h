@@ -10,6 +10,7 @@
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/graph_traits.hpp>
 
+namespace ComSpen {
 
 class Graph {
 public:
@@ -98,4 +99,7 @@ public:
     adjacency_list adj_list;
 
 };
+
+}
+
 #endif // 

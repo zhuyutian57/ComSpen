@@ -1,5 +1,7 @@
 #include "component/Field.h"
 
+using namespace ComSpen;
+
 Field::Field(std::string name, SortType* sort)
   : name(name), sort(sort) {}
 

@@ -10,11 +10,10 @@
 
 #include "parser/CommandParser.h"
 #include "parser/CommandParserFactory.h"
-//#include "component/Z3Buffer.h"
+
+using namespace ComSpen;
 
 extern SyntaxErrorTable SYNTAX_ERROR_INFO;
-//extern z3::context z3_ctx;
-//extern Z3Buffer z3_buffer;
 
 void CommandParser::setScanner(Scanner* scanner) { this->scanner = scanner; }
 void CommandParser::setFile(string file) { this->set_input(file); }

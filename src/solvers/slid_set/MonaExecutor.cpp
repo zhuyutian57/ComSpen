@@ -2,6 +2,8 @@
 
 #include <fstream>
 
+using namespace ComSpen;
+
 /**
  * run mona, and get a model from output
  * @return true, if sat

@@ -12,6 +12,8 @@
 
 #include "CommandParser.h"
 
+namespace ComSpen {
+
 class DeclareConstParser: public CommandParser
 {
 public:
@@ -20,5 +22,7 @@ public:
 
     virtual void parse(Table* table);
 };
+
+}
 
 #endif

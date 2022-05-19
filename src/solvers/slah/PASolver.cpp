@@ -2,9 +2,8 @@
 #include "solvers/slah/Predicate_SLAH.h"
 #include "exception/SemanticException.h"
 #include "exception/SyntaxException.h"
-//#include "time_tool.h"
 
-//extern z3::context z3_ctx;
+using namespace ComSpen;
 
 PASolver::PASolver(z3::context& ctx) 
 : m_problem(nullptr), z3_sol(ctx), k_index(0), z_newvar_index(0), w_newvar_index(0), ex_newvar_index(0),rel(ctx), z3_ctx(ctx){}
@@ -415,7 +414,7 @@ z3::expr_vector PASolver::get_conjunct(z3::expr formula){
 void PASolver::get_data_space(z3::expr &formula, z3::expr &data, z3::expr &space) {
 	//formula��assertparserʱ����������ֻ��һ��ԭ��atom���д��(and atom) ��//disjunct�п�����ԭ�ӻ�ռ乫ʽ  
 	if(Z3_ast(formula)==nullptr) return;
-	expr_vector data_items(z3_ctx);
+	z3::expr_vector data_items(z3_ctx);
     data_items.push_back(z3_ctx.int_const("nil") == 0); // nil == 0
     
     Predicate_SLAH *pdef = dynamic_cast<Predicate_SLAH *>(m_problem->getPredicate()); 
@@ -428,7 +427,7 @@ void PASolver::get_data_space(z3::expr &formula, z3::expr &data, z3::expr &space
 				if(is_fun(conjunct_set[i],"sep")){
 					space = conjunct_set[i];
 				}else{
-					expr_vector space_items(z3_ctx);
+					z3::expr_vector space_items(z3_ctx);
 					space_items.push_back(conjunct_set[i]);
 					space = new_sep(space_items);
 				}

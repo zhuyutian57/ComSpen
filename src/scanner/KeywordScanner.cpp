@@ -10,6 +10,8 @@
 
 #include "scanner/KeywordScanner.h"
 
+using namespace ComSpen;
+
 /*! @brief Brief function description here
  *
  *  Detailed description
@@ -31,7 +33,7 @@ Token* KeywordScanner::scan(Scanner& scanner) {
 
             StrToken* token = m_buffer.getStrToken();
             token->reset(KEYWORD_TOKEN, line, col, 
-                    string(scanner.getCache().begin(), scanner.getCache().end()));
+                    std::string(scanner.getCache().begin(), scanner.getCache().end()));
 
             return token;
         }
@@ -52,7 +54,7 @@ Token* KeywordScanner::scan(Scanner& scanner) {
  * @return Return parameter description
  */
 bool KeywordScanner::stop(char curr) {
-    set<char> stopset;
+    std::set<char> stopset;
     stopset.insert(' ');
     stopset.insert(')');
     stopset.insert('(');

@@ -13,6 +13,7 @@
 
 #include "component/Predicate.h"
 
+namespace ComSpen {
 
 /**
  * the recursive definition
@@ -25,7 +26,7 @@ private:
 	z3::func_decl m_fun;
 	z3::expr m_rec_hck;
     z3::expr m_rec_app;
-    int m_ex_size;//parse时赋值 
+    int m_ex_size;//parse时锟斤拷值 
 	int m_z_size;
 	int m_v_size; 
 public:
@@ -43,5 +44,6 @@ public:
     virtual void show();
 };
 
+}
 
 #endif

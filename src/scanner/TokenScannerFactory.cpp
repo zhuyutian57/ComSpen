@@ -10,6 +10,8 @@
 
 #include "scanner/TokenScannerFactory.h"
 
+using namespace ComSpen;
+
 /*! @brief Build TokenScanner
  *
  *  Detailed description

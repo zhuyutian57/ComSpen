@@ -10,6 +10,8 @@
 
 #include "parser/DeclareHeapParser.h"
 
+using namespace ComSpen;
+
 extern SyntaxErrorTable SYNTAX_ERROR_INFO;
 
 void DeclareHeapParser::parse(Table* table) {

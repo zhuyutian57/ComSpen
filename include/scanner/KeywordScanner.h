@@ -12,6 +12,8 @@
 
 #include "TokenScanner.h"
 
+namespace ComSpen {
+
 /*! @class KeywordScanner
  *  @brief Brief class description
  *
@@ -27,5 +29,7 @@ public:
 protected:
     virtual bool stop(char curr);
 };
+
+}
 
 #endif

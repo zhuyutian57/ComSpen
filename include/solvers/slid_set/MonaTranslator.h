@@ -4,6 +4,8 @@
 #include <map>
 #include "component/Z3Buffer.h"
 
+namespace ComSpen {
+
 enum mona_op {
     MONA_AND=1,
     MONA_OR,
@@ -45,5 +47,7 @@ public:
     void writeToFile(std::string name);
     std::string getStr(z3::expr item, std::set<std::string>& set_items);
 };
+
+}
 
 #endif /* MONA_TRANSLATOR_H */

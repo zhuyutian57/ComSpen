@@ -13,6 +13,8 @@
 
 #include "BaseException.h"
 
+namespace ComSpen {
+
 /*! @class SyntaxException
  *  @brief Brief class description
  *
@@ -21,10 +23,12 @@
 class SyntaxException : public BaseException
 {
 public:
-    SyntaxException(string info, int row=-1, int col=-1)
+    SyntaxException(std::string info, int row=-1, int col=-1)
         : BaseException("SYNTAX_ERROR", info, row, col) {}
     virtual ~SyntaxException() {}
  
 };
+
+}
 
 #endif

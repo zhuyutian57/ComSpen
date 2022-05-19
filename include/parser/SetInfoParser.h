@@ -12,6 +12,8 @@
 
 #include "CommandParser.h"
 
+namespace ComSpen {
+
 /*! @class SetLogicParser
  *  @brief Brief class description
  *
@@ -25,5 +27,7 @@ public:
 
     virtual void parse(Table* table);
 };
+
+}
 
 #endif

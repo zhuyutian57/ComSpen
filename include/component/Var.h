@@ -7,7 +7,7 @@
 #include "component/Z3Buffer.h"
 #include "z3++.h"
 
-using namespace z3;
+namespace ComSpen {
 
 /*! @class Var
  *  @brief Brief class description
@@ -26,7 +26,7 @@ public:
 
     string getName() {return m_var_name;}
     SortType* getSort() {return m_sort_type;}
-    operator expr();
+    operator z3::expr();
 
     void show() {cout << m_var_name << " "; if (m_sort_type != nullptr) cout << m_sort_type->getName() << " ";}
 
@@ -34,5 +34,7 @@ protected:
     string m_var_name; ///< Member description
     SortType* m_sort_type; ///< Sort
 };
+
+}
 
 #endif

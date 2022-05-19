@@ -2,8 +2,8 @@
 #define TOKEN_H_
 
 #include <iostream>
-using std::string;
 
+namespace ComSpen {
 
 /*****************************************
 *  @file     Token.h                       *
@@ -21,7 +21,7 @@ enum TOKEN
 	RIGHT_PAREN, ///< )
 	KEYWORD_TOKEN, ///< key word 
 	SYMBOL_TOKEN, ///< id 
-	STRING_TOKEN, ///< constant string 
+	STRING_TOKEN, ///< constant std::string 
 	INT_TOKEN, ///< constant int 
 	FLOAT_TOKEN, ///< constant float 
 	BV_TOKEN, ///< bit vector 
@@ -40,8 +40,8 @@ private:
     TOKEN m_type;
     int m_row;
     int m_col;
-    static string type_str(TOKEN type) {
-        string type_strs[] = {"NULL_TOKEN", "LEFT_PAREN", "RIGHT_PAREN", 
+    static std::string type_str(TOKEN type) {
+        std::string type_strs[] = {"NULL_TOKEN", "LEFT_PAREN", "RIGHT_PAREN", 
            "KEYWORD_TOKEN", "SYMBOL_TOKEN", "STRING_TOKEN", "INT_TOKEN",
            "FLOAT_TOKEN", "BV_TOKEN", "EOF_TOKEN"};
        return type_strs[type]; 
@@ -72,19 +72,19 @@ public:
 class StrToken: public Token {
 
 private:
-    string m_value;
+    std::string m_value;
 
 public:
-    StrToken(TOKEN type, int row, int col, string value)
+    StrToken(TOKEN type, int row, int col, std::string value)
         : Token(type, row, col), m_value(value) {}
 
-    void reset(TOKEN type, int row, int col, string value) {
+    void reset(TOKEN type, int row, int col, std::string value) {
         Token::reset(type, row, col);
         m_value = value;
     }
 
-    const string& value() const {return m_value;}
-    void setValue(string& value) {m_value = value;}
+    const std::string& value() const {return m_value;}
+    void setValue(std::string& value) {m_value = value;}
     virtual ~StrToken() {}
     virtual void display() {Token::display(); std::cout << " -> " << m_value;}
 };
@@ -137,5 +137,7 @@ public:
     virtual ~IntToken() {}
     virtual void display() {Token::display(); std::cout << " -> " << m_value;}
 };
+
+}
 
 #endif

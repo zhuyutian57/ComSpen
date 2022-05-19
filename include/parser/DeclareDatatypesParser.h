@@ -12,6 +12,7 @@
 
 #include "CommandParser.h"
 
+namespace ComSpen {
 
 class DeclareDatatypesParser: public CommandParser
 {
@@ -23,8 +24,7 @@ public:
 
 };
 
-
-
+}
 
 #endif
 

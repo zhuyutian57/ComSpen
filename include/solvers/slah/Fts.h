@@ -21,6 +21,8 @@
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/graph_traits.hpp>
 
+namespace ComSpen {
+
 struct path{
 	std::vector<int> source;
 	std::vector<int> dest;
@@ -58,6 +60,8 @@ public:
 	void print();
 	void print_path();
 	void print_transition();
-
 };
+
+}
+
 #endif

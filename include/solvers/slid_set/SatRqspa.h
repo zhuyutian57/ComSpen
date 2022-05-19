@@ -10,6 +10,7 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/lexical_cast.hpp>
 
+namespace ComSpen {
 
 class SatRqspa {
 private:
@@ -40,6 +41,6 @@ public:
 
 };
 
-
+}
 
 #endif /* SAT_RQSPA_H */

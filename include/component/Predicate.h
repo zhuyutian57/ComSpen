@@ -13,7 +13,7 @@
 #include "z3++.h"
 #include "Types.h"
 
-using namespace z3;
+namespace ComSpen {
 
 class Predicate {
 public:
@@ -32,9 +32,11 @@ public:
 
 protected:
     std::string name;
-    expr_vector m_pars;
-    expr m_base_rule;
-    expr m_rec_rule;
+    z3::expr_vector m_pars;
+    z3::expr m_base_rule;
+    z3::expr m_rec_rule;
 };
+
+}
 
 #endif

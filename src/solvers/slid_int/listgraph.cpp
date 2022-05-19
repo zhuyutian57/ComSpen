@@ -6,15 +6,13 @@
 
 #include "solvers/slid_int/listgraph.h"
 
-// using namespace std;
+using namespace ComSpen;
 
-/* --------------------------------------------------------------------------*/
 /**
  * @synopsis  graph initialize a graph using abstraction
  *
  * @param f separation logic formula
- */
-/* --------------------------------------------------------------------------*/
+*/
 
 listgraph::listgraph(const listgraph& g)
 {

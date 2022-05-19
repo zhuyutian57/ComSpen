@@ -10,6 +10,8 @@
 
 #include "parser/DeclareConstParser.h"
 
+using namespace ComSpen;
+
 extern SyntaxErrorTable SYNTAX_ERROR_INFO;
 
 void DeclareConstParser::parse(Table* table) {

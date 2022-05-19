@@ -21,7 +21,7 @@
 
 #include <map>
 
-using std::map;
+namespace ComSpen {
 
 /*! @class TokenScannerBuffer
  *  @brief Brief class description
@@ -45,8 +45,9 @@ public:
     virtual ~TokenScannerBuffer();
 
 protected:
-    map<string, TokenScanner*> m_buffer; ///< Member description
+    std::map<std::string, TokenScanner*> m_buffer; ///< Member description
 };
 
+}
 
 #endif

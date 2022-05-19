@@ -1,5 +1,7 @@
 #include "component/Predicate.h"
 
+using namespace ComSpen;
+
 Predicate::Predicate(
     z3::context& ctx,
     std::string name,

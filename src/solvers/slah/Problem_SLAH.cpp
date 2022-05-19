@@ -1,5 +1,7 @@
 #include "solvers/slah/Problem_SLAH.h"
 
+using namespace ComSpen;
+
 Problem_SLAH::Problem_SLAH(z3::context& ctx)
     : Problem(ctx), m_hck(nullptr) {}
 

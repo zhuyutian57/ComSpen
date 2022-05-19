@@ -12,12 +12,9 @@
 #include "component/Z3Buffer.h"
 #include <iostream>
 
+using namespace ComSpen;
+
 extern SyntaxErrorTable SYNTAX_ERROR_INFO;
-//extern Z3Buffer z3_buffer;
-
-using std::cout;
-using std::endl;
-
 
 /*! @brief Brief function description here
  *

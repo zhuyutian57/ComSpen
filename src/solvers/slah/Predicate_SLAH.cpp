@@ -1,7 +1,7 @@
 #include "solvers/slah/Predicate_SLAH.h"
 #include "exception/SemanticException.h"
 
-//extern z3::context z3_ctx;
+using namespace ComSpen;
 
 Predicate_SLAH::Predicate_SLAH(
     z3::context& ctx,

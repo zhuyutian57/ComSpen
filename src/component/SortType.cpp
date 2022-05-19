@@ -10,7 +10,7 @@
 
 #include "component/SortType.h"
 
-//extern z3::context z3_ctx;
+using namespace ComSpen;
 
 string SortType::getName() { return m_sort_name; }
 

@@ -12,6 +12,8 @@
 
 #include "TokenScanner.h"
 
+namespace ComSpen {
+
 /*! @class StringLiteralScanner
  *  @brief Brief class description
  *
@@ -24,4 +26,7 @@ public:
     virtual ~StringLiteralScanner() {}
     Token* scan(Scanner& scanner); 
 };
+
+}
+
 #endif

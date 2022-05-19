@@ -12,6 +12,8 @@
 
 #include "TokenScannerBuffer.h"
 
+namespace ComSpen {
+
 extern TokenScannerBuffer token_scanner_buffer;
 
 /*! @class TokenScannerFactory
@@ -29,5 +31,7 @@ protected:
     TokenScannerBuffer& m_buffer;
 
 };
+
+}
 
 #endif

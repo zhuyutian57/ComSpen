@@ -14,8 +14,10 @@
 #include "parser/CommandParserFactory.h"
 #include "Types.h"
 
+namespace ComSpen {
+
 TokenScannerFactory tokenScannerFactory;
 TokenBuffer token_buffer;
 TokenScannerBuffer token_scanner_buffer;
 
-
+}

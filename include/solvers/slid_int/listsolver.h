@@ -6,7 +6,7 @@
 #include "listgraph.h"
 #include "expr_tool.h"
 
-using namespace std;
+namespace ComSpen {
 
 class listsolver{
 
@@ -98,6 +98,6 @@ protected:
 	int m_omega_eq_size;
 };
 
-
+}
 
 #endif /* LISTSOLVER_ */

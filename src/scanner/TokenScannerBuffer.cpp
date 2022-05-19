@@ -10,6 +10,8 @@
 
 #include "scanner/TokenScannerBuffer.h"
 
+using namespace ComSpen;
+
 TokenScannerBuffer::TokenScannerBuffer() {
     m_buffer["TokenScanner"] = new TokenScanner();
     m_buffer["CommentScanner"] = new CommentScanner();

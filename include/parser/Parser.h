@@ -8,6 +8,8 @@
 #include <iostream>
 #include <fstream>
 
+namespace ComSpen {
+
 class Parser {
 
 public:
@@ -22,7 +24,8 @@ protected:
   Scanner* scanner;
   
   void set_input(std::string file);
-
 };
+
+}
 
 #endif

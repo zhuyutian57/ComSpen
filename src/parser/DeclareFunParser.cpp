@@ -1,5 +1,6 @@
 #include "parser/DeclareFunParser.h"
 
+using namespace ComSpen;
 
 extern SyntaxErrorTable SYNTAX_ERROR_INFO;
 

@@ -12,6 +12,8 @@
 
 #include "CommandParser.h"
 
+namespace ComSpen {
+
 /*! @class DefineFunRecParser
  *  @brief Brief class description
  *
@@ -25,7 +27,8 @@ public:
 
     virtual void parse(Table* table);
     void checkSLAHRecRule(Table* table, z3::expr rec, string fname);
-
 };
+
+}
 
 #endif

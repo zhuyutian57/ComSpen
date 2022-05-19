@@ -26,8 +26,7 @@
 #include "SetLogicParser.h"
 #include "Types.h"
 
-//extern CommandParserBuffer cmd_parser_buffer;
-
+namespace ComSpen {
 
 /*! @class CommandParserFactory
  *  @brief Brief class description
@@ -46,4 +45,7 @@ public:
 private:
     std::map<std::string, CommandParser*> factory;
 };
+
+}
+
 #endif

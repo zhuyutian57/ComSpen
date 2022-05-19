@@ -12,6 +12,8 @@
 #include "Types.h"
 #include "parser/CommandParserFactory.h"
 
+using namespace ComSpen;
+
 extern SyntaxErrorTable SYNTAX_ERROR_INFO;
 
 /*! @brief Brief function description here

@@ -16,9 +16,9 @@
 #include "solvers/slah/Predicate_SLAH.h"
 #include "solvers/slah/Problem_SLAH.h"
 
+using namespace ComSpen;
+
 extern SyntaxErrorTable SYNTAX_ERROR_INFO;
-//extern Z3Buffer z3_buffer; 
-//extern z3::context z3_ctx;
 
 void DefineFunRecParser::parse(Table* table) {
     Token* curr = scanner->checkNext(SYMBOL_TOKEN, SYNTAX_ERROR_INFO[SYMBOL_TOKEN]);
@@ -30,7 +30,7 @@ void DefineFunRecParser::parse(Table* table) {
 
     VarList vpars;
     table->topVar(vpars);
-    expr_vector pars(z3_ctx);
+    z3::expr_vector pars(z3_ctx);
     z3::sort_vector domain(z3_ctx);
     for (auto par : vpars) {
         pars.push_back(z3_buffer.getVar(par));

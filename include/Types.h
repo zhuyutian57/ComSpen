@@ -10,6 +10,7 @@
 #include <iostream>
 #include <sstream>
 
+namespace ComSpen {
 
 using std::vector;
 using std::map;
@@ -27,5 +28,7 @@ using SyntaxErrorTable = vector<string>;
 using LogicInfo = map<string, string>;
 using TheoryInfo = map<string, string>;
 using Theories = vector<string>;
+
+}
 
 #endif

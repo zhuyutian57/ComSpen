@@ -9,10 +9,8 @@
 *******************************************/
 
 #include "component/Var.h"
-//#include "component/Z3Buffer.h"
 
-//extern z3::context z3_ctx;
-//extern Z3Buffer z3_buffer;
+using namespace ComSpen;
 
 Var::operator z3::expr() {
     z3::sort& s = z3_buffer.getSort(m_sort_type);

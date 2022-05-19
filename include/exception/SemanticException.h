@@ -12,6 +12,8 @@
 
 #include "BaseException.h"
 
+namespace ComSpen {
+
 /*! @class SemanticException
  *  @brief Brief class description
  *
@@ -20,10 +22,12 @@
 class SemanticException : public BaseException
 {
 public:
-    SemanticException(string info, int row=-1, int col=-1)
+    SemanticException(std::string info, int row=-1, int col=-1)
         :BaseException("SEMANTIC ERROR", info, row, col) {}
     virtual ~SemanticException() {}
 
 };
+
+}
 
 #endif

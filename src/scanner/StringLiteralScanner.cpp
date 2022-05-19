@@ -10,6 +10,8 @@
 
 #include "scanner/StringLiteralScanner.h"
 
+using namespace ComSpen;
+
 /*! @brief Brief function description here
  *
  *  Detailed description
@@ -26,7 +28,7 @@ Token* StringLiteralScanner::scan(Scanner& scanner) {
         if (scanner.curr() == '"') {
             StrToken* token = m_buffer.getStrToken();
             token->reset(STRING_TOKEN, line, col, 
-                    string(scanner.getCache().begin(), scanner.getCache().end()));
+                    std::string(scanner.getCache().begin(), scanner.getCache().end()));
             return token;
         }
         scanner.cache(scanner.curr());

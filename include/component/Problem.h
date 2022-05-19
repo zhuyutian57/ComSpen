@@ -16,6 +16,8 @@
 
 #include "solvers/slah/HeapChunk.h"
 
+namespace ComSpen {
+
 using HeapType = pair<SortType*, SortType*>;
 
 class Problem {
@@ -48,5 +50,6 @@ protected:
     string m_logic;
 };
 
+}
 
 #endif

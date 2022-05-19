@@ -10,25 +10,27 @@
 
 #include "parser/AssertParser.h"
 
+using namespace ComSpen;
+
 extern SyntaxErrorTable SYNTAX_ERROR_INFO;
 
 void AssertParser::parse(Table* table) {
     this->scanner->checkNext(LEFT_PAREN, SYNTAX_ERROR_INFO[LEFT_PAREN]);
     z3::expr phi = parseExpr(table);
     if (phi.is_app() && phi.decl().name().str() == "not") {
-        expr psi(z3_ctx);
+        z3::expr psi(z3_ctx);
 		if(phi.num_args() > 0) psi = phi.arg(0);
         if(Z3_ast(psi) == nullptr||(psi.decl().name().str() != "and" && psi.decl().name().str() != "or")){
-        	expr_vector items(z3_ctx);
+        	z3::expr_vector items(z3_ctx);
         	if(Z3_ast(psi) != nullptr) items.push_back(psi);
-        	psi = mk_and(items);
+        	psi = z3::mk_and(items);
 		}
         table->addPsi(psi);
     } else {
     	if(phi.decl().name().str() != "and" && phi.decl().name().str() != "or"){
-        	expr_vector items(z3_ctx);
+        	z3::expr_vector items(z3_ctx);
         	items.push_back(phi);
-        	phi = mk_and(items);
+        	phi = z3::mk_and(items);
 		}
         table->addPhi(phi);
     }

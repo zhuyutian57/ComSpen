@@ -13,6 +13,8 @@
 #include "TokenScanner.h"
 #include <cctype>
 
+namespace ComSpen {
+
 /*! @class SymbolScanner
  *  @brief Brief class description
  *
@@ -28,5 +30,7 @@ public:
 protected:
     virtual bool stop(char curr);
 };
+
+}
 
 #endif

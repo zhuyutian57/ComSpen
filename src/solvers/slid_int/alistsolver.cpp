@@ -1,5 +1,6 @@
 #include "solvers/slid_int/alistsolver.h"
-//extern z3::context z3_ctx;
+
+using namespace ComSpen;
 
 bool alistsolver::match_graph(listgraph& g_psi, listgraph& omega_g_i) {
      // TODO (jackchong#1#06/18/18): compute allocated-table ...
@@ -44,7 +45,7 @@ bool alistsolver::match_graph(listgraph& g_psi, listgraph& omega_g_i) {
         std::vector<listgraph::edge_descriptor> rc_edges = omega_g_i.get_reachable_edges(vid);
         for (int j=0; j<rc_edges.size(); j++) {
             int idx = omega_g_i.get_edge_property(rc_edges[j]);
-            std::string source_name = "["+m_phi_space.arg(idx).arg(0).to_string()+","+to_string(idx)+"]";
+            std::string source_name = "["+m_phi_space.arg(idx).arg(0).to_string()+","+ std::to_string(idx)+"]";
             neg_vec.push_back(!z3_ctx.bool_const(source_name.c_str()));
         }
         s.reset();

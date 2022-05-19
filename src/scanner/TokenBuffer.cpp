@@ -10,6 +10,8 @@
 
 #include "scanner/TokenBuffer.h"
 
+using namespace ComSpen;
+
 /*! @brief Brief function description here
  *
  *  Detailed description

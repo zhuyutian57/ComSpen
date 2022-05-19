@@ -1,6 +1,6 @@
 #include "solvers/slah/Relation.h"
 
-//extern z3::context z3_ctx;
+using namespace ComSpen;
 
 Relation::Relation(z3::context& z3_ctx):sol(z3_ctx){}
 

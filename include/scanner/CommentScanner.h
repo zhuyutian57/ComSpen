@@ -12,6 +12,8 @@
 
 #include "TokenScanner.h"
 
+namespace ComSpen {
+
 /*! @class CommentScanner
  *  @brief Brief class description
  *
@@ -24,5 +26,7 @@ public:
     virtual ~CommentScanner() {}
     Token* scan(Scanner& scanner); 
 };
+
+}
 
 #endif

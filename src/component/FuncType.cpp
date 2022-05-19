@@ -11,8 +11,7 @@
 #include "component/FuncType.h"
 #include "exception/SemanticException.h"
 
-//extern z3::context z3_ctx;
-//extern Z3Buffer z3_buffer;
+using namespace ComSpen;
 
 z3::func_decl FuncType::determine(SortList& arg_type_list,  Table* table){
     string fname = m_name;

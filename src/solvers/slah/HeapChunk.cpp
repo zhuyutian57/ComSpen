@@ -1,8 +1,7 @@
 #include "solvers/slah/HeapChunk.h"
 #include "exception/SemanticException.h"
 
-
-//extern z3::context z3_ctx;
+using namespace ComSpen;
 
 HeapChunk::HeapChunk(z3::context& ctx, z3::func_decl fun, z3::expr_vector pars, z3::expr exp, int ex_size)
 : m_fun(fun), m_pars(pars), m_data(ctx), m_space(ctx), 

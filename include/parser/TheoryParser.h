@@ -15,6 +15,8 @@
 #include "Parser.h"
 #include "Types.h"
 
+namespace ComSpen {
+
 /*! @class TheoryParser
  *  @brief Brief class description
  *
@@ -40,5 +42,7 @@ private:
     FuncType* parseFun(Table* table);
     void parseFuns(Table* table);
 };
+
+}
 
 #endif

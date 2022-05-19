@@ -13,7 +13,7 @@
 #include "Types.h"
 #include "z3++.h"
 
-using namespace z3;
+namespace ComSpen {
 
 /*! @class SortType
  *  @brief Brief class description
@@ -48,5 +48,6 @@ protected:
     vector<std::string> subTypes;
 };
 
+}
 
 #endif

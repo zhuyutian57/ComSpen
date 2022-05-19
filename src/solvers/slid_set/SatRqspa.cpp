@@ -1,9 +1,6 @@
 #include "solvers/slid_set/SatRqspa.h"
 
-
-
-//extern z3::context z3_ctx;
-//extern Z3Buffer z3_buffer;
+using namespace ComSpen;
 
 /**
  * get line content :

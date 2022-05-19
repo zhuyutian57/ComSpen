@@ -12,6 +12,8 @@
 
 #include "TokenScanner.h"
 
+namespace ComSpen {
+
 /*! @class NumberLiteralScanner
  *  @brief Brief class description
  *
@@ -26,5 +28,7 @@ public:
 protected:
     virtual bool stop(char curr);
 };
+
+}
 
 #endif

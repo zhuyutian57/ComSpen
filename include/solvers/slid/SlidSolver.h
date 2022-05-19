@@ -5,6 +5,8 @@
 
 #include "z3++.h"
 
+namespace ComSpen {
+
 class SlidSolver {
 
 public:
@@ -36,7 +38,8 @@ private:
   z3::expr get_abs_blk(z3::expr& formula);
   // z3::expr get_abs_ref(z3::expr& formula);
   // z3::expr get_abs_sref(z3::expr& formula);
-
 };
+
+}
 
 #endif

@@ -13,7 +13,7 @@
 #include "Token.h"
 #include <map>
 
-using std::map;
+namespace ComSpen {
 
 /*! @class TokenBuffer
  *  @brief Brief class description
@@ -32,7 +32,9 @@ public:
     virtual ~TokenBuffer();
 
 protected:
-    map<string, Token*> m_buffer; ///< Member description
+    std::map<std::string, Token*> m_buffer; ///< Member description
 };
+
+}
 
 #endif

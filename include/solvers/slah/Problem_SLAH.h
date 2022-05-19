@@ -17,6 +17,8 @@
 #include "Types.h"
 #include "z3++.h"
 
+namespace ComSpen {
+
 using HeapType = pair<SortType*, SortType*>;
 
 class Problem_SLAH : public Problem {
@@ -33,5 +35,6 @@ protected:
     HeapChunk* m_hck;
 };
 
+}
 
 #endif

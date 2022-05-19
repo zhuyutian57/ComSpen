@@ -25,6 +25,7 @@
 
 #include "solvers/slah/HeapChunk.h"
 
+namespace ComSpen {
 
 using FieldTable = std::map<std::string, Field*>;
 using SortTable = map<string, SortType*>; 
@@ -32,7 +33,7 @@ using FuncTable = map<string, FuncType*>;
 using VarStack = vector<Var*>;
 using ScopeMarkStack = vector<int>;
 using OpStack = vector<string>;
-using ArgStack = vector<expr>;
+using ArgStack = vector<z3::expr>;
 using ArgScopeStack = vector<int>; 
 
 using VarList = vector<Var*>;
@@ -67,8 +68,8 @@ public:
     // fill problem
     void addPredicate(Predicate* pred) {m_problem->setPredicate(pred);} 
     void addHeapChunk(HeapChunk* hck) {m_problem->setHeapChunk(hck);} 
-    void addPhi(expr& phi) {m_problem->setPhi(phi);}
-    void addPsi(expr& psi) {m_problem->setPsi(psi);}
+    void addPhi(z3::expr& phi) {m_problem->setPhi(phi);}
+    void addPsi(z3::expr& psi) {m_problem->setPsi(psi);}
     
     void setProblem(Problem* problem) { m_problem = problem; }
     Problem* getProblem() {return m_problem;}
@@ -111,5 +112,7 @@ private:
 
     Problem* m_problem; ///< problem description
 };
+
+}
 
 #endif

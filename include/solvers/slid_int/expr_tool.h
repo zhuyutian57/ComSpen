@@ -6,6 +6,7 @@
 #include <vector>
 #include "component/Z3Buffer.h"
 
+namespace ComSpen {
 
 class expr_tool {
 public:
@@ -76,10 +77,8 @@ public:
         // used by fa.h
         static z3::expr mk_int_var(z3::context& ctx, std::string prefix, int i);
         static z3::expr mk_int_var(z3::context& ctx, std::string prefix, int p, int a, int q);
-
-
 };
 
-
+}
 
 #endif /* EXPR_TOOL_H */

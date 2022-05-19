@@ -11,17 +11,13 @@
 #include "parser/SetLogicParser.h"
 #include "parser/LogicParser.h"
 #include "parser/TheoryParser.h"
-//#include "component/Z3Buffer.h"
 #include <iostream>
 
 #include "solvers/slah/Problem_SLAH.h"
 
+using namespace ComSpen;
+
 extern SyntaxErrorTable SYNTAX_ERROR_INFO;
-//extern Z3Buffer z3_buffer;
-
-using std::cout;
-using std::endl;
-
 
 /*! @brief Brief function description here
  *

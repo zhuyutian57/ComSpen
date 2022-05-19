@@ -13,6 +13,8 @@
 
 #include "CommandParser.h"
 
+namespace ComSpen {
+
 /*! @class AssertParser
  *  @brief Brief class description
  *
@@ -27,5 +29,7 @@ public:
     virtual void parse(Table* table);
     
 };
+
+}
 
 #endif

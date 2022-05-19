@@ -16,7 +16,7 @@
 #include <cctype>
 #include <set>
 
-using std::set;
+namespace ComSpen {
 
 extern TokenBuffer token_buffer;
 
@@ -46,8 +46,8 @@ protected:
 
     TokenBuffer& m_buffer;
     static char m_normalized_table[256]; ///< normalized table for characters
-
-
 };
+
+}
 
 #endif

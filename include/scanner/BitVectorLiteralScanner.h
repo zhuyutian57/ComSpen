@@ -12,6 +12,8 @@
 
 #include "TokenScanner.h"
 
+namespace ComSpen {
+
 /*! @class BitVectorLiteralScanner
  *  @brief Brief class description
  *
@@ -24,4 +26,7 @@ public:
     virtual ~BitVectorLiteralScanner();
     Token* scan(Scanner& scanner);
 };
+
+}
+
 #endif

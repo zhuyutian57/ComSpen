@@ -11,6 +11,8 @@
 *******************************************/
 #include "CommandParser.h"
 
+namespace ComSpen {
+
 class CheckSatParser : public CommandParser {
 public:
     CheckSatParser(z3::context& ctx, Z3Buffer& buffer): CommandParser(ctx, buffer) {}
@@ -18,4 +20,7 @@ public:
 
     virtual void parse(Table* table);
 };
+
+}
+
 #endif

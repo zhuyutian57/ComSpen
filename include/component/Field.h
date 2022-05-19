@@ -4,6 +4,8 @@
 #include "SortType.h"
 #include "Types.h"
 
+namespace ComSpen {
+
 class Field {
 
 public:
@@ -18,5 +20,7 @@ private:
   std::string name;
   SortType* sort;
 };
+
+}
 
 #endif

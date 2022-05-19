@@ -1,5 +1,7 @@
 #include "parser/Parser.h"
 
+using namespace ComSpen;
+
 SyntaxErrorTable SYNTAX_ERROR_INFO = {
     "",
     "'(' is expected!",

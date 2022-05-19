@@ -16,12 +16,14 @@
 #include <string>
 #include <vector>
 
+namespace ComSpen {
+
 class Relation{
 
 private:
 	int size;
     std::map<std::string,int> add_table;
-    std::vector<std::vector<int>> rel_table;//0:δ֪ 1��add[i] = add[j] 2:add[i]<add[j] 3:add[i]<=add[j] 4:add[i]>add[j] 5:add[i]>=add[j]
+    std::vector<std::vector<int>> rel_table;//0:δ֪ 1��add[i] = add[j] 2:add[i]<add[j] 3:add[i]<=add[j] 4:add[i]>add[j] 5:add[i]>=add[j]
     z3::solver sol;
 
 public:
@@ -40,6 +42,6 @@ public:
 
 };
 
-
+}
 
 #endif
