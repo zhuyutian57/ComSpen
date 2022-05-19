@@ -12,7 +12,7 @@ Then, you can build ComSpen by CMake, like
 ```sh
 mkdir build
 cd build
-cmake -DZ3_DIR=<path to Z3Config.cmake> ..
+cmake ..
 make
 sudo make install
 ```
