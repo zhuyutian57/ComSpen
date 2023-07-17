@@ -33,7 +33,7 @@ public:
     void setTheory(string theory);
 
 private:
-    const std::string prefix = "../config/Theories/";
+    const std::string prefix = "/usr/local/include/comspen/config/Theories/";
     std::string theory;
     
     SortType* parseSort();

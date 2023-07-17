@@ -30,7 +30,7 @@ public:
     void setLogic(string logic);
 
 private:
-    const string prefix="../config/Logics/";
+    const string prefix="/usr/local/include/comspen/config/Logics/";
     std::string logic;
 };
 

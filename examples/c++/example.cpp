@@ -3,6 +3,8 @@
 #include "slah_api.h"
 #include "z3++.h"
 
+using namespace ComSpen;
+
 void test_slah_api() {
   z3::context ctx;
   z3::expr a = ctx.int_const("a");

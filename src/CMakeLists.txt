@@ -30,11 +30,11 @@ install(TARGETS ComSpen DESTINATION "${CMAKE_INSTALL_BINDIR}")
 install(TARGETS smt2z3
   EXPORT smt2z3-targets
   LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
-  PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
+  PUBLIC_HEADER DESTINATION /usr/local/include/comspen
   )
 
 install(EXPORT smt2z3-targets
   NAMESPACE ComSpen::
   FILE smt2z3-config.cmake
   DESTINATION lib/cmake/smt2z3
-  )
+)

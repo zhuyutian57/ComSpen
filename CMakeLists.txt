@@ -10,3 +10,5 @@ set(COMSPEN_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 find_package(Z3 REQUIRED CONFIG)
 
 add_subdirectory(src)
+
+add_subdirectory(config)
